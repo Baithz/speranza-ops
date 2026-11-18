@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b111a">
+  <meta name="description" content="Speranza Ops : le poste de préparation de raid pour ARC Raiders : cartes, schémas manquants, spawns des gros ARC, escouade et réseau d’entraide.">
+  <title>Speranza Ops</title>
+  <link rel="icon" href="assets/atlas/signal.svg">
+  <link rel="stylesheet" href="engine/atlas.css">
+  <link rel="stylesheet" href="engine/armory.css">
+  <link rel="stylesheet" href="engine/field.css">
+  <link rel="stylesheet" href="engine/maps.css">
+  <link rel="stylesheet" href="engine/bestiary.css">
+  <link rel="stylesheet" href="engine/operations.css">
+  <link rel="stylesheet" href="engine/duo.css">
+  <link rel="stylesheet" href="engine/home.css">
+  <link rel="stylesheet" href="engine/flight.css">
+  <link rel="stylesheet" href="engine/studies.css">
+  <link rel="stylesheet" href="engine/interface.css">
+  <link rel="stylesheet" href="engine/arc-combat.css">
+  <link rel="stylesheet" href="engine/interactions.css">
+  <link rel="stylesheet" href="engine/hangar.css">
+  <link rel="stylesheet" href="engine/blueprint-hunt.css">
+  <link rel="stylesheet" href="engine/player-layout.css">
+  <link rel="stylesheet" href="app/ops.css?v=2026.11.16.1">
+  <link rel="stylesheet" href="app/operations-3d.css?v=2026.11.16.1">
+  <link rel="stylesheet" href="app/spawns.css?v=2026.11.16.1">
+</head>
+<body>
+<a href="#stage" class="skip-link">Aller au contenu</a>
+<nav class="dock" aria-label="Écrans">
+  <a class="dock-brand" href="#accueil" data-act="go" data-view="accueil" aria-label="Speranza Ops, retour au QG"><img src="assets/atlas/signal.svg" alt=""></a>
+  <div class="dock-links"></div>
+  <button type="button" id="dockMore" data-act="more" aria-expanded="false" aria-label="Autres écrans"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><circle cx="5" cy="12" r="1.8" fill="currentColor"/><circle cx="12" cy="12" r="1.8" fill="currentColor"/><circle cx="19" cy="12" r="1.8" fill="currentColor"/></svg>Plus</button>
+</nav>
+<header class="top">
+  <button type="button" class="top-search" data-act="palette" aria-label="Rechercher partout (Ctrl + K)"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="10" cy="10" r="6"/><path d="m15 15 6 6"/></svg><span>Rechercher un ARC, une arme, un lieu…</span><kbd>Ctrl K</kbd></button>
+  <span class="top-gap"></span>
+  <button type="button" id="livePill" data-act="pill" hidden></button>
+  <button type="button" id="rankChip" data-act="journal"></button>
+  <button type="button" id="profileOpen" class="backup" data-act="profile" aria-haspopup="dialog"></button>
+  <button type="button" id="duoOpen" class="backup" aria-haspopup="dialog"></button>
+  <button type="button" class="icon-btn" data-act="settings" aria-label="Réglages" title="Réglages"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 2v3m0 14v3M2 12h3m14 0h3M5 5l2 2m10 10 2 2M19 5l-2 2M7 17l-2 2"/></svg></button>
+</header>
+<main id="stage" tabindex="-1"></main>
+<dialog id="sheet"></dialog>
+<dialog id="palette" aria-label="Recherche"></dialog>
+<div role="status" aria-live="polite" id="toast" hidden></div>
+<aside id="duoNotice" hidden aria-label="Radio de l’escouade"><div><small class="duo-kicker">Escouade</small><p id="duoNoticeText" role="status"></p></div><button type="button" id="duoReveal" hidden>Voir sur la carte</button><button type="button" id="duoDismiss" aria-label="Masquer le message">×</button></aside>
+<script src="engine/blueprints.js"></script>
+<script src="engine/bestiary-data.js"></script>
+<script src="engine/loot-data.js"></script>
+<script src="engine/armory-data.js"></script>
+<script src="engine/event-snapshot.js"></script>
+<script src="app/profiles.js?v=2026.11.16.1"></script>
+<script src="app/core.js?v=2026.11.16.1"></script>
+<script src="app/version.js?v=2026.11.16.1"></script>
+<script src="app/backup.js?v=2026.11.16.1"></script>
+<script src="app/screens-a.js?v=2026.11.16.1"></script>
+<script src="app/screens-b.js?v=2026.11.16.1"></script>
+<script src="app/ops-data.js"></script>
+<script src="app/emperor-evidence.js"></script>
+<script src="app/operations-navigation.js"></script>
+<script src="app/screens-c.js?v=2026.11.16.1"></script>
+<script src="app/spawns.js?v=2026.11.16.1"></script>
+<script src="app/engines.js?v=2026.11.16.1"></script>
+<script src="app/squad.js?v=2026.11.16.1"></script>
+<script src="app/network-config.js?v=2026.11.16.1"></script>
+<script src="app/network.js?v=2026.11.16.1"></script>
+<script src="app/sites.js?v=2026.11.16.1"></script>
+<script src="app/quests.js?v=2026.11.16.1"></script>
+<script src="app/update.js?v=2026.11.16.1"></script>
+<script src="app/capture.js"></script>
+<script>OPS.start();</script>
+<script src="app/motion.js"></script>
+</body></html>

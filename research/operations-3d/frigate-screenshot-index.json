@@ -1,0 +1,25 @@
+{
+  "source": "https://arctracker.io/guides/frigate-cargo-run",
+  "build": "2.00.0-CL1418508",
+  "retrieved": "2026-11-10",
+  "note": "Captures du visualiseur communautaire, interface et repères masqués temporairement. Ce ne sont pas des captures du moteur du jeu.",
+  "images": [
+    {
+      "file": "frigate-overview.png",
+      "beat": "plan.goal"
+    },
+    {
+      "file": "frigate-cargo-hall.png",
+      "beat": "cargo-deck.hall"
+    },
+    {
+      "file": "frigate-fan-tunnel.png",
+      "beat": "cargo-deck.fan-tunnel"
+    },
+    {
+      "file": "frigate-deck-detail.png",
+      "beat": "board.reclaimer",
+      "note": "Détail du pont observé pendant le déplacement de caméra ; ne pas utiliser comme vue orthographique du dessous."
+    }
+  ]
+}

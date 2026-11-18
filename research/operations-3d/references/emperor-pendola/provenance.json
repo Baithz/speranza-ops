@@ -1,0 +1,180 @@
+{
+  "date": "2026-11-10",
+  "status": "Visual research; no 3D geometry validated",
+  "videoPublished": "2026-10-26",
+  "versionLimit": "Video precedes official collision corrections in update 2.3.0 (2026-10-27). Hidden surfaces and exact dimensions are not established.",
+  "selected": [
+    {
+      "file": "emperor/emperor-exterior-wide.webp",
+      "label": "Vue d’ensemble",
+      "alt": "Empereur effondré dans la neige à Pendola, grande traverse et ouverture ronde",
+      "credit": "Gamer Guides",
+      "source": "https://gamer-guides.com/arc-raiders/emperor/",
+      "seconds": null,
+      "bytes": 127392,
+      "sha256": "3b27961da028389229f7757dc075bd2c821f07f9a0f122b5670e540e877beee9",
+      "capture": "Existing reference; original provenance in emperor-reference-index.json"
+    },
+    {
+      "file": "emperor-pendola/raiderlogic-131.png",
+      "label": "Vue rapprochée",
+      "alt": "Coque de l’Empereur à Pendola ; un schéma du vidéaste recouvre une partie de l’image",
+      "credit": "RaiderLogic · 02:11",
+      "source": "https://www.youtube.com/watch?v=JLBVTdaahLQ&t=131s",
+      "seconds": 131,
+      "bytes": 796951,
+      "sha256": "18b452d6a62b3e700b59baef41f4c19a024186945cb7327ed3afc562a3479754",
+      "capture": "Browser video-element screenshot; paused, seek position checked, no generative alteration"
+    },
+    {
+      "file": "emperor-pendola/raiderlogic-26.png",
+      "label": "Trappe ouverte",
+      "alt": "Passage circulaire ouvert à la base de l’Empereur et bras de son vantail",
+      "credit": "RaiderLogic · 00:26",
+      "source": "https://www.youtube.com/watch?v=JLBVTdaahLQ&t=26s",
+      "seconds": 26,
+      "bytes": 495092,
+      "sha256": "6e4d9673927557809d61e0921e72422ceac39d3f3b0f2bd0f11c8673ade08662",
+      "capture": "Browser video-element screenshot; paused, seek position checked, no generative alteration"
+    },
+    {
+      "file": "emperor/emperor-door.webp",
+      "label": "Depuis l’extérieur",
+      "alt": "Trappe d’entrée de l’Empereur près de la prise du Conduit",
+      "credit": "Arc Raiders Hub",
+      "source": "https://arcraidershub.com/guides/fallen-emperor-guide",
+      "seconds": null,
+      "bytes": 77764,
+      "sha256": "31b7d7b5f8c4803e2b8873fa2436929c578f6e5ebe88291016689c45a94cfd03",
+      "capture": "Existing reference; original provenance in emperor-reference-index.json"
+    },
+    {
+      "file": "emperor-pendola/raiderlogic-48.png",
+      "label": "Boîtiers",
+      "alt": "Tunnel intérieur avec boîtiers électriques et bords surélevés",
+      "credit": "RaiderLogic · 00:48",
+      "source": "https://www.youtube.com/watch?v=JLBVTdaahLQ&t=48s",
+      "seconds": 48,
+      "bytes": 619159,
+      "sha256": "df24d1a000a126ea1be5320da56e8292c355c65e4a0da78f727982620a4d1582",
+      "capture": "Browser video-element screenshot; paused, seek position checked, no generative alteration"
+    },
+    {
+      "file": "emperor-pendola/raiderlogic-66.png",
+      "label": "Autre instant",
+      "alt": "Tunnel d’accès éclairé par les éléments rouges du mécanisme",
+      "credit": "RaiderLogic · 01:06",
+      "source": "https://www.youtube.com/watch?v=JLBVTdaahLQ&t=66s",
+      "seconds": 66,
+      "bytes": 530128,
+      "sha256": "75e35d51d50e3b58492c532ff82a8b03ce2adc296ac3e9920ff8721c698ab65b",
+      "capture": "Browser video-element screenshot; paused, seek position checked, no generative alteration"
+    },
+    {
+      "file": "emperor-pendola/raiderlogic-116.png",
+      "label": "Au niveau du sol",
+      "alt": "Plateforme annulaire autour du mât central, paroi courbe et passage rond",
+      "credit": "RaiderLogic · 01:56",
+      "source": "https://www.youtube.com/watch?v=JLBVTdaahLQ&t=116s",
+      "seconds": 116,
+      "bytes": 550513,
+      "sha256": "22b2f28d41b87cbd58acd164b61b14de3cb9405e5fca74d0aa3ec424ddb09ad5",
+      "capture": "Browser video-element screenshot; paused, seek position checked, no generative alteration"
+    },
+    {
+      "file": "emperor-pendola/raiderlogic-140.png",
+      "label": "Vers le haut",
+      "alt": "Dessous de la plateforme du puits central et ouvertures de la paroi",
+      "credit": "RaiderLogic · 02:20",
+      "source": "https://www.youtube.com/watch?v=JLBVTdaahLQ&t=140s",
+      "seconds": 140,
+      "bytes": 497971,
+      "sha256": "566654deeb7197e8207412a0897b8f175aa834958bcc5a27cb028720a59ba2c5",
+      "capture": "Browser video-element screenshot; paused, seek position checked, no generative alteration"
+    },
+    {
+      "file": "emperor-pendola/raiderlogic-165.png",
+      "label": "Puits en hauteur",
+      "alt": "Vue ascendante du puits et de son mécanisme",
+      "credit": "RaiderLogic · 02:45",
+      "source": "https://www.youtube.com/watch?v=JLBVTdaahLQ&t=165s",
+      "seconds": 165,
+      "bytes": 527209,
+      "sha256": "b4bea8676f5b1937189a21060fe880840338cf849fad446ebd26bcd6017e9f1a",
+      "capture": "Browser video-element screenshot; paused, seek position checked, no generative alteration"
+    },
+    {
+      "file": "emperor-pendola/raiderlogic-1520.png",
+      "label": "Cargaison et ouverture",
+      "alt": "Cargaison inclinée dans le hangar, ouverture circulaire vers l’extérieur",
+      "credit": "RaiderLogic · 25:20",
+      "source": "https://www.youtube.com/watch?v=JLBVTdaahLQ&t=1520s",
+      "seconds": 1520,
+      "bytes": 616322,
+      "sha256": "e320416ba24f79da8b9c6807b2659e835bb7fb8576da1cd5357a0332146ed58f",
+      "capture": "Browser video-element screenshot; paused, seek position checked, no generative alteration"
+    },
+    {
+      "file": "emperor-pendola/raiderlogic-1570.png",
+      "label": "Vers le plafond",
+      "alt": "Partie haute de la cargaison, mécanismes et plafond du hangar",
+      "credit": "RaiderLogic · 26:10",
+      "source": "https://www.youtube.com/watch?v=JLBVTdaahLQ&t=1570s",
+      "seconds": 1570,
+      "bytes": 595679,
+      "sha256": "b114ba48c3b81ec6d6701b728db2474e17d8dcdb410ef0e2ae4db7a2653978d9",
+      "capture": "Browser video-element screenshot; paused, seek position checked, no generative alteration"
+    },
+    {
+      "file": "emperor-pendola/raiderlogic-1480.png",
+      "label": "Anneau mécanique",
+      "alt": "Anneau mécanique et objets au sol dans le hangar final",
+      "credit": "RaiderLogic · 24:40",
+      "source": "https://www.youtube.com/watch?v=JLBVTdaahLQ&t=1480s",
+      "seconds": 1480,
+      "bytes": 510366,
+      "sha256": "c70cdc62cf5f335cfbd793abede01795922af70ab7be964cd9814d6cffb366ab",
+      "capture": "Browser video-element screenshot; paused, seek position checked, no generative alteration"
+    },
+    {
+      "file": "emperor-pendola/raiderlogic-2020.png",
+      "label": "Grande ouverture",
+      "alt": "Raider au bord de la grande ouverture, terrain enneigé très en dessous",
+      "credit": "RaiderLogic · 33:40",
+      "source": "https://www.youtube.com/watch?v=JLBVTdaahLQ&t=2020s",
+      "seconds": 2020,
+      "bytes": 601418,
+      "sha256": "c337744c35cef23b4a9c78ac374cd2e9e6f808024097a76b023be5dd7ec7ff65",
+      "capture": "Browser video-element screenshot; paused, seek position checked, no generative alteration"
+    },
+    {
+      "file": "emperor-pendola/raiderlogic-2040.png",
+      "label": "Porte du hangar",
+      "alt": "Porte rectangulaire périphérique du hangar, avec lumières blanches",
+      "credit": "RaiderLogic · 34:00",
+      "source": "https://www.youtube.com/watch?v=JLBVTdaahLQ&t=2040s",
+      "seconds": 2040,
+      "bytes": 496177,
+      "sha256": "055b093e228123b58f5e9af3dc3af5cdac71d4695b6afcde26eb87b958c62b76",
+      "capture": "Browser video-element screenshot; paused, seek position checked, no generative alteration"
+    },
+    {
+      "file": "emperor-pendola/raiderlogic-2065.png",
+      "label": "Passage bas",
+      "alt": "Débouché entre les parois de la coque, au niveau de la neige",
+      "credit": "RaiderLogic · 34:25",
+      "source": "https://www.youtube.com/watch?v=JLBVTdaahLQ&t=2065s",
+      "seconds": 2065,
+      "bytes": 436988,
+      "sha256": "900118ddf271c563dab219fb0a30132bb2a742e6b8a8014e95e6731074cb9ff3",
+      "capture": "Browser video-element screenshot; paused, seek position checked, no generative alteration"
+    }
+  ],
+  "userCorrection": {
+    "file": "emperor-pendola/user-front-2026-11-10.png",
+    "credit": "Capture fournie par le joueur dans cette conversation",
+    "source": "user attachment 2026-11-10",
+    "sha256": "e3c8b1ffb80bc5be1a6f8a9f6d9e82adcc53f23ae080fa82a7233b1c8da7a417",
+    "meaning": "V01 rejected: front silhouette incorrectly interpreted. This frontal view must be compared with oblique references."
+  }
+}

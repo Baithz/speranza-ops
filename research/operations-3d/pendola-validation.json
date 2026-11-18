@@ -1,0 +1,35 @@
+{
+  "date": "2026-11-10",
+  "scope": "Pendola evidence board and Opes reference integration; no new 3D export",
+  "references": {"selectedImages": 15, "allLoaded": true, "provenance": "references/emperor-pendola/provenance.json"},
+  "researchBoard": {
+    "desktopViewports": [[1366, 768], [1440, 900], [1024, 768]],
+    "desktopPageOverflow": false,
+    "mobileViewport": [390, 844],
+    "mobileHorizontalOverflow": false,
+    "mobileVerticalFlow": "intentional stacked content",
+    "allSixPlacesAndFifteenAnglesChecked": true
+  },
+  "opes": {
+    "fiveZonesWithMultipleViews": true,
+    "thirteenAnglesChecked": true,
+    "changingAnglePreservesDeclaredPosition": true,
+    "desktopPageOverflow1366x768": false,
+    "pendolaResearchLinkPresent": true,
+    "frigateCanvasLoadsAfterSwitch": true,
+    "frigateReferenceRemainsVisible": true,
+    "keyboardReferenceSelection": true,
+    "mobileHorizontalOverflowAfterHeaderFix": false,
+    "mobileWidthsChecked": [390, 360, 320],
+    "rejectedEmperorModelRequested": false,
+    "emperor3DModesDisabled": true,
+    "javascriptRuntimeErrorsObserved": []
+  },
+  "limits": [
+    "Visual fidelity and traversal of a new Emperor model have not been validated.",
+    "Exact dimensions, hidden surfaces and correspondence of intact and playable wreck geometry remain unresolved.",
+    "Topside Atlas connections are community observations with approximate positions, not a canonical game mesh.",
+    "Gameplay video predates patch 2.3.0 collision fixes.",
+    "Browser testing used local HTTP. Direct file protocol testing is unavailable in this browser tool."
+  ]
+}

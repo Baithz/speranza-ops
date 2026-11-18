@@ -1,0 +1,261 @@
+{
+  "build": "2.00.0-CL1418508",
+  "source": "source/frigate/data/wiring.json",
+  "warning": "Dépendances de l’export communautaire ; les effets marqués inferred restent à vérifier en jeu.",
+  "cores": [
+    {
+      "id": "BP_FrigatePlatform_Beams_02_C_5",
+      "position": [
+        158.145,
+        -2.845,
+        11.356
+      ],
+      "shields": [
+        "BP_FrigatePowerCoreShield_C_23",
+        "BP_FrigatePowerCoreShield_C_38"
+      ],
+      "shieldCount": 2,
+      "targets": [
+        {
+          "id": "BP_Frigate_CargoSideDoor_01_C_3",
+          "kind": "power",
+          "effect": "inferred"
+        },
+        {
+          "id": "BP_Frigate_CargoLatch_C_5",
+          "kind": "power",
+          "effect": "inferred"
+        }
+      ]
+    },
+    {
+      "id": "BP_FrigatePlatform_Beams_02_C_6",
+      "position": [
+        114.515,
+        -3.282,
+        -14.602
+      ],
+      "shields": [
+        "BP_FrigatePowerCoreShield_C_31",
+        "BP_FrigatePowerCoreShield_C_33"
+      ],
+      "shieldCount": 2,
+      "targets": [
+        {
+          "id": "BP_Frigate_CargoLatch_C_6",
+          "kind": "power",
+          "effect": "inferred"
+        }
+      ]
+    },
+    {
+      "id": "BP_FrigatePlatform_Beams_02_C_7",
+      "position": [
+        -27.001,
+        8.773,
+        0
+      ],
+      "shields": [
+        "BP_FrigatePowerCoreShield_C_50",
+        "BP_FrigatePowerCoreShield_C_28"
+      ],
+      "shieldCount": 2,
+      "targets": [
+        {
+          "id": "BP_PuzzleRelay_Triple_C_1",
+          "kind": "power",
+          "effect": "inferred"
+        }
+      ]
+    },
+    {
+      "id": "BP_FrigatePlatform_Beams_02_C_8",
+      "position": [
+        158.145,
+        -2.845,
+        -11.478
+      ],
+      "shields": [
+        "BP_FrigatePowerCoreShield_C_27",
+        "BP_FrigatePowerCoreShield_C_35"
+      ],
+      "shieldCount": 2,
+      "targets": [
+        {
+          "id": "BP_Frigate_CargoSideDoor_01_C_2",
+          "kind": "power",
+          "effect": "inferred"
+        },
+        {
+          "id": "BP_Frigate_CargoLatch_C_7",
+          "kind": "power",
+          "effect": "inferred"
+        }
+      ]
+    },
+    {
+      "id": "BP_FrigatePlatform_Beams_02_C_9",
+      "position": [
+        114.515,
+        -3.282,
+        14.383
+      ],
+      "shields": [
+        "BP_FrigatePowerCoreShield_C_26",
+        "BP_FrigatePowerCoreShield_C_45"
+      ],
+      "shieldCount": 2,
+      "targets": [
+        {
+          "id": "BP_Frigate_CargoLatch_C_4",
+          "kind": "power",
+          "effect": "inferred"
+        }
+      ]
+    },
+    {
+      "id": "BP_FrigatePowerCore_C_3",
+      "position": [
+        18.719,
+        16.704,
+        29.693
+      ],
+      "shields": [
+        "BP_FrigatePowerCoreShield_C_37",
+        "BP_FrigatePowerCoreShield_C_46"
+      ],
+      "shieldCount": 2,
+      "targets": [
+        {
+          "id": "BP_PuzzleRelay_Triple_C_1",
+          "kind": "power",
+          "effect": "inferred"
+        }
+      ]
+    },
+    {
+      "id": "BP_FrigatePowerCore_C_4",
+      "position": [
+        18.927,
+        20.261,
+        68.689
+      ],
+      "shields": [
+        "BP_FrigatePowerCoreShield_C_34",
+        "BP_FrigatePowerCoreShield_C_44",
+        "BP_FrigatePowerCoreShield_C_47"
+      ],
+      "shieldCount": 3,
+      "targets": [
+        {
+          "id": "BP_PuzzleRelay_Triple_C_1",
+          "kind": "power",
+          "effect": "inferred"
+        },
+        {
+          "id": "BP_FrigateExhaust_C_13",
+          "kind": "deactivation",
+          "effect": "inferred"
+        },
+        {
+          "id": "BP_FrigateVenting_C_3",
+          "kind": "deactivation",
+          "effect": "inferred"
+        }
+      ]
+    },
+    {
+      "id": "BP_FrigatePowerCore_C_5",
+      "position": [
+        18.666,
+        16.727,
+        -29.672
+      ],
+      "shields": [
+        "BP_FrigatePowerCoreShield_C_36",
+        "BP_FrigatePowerCoreShield_C_24"
+      ],
+      "shieldCount": 2,
+      "targets": [
+        {
+          "id": "BP_PuzzleRelay_Triple_C_1",
+          "kind": "power",
+          "effect": "inferred"
+        }
+      ]
+    },
+    {
+      "id": "BP_FrigatePowerCore_C_8",
+      "position": [
+        18.949,
+        20.284,
+        -68.714
+      ],
+      "shields": [
+        "BP_FrigatePowerCoreShield_C_51",
+        "BP_FrigatePowerCoreShield_C_22",
+        "BP_FrigatePowerCoreShield_C_32"
+      ],
+      "shieldCount": 3,
+      "targets": [
+        {
+          "id": "BP_PuzzleRelay_Triple_C_1",
+          "kind": "power",
+          "effect": "inferred"
+        },
+        {
+          "id": "BP_FrigateExhaust_C_14",
+          "kind": "deactivation",
+          "effect": "inferred"
+        },
+        {
+          "id": "BP_FrigateVenting_C_2",
+          "kind": "deactivation",
+          "effect": "inferred"
+        }
+      ]
+    },
+    {
+      "id": "BP_FrigatePowerCore_C_9",
+      "position": [
+        103.051,
+        -17.906,
+        -0.007
+      ],
+      "shields": [
+        "BP_FrigatePowerCoreShield_C_39",
+        "BP_FrigatePowerCoreShield_C_25"
+      ],
+      "shieldCount": 2,
+      "targets": [
+        {
+          "id": "BP_FrigateHull_Gate_C_3",
+          "kind": "power",
+          "effect": "inferred"
+        }
+      ]
+    },
+    {
+      "id": "BP_Frigate_BreachableCore_C_1",
+      "position": [
+        -1.871,
+        -26.907,
+        0
+      ],
+      "shields": [
+        "BP_FrigatePowerCoreShield_C_29",
+        "BP_FrigatePowerCoreShield_C_21",
+        "BP_FrigatePowerCoreShield_C_30",
+        "BP_FrigatePowerCoreShield_C_20"
+      ],
+      "shieldCount": 4,
+      "targets": [
+        {
+          "id": "BP_PuzzleRelay_Triple_C_1",
+          "kind": "power",
+          "effect": "inferred"
+        }
+      ]
+    }
+  ]
+}

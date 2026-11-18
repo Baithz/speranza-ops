@@ -1,0 +1,56 @@
+/* Retours partagés : navigation, panneaux de lecture et illustrations interactives. */
+.mast .mast-nav{position:relative}
+.mast:not([data-compact]) .mast-nav:after{content:"";position:absolute;left:0;bottom:0;height:3px;width:var(--nav-mark-width,0px);transform:translateX(var(--nav-mark-x,0px));background:#ffcf7b;box-shadow:0 -3px 14px #ffcf7b2b;pointer-events:none;transition:transform .34s cubic-bezier(.2,.8,.2,1),width .34s cubic-bezier(.2,.8,.2,1)}
+.mast:not([data-compact]) .mast-nav a[aria-current=page]:after{display:none}
+:where(button,a,input,select,textarea,summary){-webkit-tap-highlight-color:#f2d39133}
+:where(button,[role=button],summary):not(:disabled){transition:background-color .18s,border-color .18s,color .18s,box-shadow .18s}
+:where(input,select,textarea){color-scheme:dark}
+:where(input[type=checkbox],input[type=radio]){width:1rem;height:1rem;flex:none;vertical-align:middle}
+:where(input,select,textarea):focus-visible{outline:3px solid var(--focus);outline-offset:3px}
+:where(button,a,summary):focus-visible{outline:3px solid var(--focus);outline-offset:3px}
+.frame :where(p,li,dd),dialog :where(p,li,dd){line-height:1.6}
+.frame :where(p),dialog :where(p){text-wrap:pretty}
+.frame :where(h2,h3,h4),dialog :where(h2,h3,h4){text-wrap:balance}
+.frame :is(input,textarea)::placeholder,dialog :is(input,textarea)::placeholder{color:#bdc9b9;opacity:1}
+.hero-ops .ops-corner{padding:6px 9px;background:#111926ee;border:1px solid #566986;border-radius:3px;color:#f3efdf;text-shadow:none}
+.blueprint-art .fig-no{padding:3px 5px;background:#1a2d37;color:#dfedf0;border-radius:2px}
+#readingPanel{width:min(580px,calc(100% - 24px))}
+#readingPanel header button,.read-options label,.read-motion select,.read-done{min-height:48px}
+#readingPanel header button{min-width:48px}
+.read-options{gap:8px}.read-options label{gap:8px;padding:8px 10px;flex:1 1 auto;justify-content:center}
+.read-options label:focus-within{outline:3px solid var(--focus);outline-offset:3px}
+.read-example{padding:14px 16px;line-height:1.6}
+.select-value{display:block;grid-column:1/-1;flex:1 1 100%;min-width:0;max-width:100%;margin:4px 0 2px;padding:5px 0 5px 10px;border-left:2px solid currentColor;color:inherit;font:500 var(--type-meta)/1.45 var(--sans);letter-spacing:normal;text-transform:none;white-space:normal;overflow-wrap:anywhere}
+.has-select-value{flex-wrap:wrap}
+.footer-in{flex-wrap:wrap;padding-block:16px}.footer-in>span{min-width:0;flex-wrap:wrap}.motion-choice{min-width:0;max-width:100%;flex-wrap:wrap}#motionSetting{min-width:0;max-width:100%;min-height:48px}
+.as-dialog .as-switch button,.as-dialog .as-phases button,.as-targets .as-choice button,.as-dialog [data-as-align],.as-dialog .as-tools select{min-height:48px}
+.bc .bc-search{height:auto;min-height:48px}.as-choose select,.bc-mobile-choice select{min-height:48px}
+.flight .fl-main-actions button,.flight .fl-zoom button{min-height:48px}.flight .fl-zoom button{min-width:48px}
+.bc .bc-sections button,.wa-shell .wa-pages button,.bc .bc-quick-study{min-height:48px}
+#toast{z-index:80;line-height:1.45;max-width:min(620px,calc(100% - 24px));padding:14px 20px;bottom:18px}
+@media(hover:hover) and (pointer:fine){
+  .frame :where(button,summary):not(:disabled):hover,dialog :where(button,summary):not(:disabled):hover{box-shadow:inset 0 0 0 1px #f6dd9c5c}
+  :is(.sp-docks a,.item-card,.as-poster):focus-within{border-color:#f2d391}
+}
+@media(prefers-reduced-motion:no-preference){
+  :root:not([data-reduce-motion]) :is(.bc-brief,.wa-guide-hero,.lt-object,[data-bc-page],[data-bench-page]){animation:reading-pane .32s cubic-bezier(.16,.8,.2,1) both}
+  :root:not([data-reduce-motion]) dialog[open]{animation:reading-dialog .26s cubic-bezier(.2,.8,.2,1) both}
+  :root:not([data-reduce-motion]) dialog[open]::backdrop{animation:reading-backdrop .25s ease-out}
+  :root:not([data-reduce-motion]) #toast:not([hidden]){animation:reading-toast .22s ease-out}
+  :root:not([data-reduce-motion]) :is(.lt-measures>div,.wa-guide-stats>div){animation:reading-value .35s ease-out both}
+  :root:not([data-reduce-motion]) :is(.lt-measures>div,.wa-guide-stats>div):nth-child(2){animation-delay:35ms}
+  :root:not([data-reduce-motion]) :is(.lt-measures>div,.wa-guide-stats>div):nth-child(3){animation-delay:70ms}
+  :root:not([data-reduce-motion]) .mast[data-open] #siteMenu{animation:reading-pane .2s ease-out}
+  :root:not([data-reduce-motion]) :where(button,summary):not(:disabled):active{translate:0 1px}
+}
+@media(hover:hover) and (pointer:fine) and (prefers-reduced-motion:no-preference){
+  :root:not([data-reduce-motion]) :is(.blueprint-art,.wa-guide-figure,.bc-photo) img{transition:transform .35s cubic-bezier(.2,.8,.2,1);will-change:auto}
+  :root:not([data-reduce-motion]) :is(.blueprint-art,.wa-guide-figure,.bc-photo)[data-depth-active] img{transform:perspective(800px) rotateX(var(--depth-x,0deg)) rotateY(var(--depth-y,0deg)) scale(1.035);will-change:transform}
+}
+@keyframes reading-pane{from{opacity:.55;translate:0 10px}to{opacity:1;translate:0 0}}
+@keyframes reading-dialog{from{opacity:.5;transform:perspective(1300px) translateY(18px) rotateX(1.5deg) scale(.99)}to{opacity:1;transform:none}}
+@keyframes reading-backdrop{from{opacity:0}to{opacity:1}}
+@keyframes reading-toast{from{opacity:0;translate:0 10px}to{opacity:1;translate:0 0}}
+@keyframes reading-value{from{opacity:.5;translate:0 6px}to{opacity:1;translate:0 0}}
+@media(max-width:540px){.read-motion select{width:100%}.read-options{display:grid;grid-template-columns:1fr}.read-options label{justify-content:flex-start}#readingPanel header{align-items:flex-start}#readingPanel h2{font-size:1.65rem}}
+:root[data-reduce-motion] :is(.blueprint-art,.wa-guide-figure,.bc-photo) img{transform:none;will-change:auto}

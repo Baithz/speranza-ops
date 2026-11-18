@@ -1,0 +1,56 @@
+{
+  "notes": "Other files in this directory are exploratory captures. Only these selected references are used in the visual board. Concepts do not establish final-game geometry.",
+  "selected": [
+    {
+      "sha256": "c0a7bfce2a493d5e4dedf6d1d1c0ebba124628761f3b84865f9c51fdfc13f189",
+      "bytes": 565511,
+      "file": "nord-catnip.png",
+      "source": "https://esbjornnord.artstation.com/projects/6Ll2Wr",
+      "asset": "https://cdna.artstation.com/p/assets/images/images/095/311/274/large/esbjorn-nord-catnip-01.webp?1768234859",
+      "capture": "Browser image capture at 1600x900; no generative alteration",
+      "type": "development concept, not confirmed final game asset",
+      "author": "Esbjörn Nord / Embark"
+    },
+    {
+      "sha256": "1896296bb382be2e84451451333425e64d6c71e953a75f04d675d1b9be37ff29",
+      "file": "porkuhbowl-35.png",
+      "seconds": 35,
+      "bytes": 485833,
+      "source": "https://www.youtube.com/watch?v=KiBHEDTC8WA&t=35s",
+      "capture": "Browser video element screenshot; video source 1280x720",
+      "type": "gameplay video frame",
+      "author": "Pork Uh Bowl"
+    },
+    {
+      "sha256": "d613933def377b9f79986a00284a9b0c81e25192318df61280a64d59cf23b3af",
+      "file": "porkuhbowl-60.png",
+      "seconds": 60,
+      "bytes": 306273,
+      "source": "https://www.youtube.com/watch?v=KiBHEDTC8WA&t=60s",
+      "capture": "Browser video element screenshot; video source 1280x720",
+      "type": "gameplay video frame",
+      "author": "Pork Uh Bowl"
+    },
+    {
+      "sha256": "534c8139b30219f87c20e237300616e7945186a8827539452b02d8d870fe30be",
+      "seconds": 5.8,
+      "bytes": 313673,
+      "file": "steam-walker-5-8.png",
+      "source": "https://store.steampowered.com/app/1808500/ARC_Raiders/",
+      "asset": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1808500/extras/138bc82b1d7cd44c7a8c1b40ff9351aa.webm?t=1761855189",
+      "capture": "Frame from steam-walker.webm",
+      "type": "official store promotional video frame",
+      "author": "Embark Studios"
+    },
+    {
+      "bytes": 1814128,
+      "type": "official store promotional video",
+      "source": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1808500/extras/138bc82b1d7cd44c7a8c1b40ff9351aa.webm?t=1761855189",
+      "sha256": "693ba03531e9261d96205f2d1d2d657bd5551a041d331bb3e664bea4addf9695",
+      "author": "Embark Studios",
+      "file": "steam-walker.webm"
+    }
+  ],
+  "status": "research only; previous reconstruction rejected",
+  "date": "2026-11-10"
+}

@@ -1,0 +1,15 @@
+# Ce fichier dit à Git ce qu'il ne doit PAS enregistrer.
+
+# Dépendances et réglages d'outils : ils se réinstallent.
+node_modules/
+.vercel/
+__pycache__/
+*.log
+
+# Sauvegardes de profil exportées depuis le site : données personnelles.
+speranza-ops-*.json
+
+# Fichiers du système.
+Thumbs.db
+desktop.ini
+.DS_Store

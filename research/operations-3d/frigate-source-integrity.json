@@ -1,0 +1,1116 @@
+{
+  "build": "2.00.0-CL1418508",
+  "retrieved": "2026-11-10",
+  "manifestURL": "https://assets.arctracker.io/guides/frigate/builds/2.00.0-CL1418508.b8ec35f676d6375c.json",
+  "sourcePage": "https://arctracker.io/guides/frigate-cargo-run",
+  "files": [
+    {
+      "logicalPath": "meshes/SM_DecalMesh_01.glb",
+      "url": "https://assets.arctracker.io/guides/m/83142e8b2db02162.glb",
+      "bytes": 2204,
+      "sha256": "83142e8b2db0216200f8d4486bb8bc77b9f2832e572f8eb44fb80a8bf0d845d4"
+    },
+    {
+      "logicalPath": "meshes/SM_ARC_LampMetalBar_01_A.glb",
+      "url": "https://assets.arctracker.io/guides/m/483769eb9066dc81.glb",
+      "bytes": 26172,
+      "sha256": "483769eb9066dc81e5e366c1eb6e8c19aee0c203d537d77873866ee4bf6734bf"
+    },
+    {
+      "logicalPath": "meshes/SM_ARC_Lamp_01_C.glb",
+      "url": "https://assets.arctracker.io/guides/m/3275bd2cfdaf8283.glb",
+      "bytes": 29764,
+      "sha256": "3275bd2cfdaf82836dccd1b763761132d0d9d70e88cb0cbf2f4360051785d44b"
+    },
+    {
+      "logicalPath": "meshes/SM_ARC_Lamp_01_D.glb",
+      "url": "https://assets.arctracker.io/guides/m/e9e7fce47542cfa2.glb",
+      "bytes": 6264,
+      "sha256": "e9e7fce47542cfa241e00060da3fecab296280a421b2589967fb53d11e972834"
+    },
+    {
+      "logicalPath": "meshes/SM_ARC_Lamp_01_B.glb",
+      "url": "https://assets.arctracker.io/guides/m/ff941c9d5247a394.glb",
+      "bytes": 27160,
+      "sha256": "ff941c9d5247a394c88dcb57fcb12b371bfb6efa0062c7ea0d1a99b4f8055fa7"
+    },
+    {
+      "logicalPath": "meshes/SM_Frigate_InteractionCover_01_A.glb",
+      "url": "https://assets.arctracker.io/guides/m/496fd9546dc21283.glb",
+      "bytes": 24820,
+      "sha256": "496fd9546dc2128314325a9132e4c65c35be6221ab7f05b03b7e514000afdbe8"
+    },
+    {
+      "logicalPath": "meshes/SM_Arc_InteractionPoint_01_Base_A.glb",
+      "url": "https://assets.arctracker.io/guides/m/321dbec5db4235e3.glb",
+      "bytes": 6780,
+      "sha256": "321dbec5db4235e3a1bd82a710808e5b2f75f4e0daffeda1f174111436123eff"
+    },
+    {
+      "logicalPath": "meshes/SM_Frigate_CargoLatch_01_A.glb",
+      "url": "https://assets.arctracker.io/guides/m/eb8e1621e38ecf57.glb",
+      "bytes": 23480,
+      "sha256": "eb8e1621e38ecf571a2189cec40b8648259f3dc5372ea0a28101fb2b8cca808b"
+    },
+    {
+      "logicalPath": "meshes/SM_Arc_InteractionPoint_01_Lid_B.glb",
+      "url": "https://assets.arctracker.io/guides/m/98b9a3dac1eea374.glb",
+      "bytes": 20856,
+      "sha256": "98b9a3dac1eea3749f4e537794c438e5d3d4dd4175ad347589a843b75f1f0bf5"
+    },
+    {
+      "logicalPath": "meshes/SM_Arc_Core_01_A.glb",
+      "url": "https://assets.arctracker.io/guides/m/0e8c9b0341e4eab5.glb",
+      "bytes": 412640,
+      "sha256": "0e8c9b0341e4eab55ca791e1f2bf524b5b244d2c2b8dce58609b25c18ec7d052"
+    },
+    {
+      "logicalPath": "meshes/SM_Frigate_Platform_02_A_Static.glb",
+      "url": "https://assets.arctracker.io/guides/m/2b83ad8225fc829b.glb",
+      "bytes": 9772,
+      "sha256": "2b83ad8225fc829bc7a1dca3db496fdc3009be7370f5c906d7aaeae6dd473145"
+    },
+    {
+      "logicalPath": "meshes/SM_Arc_InteractionPoint_01_Lid_A.glb",
+      "url": "https://assets.arctracker.io/guides/m/5cdab36eff019f5c.glb",
+      "bytes": 20128,
+      "sha256": "5cdab36eff019f5c3de708b1df054bd3a50e1cd4f5484b23b2feed0b2bf44ded"
+    },
+    {
+      "logicalPath": "meshes/SM_Frigate_InteractionPoint_01_A.glb",
+      "url": "https://assets.arctracker.io/guides/m/984261ce16598b91.glb",
+      "bytes": 13496,
+      "sha256": "984261ce16598b917db505effdfadc87664b006cc89b0e96ef413d910777b4f8"
+    },
+    {
+      "logicalPath": "meshes/SM_FrigateHatch_02_A.glb",
+      "url": "https://assets.arctracker.io/guides/m/8ff1959a2584da42.glb",
+      "bytes": 68820,
+      "sha256": "8ff1959a2584da429e34e8c89be2ce77418a0d3ad8d0a2c89f05c166befadb1d"
+    },
+    {
+      "logicalPath": "meshes/SM_Frigate_SlidingDoor_02_A.glb",
+      "url": "https://assets.arctracker.io/guides/m/613fe1c9042ae617.glb",
+      "bytes": 18096,
+      "sha256": "613fe1c9042ae6174a388fbcc39f71f4093534f84dabf97d5d7b5bc5c427fab4"
+    },
+    {
+      "logicalPath": "meshes/SM_Frigate_SlidingDoor_01_A.glb",
+      "url": "https://assets.arctracker.io/guides/m/37dac3cf1facf3b4.glb",
+      "bytes": 12988,
+      "sha256": "37dac3cf1facf3b47b44f76457cb6c11cf3d7fd087197992296f7b0cbd64ba4c"
+    },
+    {
+      "logicalPath": "meshes/SM_Frigate_ProgressHatch_01_A.glb",
+      "url": "https://assets.arctracker.io/guides/m/343fbd02a85fd134.glb",
+      "bytes": 5216,
+      "sha256": "343fbd02a85fd13457a7db23c9605a0d54ff2534fdbea4860988ca91cee95662"
+    },
+    {
+      "logicalPath": "meshes/1M_Cube.glb",
+      "url": "https://assets.arctracker.io/guides/m/12d4bb5727b6b5cb.glb",
+      "bytes": 2864,
+      "sha256": "12d4bb5727b6b5cbaf47013bc3cd845f732446210b4c4c2458d8aa98b652f614"
+    },
+    {
+      "logicalPath": "meshes/SM_Frigate_FanBase_01.glb",
+      "url": "https://assets.arctracker.io/guides/m/1bee4e690ed73019.glb",
+      "bytes": 20452,
+      "sha256": "1bee4e690ed730194ccb56d8cbf02d8d016e861248f886dc049ef8a0ddfe3a71"
+    },
+    {
+      "logicalPath": "meshes/SM_Frigate_Fan_01_A.glb",
+      "url": "https://assets.arctracker.io/guides/m/c275deb9b378c9d2.glb",
+      "bytes": 46228,
+      "sha256": "c275deb9b378c9d2ae216264948bfd629469f83bbdee49a9602d57f689c68418"
+    },
+    {
+      "logicalPath": "meshes/SM_Frigate_Platform_01_A_Static.glb",
+      "url": "https://assets.arctracker.io/guides/m/acf9b30f852aa899.glb",
+      "bytes": 11340,
+      "sha256": "acf9b30f852aa899f62ba94b65a85825cadffdb7d2e63311efb0c8adf323d50d"
+    },
+    {
+      "logicalPath": "meshes/SM_Frigate_Platform_03_A_Static.glb",
+      "url": "https://assets.arctracker.io/guides/m/7784c60039be9ed4.glb",
+      "bytes": 131224,
+      "sha256": "7784c60039be9ed440a8fd06005568b2ae5070440dd1620c5f032a5237d7a79a"
+    },
+    {
+      "logicalPath": "meshes/SM_Frigate_Platform_03_A.glb",
+      "url": "https://assets.arctracker.io/guides/m/b2c64a2accdf7304.glb",
+      "bytes": 128484,
+      "sha256": "b2c64a2accdf730405881dca316fa619ab216962b5059c245db443537e11dee9"
+    },
+    {
+      "logicalPath": "meshes/SM_Frigate_Platform_03_B_Static.glb",
+      "url": "https://assets.arctracker.io/guides/m/3cf5951b1b3e99b6.glb",
+      "bytes": 112904,
+      "sha256": "3cf5951b1b3e99b6fb9ccc018675942d8eb6358c1c40172c3323a108ef0f6efa"
+    },
+    {
+      "logicalPath": "meshes/SM_FrigateHatch_01_A.glb",
+      "url": "https://assets.arctracker.io/guides/m/7c39bc9bc98df550.glb",
+      "bytes": 111824,
+      "sha256": "7c39bc9bc98df5502edc564c6567fafa15d0b3ffb1b1ae9d085c5902428f021f"
+    },
+    {
+      "logicalPath": "meshes/SM_Arc_CoreRing_01_A.glb",
+      "url": "https://assets.arctracker.io/guides/m/d74822f206d67cb4.glb",
+      "bytes": 58804,
+      "sha256": "d74822f206d67cb4d78e71502e6e4ac245764e22a654e26907ea1a7bb8ebb8b9"
+    },
+    {
+      "logicalPath": "meshes/SM_Arc_CoreShield_01_A.glb",
+      "url": "https://assets.arctracker.io/guides/m/413315f2d868a3c9.glb",
+      "bytes": 56176,
+      "sha256": "413315f2d868a3c98d14cc6b51cc6e5b259bc550c724779705d0ad5f2a3090ca"
+    },
+    {
+      "logicalPath": "meshes/SM_Frigate_Platform_03_B.glb",
+      "url": "https://assets.arctracker.io/guides/m/211f88cc3b248d4e.glb",
+      "bytes": 126740,
+      "sha256": "211f88cc3b248d4eed45c733e592fc17c002012565a07022748b0b14a0897ff2"
+    },
+    {
+      "logicalPath": "meshes/Cube.glb",
+      "url": "https://assets.arctracker.io/guides/m/b596b026a2841ba7.glb",
+      "bytes": 2328,
+      "sha256": "b596b026a2841ba72c091d179248e7c4ac203e67ac6e4b809f3d1b6357c98382"
+    },
+    {
+      "logicalPath": "meshes/SM_Arc_Core_01_B.glb",
+      "url": "https://assets.arctracker.io/guides/m/703a3be17e10ab19.glb",
+      "bytes": 366352,
+      "sha256": "703a3be17e10ab19ace8e02518a4f99a90fa4f4d75a3ed1950f82bd5c52c8e01"
+    },
+    {
+      "logicalPath": "meshes/SM_Arc_ParasiticContainer_Base_01_A.glb",
+      "url": "https://assets.arctracker.io/guides/m/7d5006ed387537af.glb",
+      "bytes": 2364,
+      "sha256": "7d5006ed387537af905fd66c45a095cbc343b1b286e7e9447545ef02075985a0"
+    },
+    {
+      "logicalPath": "meshes/SM_Arc_Door_01_A.glb",
+      "url": "https://assets.arctracker.io/guides/m/d27d0779fe63793b.glb",
+      "bytes": 38344,
+      "sha256": "d27d0779fe63793b68431d90ecab2cadf73d3ee2a1616a452495b2c0b138fc5f"
+    },
+    {
+      "logicalPath": "meshes/SM_Arc_Door_Light_01_A.glb",
+      "url": "https://assets.arctracker.io/guides/m/d5e23cbf169d0cb0.glb",
+      "bytes": 46260,
+      "sha256": "d5e23cbf169d0cb0c00c8ab17b7518ec74e8a6607a7f580fc833852525df46d9"
+    },
+    {
+      "logicalPath": "meshes/SM_Arc_Door_01_DoorFrame_A.glb",
+      "url": "https://assets.arctracker.io/guides/m/8426f61e803fc700.glb",
+      "bytes": 59792,
+      "sha256": "8426f61e803fc70073da18dc41fa01e5c25704aba330f8604a5e6ab4acb587fd"
+    },
+    {
+      "logicalPath": "meshes/SM_Harvester_01_Weakpoint_01.glb",
+      "url": "https://assets.arctracker.io/guides/m/6bdd159690f2f34d.glb",
+      "bytes": 10348,
+      "sha256": "6bdd159690f2f34de72bb4ad964e249011c4b5bc285307613948e9e6aa407377"
+    },
+    {
+      "logicalPath": "meshes/SM_Frigate_ThrusterRear_01.glb",
+      "url": "https://assets.arctracker.io/guides/m/a1bee37e2ccaf078.glb",
+      "bytes": 63292,
+      "sha256": "a1bee37e2ccaf0781a704e5136c3ea79177905b0db6786924299c1c08ebdde2b"
+    },
+    {
+      "logicalPath": "meshes/SM_Frigate_01_ThrusterNozzle_01.glb",
+      "url": "https://assets.arctracker.io/guides/m/70d3dd9973523978.glb",
+      "bytes": 275244,
+      "sha256": "70d3dd997352397881fe752fa26fe282460eeca104ea3c6181309939ea92aaf8"
+    },
+    {
+      "logicalPath": "meshes/SM_Arc_ParasiticContainer_01_A.glb",
+      "url": "https://assets.arctracker.io/guides/m/6ef2cd7582b554b5.glb",
+      "bytes": 44180,
+      "sha256": "6ef2cd7582b554b579e4e445d73285402850673abdc7f7b91a6ea7a08731b412"
+    },
+    {
+      "logicalPath": "meshes/SM_Frigate_SideRear_R_01.glb",
+      "url": "https://assets.arctracker.io/guides/m/be552b55ce0c3944.glb",
+      "bytes": 550424,
+      "sha256": "be552b55ce0c3944f24beb50b14c4f4958e721990c1c87a2572e144c283c452d"
+    },
+    {
+      "logicalPath": "meshes/SK_Frigate_Cargo_01_A.glb",
+      "url": "https://assets.arctracker.io/guides/m/22c3df9bb399e073.glb",
+      "bytes": 686160,
+      "sha256": "22c3df9bb399e073c84fdfe20de618ba3b0f638a9453ff989127f07fb2206a63"
+    },
+    {
+      "logicalPath": "meshes/SM_Frigate_SideFront_01.glb",
+      "url": "https://assets.arctracker.io/guides/m/eabdd4235e27dc25.glb",
+      "bytes": 523392,
+      "sha256": "eabdd4235e27dc25a39e0ab3ebbfdc58c54484645df91b4b9a15381521a20d73"
+    },
+    {
+      "logicalPath": "meshes/SM_Frigate_Rear_01.glb",
+      "url": "https://assets.arctracker.io/guides/m/37deea187c3add18.glb",
+      "bytes": 1572988,
+      "sha256": "37deea187c3add186f1742d497b546c0907ae5f3dc5631c99c2839fd2cc7ee42"
+    },
+    {
+      "logicalPath": "meshes/SM_Frigate_SideRear_02.glb",
+      "url": "https://assets.arctracker.io/guides/m/7f9df86c0ec07b38.glb",
+      "bytes": 995812,
+      "sha256": "7f9df86c0ec07b38a0a4ff80c8f9a2b4dc0ad593d9e2e3babcbf768981f2cb5e"
+    },
+    {
+      "logicalPath": "meshes/SM_Frigate_InteriorCargo_01_A.glb",
+      "url": "https://assets.arctracker.io/guides/m/6f2befa1e3dcf3fc.glb",
+      "bytes": 1528952,
+      "sha256": "6f2befa1e3dcf3fc9cd802ecfeb53e22ed0a866648c5dfa399463b148646616d"
+    },
+    {
+      "logicalPath": "meshes/SM_Frigate_Front_01.glb",
+      "url": "https://assets.arctracker.io/guides/m/d890e76d3558bac4.glb",
+      "bytes": 448128,
+      "sha256": "d890e76d3558bac4edabe6b049c6530be0716c1edcdad728b6e4ff7722b35ee4"
+    },
+    {
+      "logicalPath": "meshes/SM_Frigate_Rear_02.glb",
+      "url": "https://assets.arctracker.io/guides/m/1e9d9458253e7054.glb",
+      "bytes": 64588,
+      "sha256": "1e9d9458253e705458f6a97cbb2114af64d71cc311a37ca8274d665d0b4567e0"
+    },
+    {
+      "logicalPath": "meshes/SM_Frigate_SideFront_R_01.glb",
+      "url": "https://assets.arctracker.io/guides/m/8f53bfc64f0be93e.glb",
+      "bytes": 522596,
+      "sha256": "8f53bfc64f0be93e959d99c3a20758b02ea12a1400a6a91a0307b78233b9fcbe"
+    },
+    {
+      "logicalPath": "meshes/SM_Frigate_SideRear_01.glb",
+      "url": "https://assets.arctracker.io/guides/m/ad0733c4722f525c.glb",
+      "bytes": 553212,
+      "sha256": "ad0733c4722f525cf30869d6d9b5109d8f60f6902e60b3d7046920d14ae7af92"
+    },
+    {
+      "logicalPath": "meshes/SM_Frigate_Thruster_01.glb",
+      "url": "https://assets.arctracker.io/guides/m/f4c52d345a07c698.glb",
+      "bytes": 750360,
+      "sha256": "f4c52d345a07c6981638a9867a863485f091cfa038b2aa4b42ebcec132463d12"
+    },
+    {
+      "logicalPath": "meshes/SM_Frigate_SideRear_R_02.glb",
+      "url": "https://assets.arctracker.io/guides/m/df601d9629c60af7.glb",
+      "bytes": 995236,
+      "sha256": "df601d9629c60af76e251c6686f2764557040f82d0f4d03f8d14e9139484fed4"
+    },
+    {
+      "logicalPath": "meshes/SM_Frigate_Docking_01_A.glb",
+      "url": "https://assets.arctracker.io/guides/m/285d0112279e7eba.glb",
+      "bytes": 1044828,
+      "sha256": "285d0112279e7eba952e0ac2a0654b52c1f433145a0732056e5372362835c09e"
+    },
+    {
+      "logicalPath": "data/decks/deck-1.plan.webp",
+      "url": "https://assets.arctracker.io/guides/t/dce04a19260b14ab.webp",
+      "bytes": 5226,
+      "sha256": "dce04a19260b14aba682016bd9e1ec78c9c772aae0f598ee0277967ea34732d4"
+    },
+    {
+      "logicalPath": "data/decks/all.plan.webp",
+      "url": "https://assets.arctracker.io/guides/t/5c3c63c705dcd804.webp",
+      "bytes": 22586,
+      "sha256": "5c3c63c705dcd804c0d55f68c8dfc140abf67eb77868ab9a642c82ce87b02777"
+    },
+    {
+      "logicalPath": "data/decks/deck-10.side.webp",
+      "url": "https://assets.arctracker.io/guides/t/8667050db6f4b9a6.webp",
+      "bytes": 10596,
+      "sha256": "8667050db6f4b9a6cd96e2b01a3d999e98b3c2a296939929c45db72a77a47d70"
+    },
+    {
+      "logicalPath": "data/decks/deck-1.side.webp",
+      "url": "https://assets.arctracker.io/guides/t/3e16a60f7fcd7733.webp",
+      "bytes": 1458,
+      "sha256": "3e16a60f7fcd77335f8c45baa21f9013de80f1bf5fca9efe8f0661aea66a14b5"
+    },
+    {
+      "logicalPath": "data/decks/all.side.webp",
+      "url": "https://assets.arctracker.io/guides/t/097617ee1f05d62f.webp",
+      "bytes": 12446,
+      "sha256": "097617ee1f05d62f9ddbdae3f28c1774916a31d9188eefdd5e145cea0fc0bd33"
+    },
+    {
+      "logicalPath": "data/decks/deck-10.plan.webp",
+      "url": "https://assets.arctracker.io/guides/t/3b31815a4b094bfd.webp",
+      "bytes": 36036,
+      "sha256": "3b31815a4b094bfd52a477dc3dc5bf0f3cfcbae1d52830213dcfb95cb4e7f5fc"
+    },
+    {
+      "logicalPath": "data/decks/deck-4.plan.webp",
+      "url": "https://assets.arctracker.io/guides/t/1a2d202342af948b.webp",
+      "bytes": 14406,
+      "sha256": "1a2d202342af948b6ce8274a07623b19283d58857ec034fc984e4efc812aab0a"
+    },
+    {
+      "logicalPath": "data/decks/deck-4.side.webp",
+      "url": "https://assets.arctracker.io/guides/t/98f367b08c7a1015.webp",
+      "bytes": 3952,
+      "sha256": "98f367b08c7a1015ef3759ea4b69f42e4166ac0b658fe958924e6d2f5047f6e2"
+    },
+    {
+      "logicalPath": "data/decks/deck-2.plan.webp",
+      "url": "https://assets.arctracker.io/guides/t/5461d73d84227f3e.webp",
+      "bytes": 7530,
+      "sha256": "5461d73d84227f3e95278ec00076edeabca6c46346bb4379dd48bd4281a2cc05"
+    },
+    {
+      "logicalPath": "data/decks/deck-3.plan.webp",
+      "url": "https://assets.arctracker.io/guides/t/6c6edbed7d17943d.webp",
+      "bytes": 12300,
+      "sha256": "6c6edbed7d17943d55941b15865ddefa046e042c0d9577065823f93a386fd4bf"
+    },
+    {
+      "logicalPath": "data/decks/deck-3.side.webp",
+      "url": "https://assets.arctracker.io/guides/t/e48b25f9bf5b9c6f.webp",
+      "bytes": 3202,
+      "sha256": "e48b25f9bf5b9c6f75072abe9afc500aedf6473544537eb85b418eac3c64b4fa"
+    },
+    {
+      "logicalPath": "data/decks/deck-2.side.webp",
+      "url": "https://assets.arctracker.io/guides/t/fb84ed69c80c691a.webp",
+      "bytes": 2058,
+      "sha256": "fb84ed69c80c691ab7ce965a721c90adf927492e2835855ac6f807400af27710"
+    },
+    {
+      "logicalPath": "data/decks/deck-6.side.webp",
+      "url": "https://assets.arctracker.io/guides/t/512c122cf9603156.webp",
+      "bytes": 5978,
+      "sha256": "512c122cf9603156bca343d5abc1ae0c13abc5d4961e34df79127b772fe7e0f3"
+    },
+    {
+      "logicalPath": "data/decks/deck-7.side.webp",
+      "url": "https://assets.arctracker.io/guides/t/6e5d5c92f58d0c1c.webp",
+      "bytes": 7302,
+      "sha256": "6e5d5c92f58d0c1c3cbd2b74cdd506d8d220291b2e2940b52d0e5e0dc75f12ac"
+    },
+    {
+      "logicalPath": "data/decks/deck-5.side.webp",
+      "url": "https://assets.arctracker.io/guides/t/00a6e8825c11990a.webp",
+      "bytes": 5234,
+      "sha256": "00a6e8825c11990a7e05258b5b8937843f26bc2d42c04bb3fcd2ab0af67f543f"
+    },
+    {
+      "logicalPath": "data/decks/deck-6.plan.webp",
+      "url": "https://assets.arctracker.io/guides/t/27cd1f63f17561f3.webp",
+      "bytes": 19568,
+      "sha256": "27cd1f63f17561f3a716a99d66195faf836fab644fc20edc9e97254a69efd1f1"
+    },
+    {
+      "logicalPath": "data/decks/deck-5.plan.webp",
+      "url": "https://assets.arctracker.io/guides/t/a460d498470fe007.webp",
+      "bytes": 17602,
+      "sha256": "a460d498470fe007b3e46856bea6e55956e0ba8491f7afbd218ae9b4080ea596"
+    },
+    {
+      "logicalPath": "data/decks/deck-7.plan.webp",
+      "url": "https://assets.arctracker.io/guides/t/45a36c74a20c2213.webp",
+      "bytes": 22302,
+      "sha256": "45a36c74a20c2213ff781ebd6c23d9488bba11919bbd7be3f6b9f8dbac94742d"
+    },
+    {
+      "logicalPath": "data/decks/deck-9.plan.webp",
+      "url": "https://assets.arctracker.io/guides/t/3e46ba7f971bdc68.webp",
+      "bytes": 27936,
+      "sha256": "3e46ba7f971bdc688ee3624c67d19f8ac9e3b0d5bb4630a8f159def5a5f1d64f"
+    },
+    {
+      "logicalPath": "data/decks/deck-8.side.webp",
+      "url": "https://assets.arctracker.io/guides/t/321322e6a73fe3e4.webp",
+      "bytes": 8796,
+      "sha256": "321322e6a73fe3e41e89680878130b9121f456eb6cc020e21d13fcf8bc503c7c"
+    },
+    {
+      "logicalPath": "data/decks/deck-9.side.webp",
+      "url": "https://assets.arctracker.io/guides/t/c125134eb1b831f1.webp",
+      "bytes": 9790,
+      "sha256": "c125134eb1b831f1c2c9a4489cceb4f33b485c1a2983c1445a7460fd0dd59f57"
+    },
+    {
+      "logicalPath": "data/decks/deck-8.plan.webp",
+      "url": "https://assets.arctracker.io/guides/t/0022bb52607c3fb4.webp",
+      "bytes": 26274,
+      "sha256": "0022bb52607c3fb413650daf6281791eef11c22de945a62222acea1668bebbb8"
+    },
+    {
+      "logicalPath": "data/decks/top.side.webp",
+      "url": "https://assets.arctracker.io/guides/t/8ac12b058f3decbf.webp",
+      "bytes": 11552,
+      "sha256": "8ac12b058f3decbf9bfde7c02de4243d8ee73bee2c8bb7470621fad6aaef13c2"
+    },
+    {
+      "logicalPath": "data/decks/top.plan.webp",
+      "url": "https://assets.arctracker.io/guides/t/315d735ce97c9b2a.webp",
+      "bytes": 30438,
+      "sha256": "315d735ce97c9b2a2d55f12bfa17e135f262786e0e805fde137e982cd657f607"
+    },
+    {
+      "logicalPath": "textures/MI_Core_01_Interior_01__bc_01b4ebd0.ktx2",
+      "url": "https://assets.arctracker.io/guides/t/f9079ee32c370da1.ktx2",
+      "tier": "medium",
+      "bytes": 24318,
+      "sha256": "f9079ee32c370da1b758ef058736b440c4489cd8b173241b7e6b90f1a5a7b675"
+    },
+    {
+      "logicalPath": "textures/MI_Frigate_Door_02__bc_b92fea46.ktx2",
+      "url": "https://assets.arctracker.io/guides/t/649055e41addba37.ktx2",
+      "tier": "medium",
+      "bytes": 24482,
+      "sha256": "649055e41addba37165be2968b53ea5ed965b197c879a05d284799040f15ffd2"
+    },
+    {
+      "logicalPath": "textures/MI_Core_01_InteriorSoot_01__bc_01b4ebd0.ktx2",
+      "url": "https://assets.arctracker.io/guides/t/f9079ee32c370da1.ktx2",
+      "tier": "medium",
+      "bytes": 24318,
+      "sha256": "f9079ee32c370da1b758ef058736b440c4489cd8b173241b7e6b90f1a5a7b675"
+    },
+    {
+      "logicalPath": "textures/MI_ArcInteractionPoint_Trim_02__bc_1f732d85.ktx2",
+      "url": "https://assets.arctracker.io/guides/t/943176f0e4d55eb8.ktx2",
+      "tier": "medium",
+      "bytes": 24306,
+      "sha256": "943176f0e4d55eb87b82641decacd9bed5e4886d6529e0fa9159fd651829d2e5"
+    },
+    {
+      "logicalPath": "textures/MI_ArcInteractionPoint_Trim_01__bc_6069f8f9.ktx2",
+      "url": "https://assets.arctracker.io/guides/t/de5fab561e12c464.ktx2",
+      "tier": "medium",
+      "bytes": 24782,
+      "sha256": "de5fab561e12c464e83a786c835aa319fb01ddcefae7696a44c29a8a72116dbe"
+    },
+    {
+      "logicalPath": "textures/MI_Frigate_Door_01__bc_f65574df.ktx2",
+      "url": "https://assets.arctracker.io/guides/t/99e15cb2085888f5.ktx2",
+      "tier": "medium",
+      "bytes": 24494,
+      "sha256": "99e15cb2085888f5a21c5f14fc5aed603afa67a094c298c138d8b28e12a17bd3"
+    },
+    {
+      "logicalPath": "textures/MI_Frigate_TrimCleanMetal_01__bc_1f732d85.ktx2",
+      "url": "https://assets.arctracker.io/guides/t/943176f0e4d55eb8.ktx2",
+      "tier": "medium",
+      "bytes": 24306,
+      "sha256": "943176f0e4d55eb87b82641decacd9bed5e4886d6529e0fa9159fd651829d2e5"
+    },
+    {
+      "logicalPath": "textures/MI_Frigate_TrimCopper_01__bc_f624808c.ktx2",
+      "url": "https://assets.arctracker.io/guides/t/57b4dd4323e77a78.ktx2",
+      "tier": "medium",
+      "bytes": 24526,
+      "sha256": "57b4dd4323e77a78d016027df22be97688dc9a57e30e34baf34adc7173604b25"
+    },
+    {
+      "logicalPath": "textures/MI_Frigate_TrimExhaust_01__bc_75ca16e2.ktx2",
+      "url": "https://assets.arctracker.io/guides/t/ecb324884d13d61d.ktx2",
+      "tier": "medium",
+      "bytes": 24460,
+      "sha256": "ecb324884d13d61d7b2420de2ee1a0d49be242a3e8466e64d694b7a76b19b94c"
+    },
+    {
+      "logicalPath": "textures/MI_Frigate_TrimExhaust_02__bc_75ca16e2.ktx2",
+      "url": "https://assets.arctracker.io/guides/t/ecb324884d13d61d.ktx2",
+      "tier": "medium",
+      "bytes": 24460,
+      "sha256": "ecb324884d13d61d7b2420de2ee1a0d49be242a3e8466e64d694b7a76b19b94c"
+    },
+    {
+      "logicalPath": "textures/MI_Frigate_TrimDocking_01__bc_75ca16e2.ktx2",
+      "url": "https://assets.arctracker.io/guides/t/ecb324884d13d61d.ktx2",
+      "tier": "medium",
+      "bytes": 24460,
+      "sha256": "ecb324884d13d61d7b2420de2ee1a0d49be242a3e8466e64d694b7a76b19b94c"
+    },
+    {
+      "logicalPath": "textures/MI_Frigate_TrimAirBrakes_02__bc_1a5580e3.ktx2",
+      "url": "https://assets.arctracker.io/guides/t/a0856d2ea68fe07d.ktx2",
+      "tier": "medium",
+      "bytes": 24690,
+      "sha256": "a0856d2ea68fe07d3f7aae7c2aaa087d1f35f17db8ebf45c226708da0e299ef7"
+    },
+    {
+      "logicalPath": "textures/MI_Frigate_TrimInteriorTunnels_01__bc_75ca16e2.ktx2",
+      "url": "https://assets.arctracker.io/guides/t/ecb324884d13d61d.ktx2",
+      "tier": "medium",
+      "bytes": 24460,
+      "sha256": "ecb324884d13d61d7b2420de2ee1a0d49be242a3e8466e64d694b7a76b19b94c"
+    },
+    {
+      "logicalPath": "textures/MI_Frigate_TrimHull_01__bc_919ecb76.ktx2",
+      "url": "https://assets.arctracker.io/guides/t/1650eba7a660a538.ktx2",
+      "tier": "medium",
+      "bytes": 24682,
+      "sha256": "1650eba7a660a5382f51beb7972ce07fb5bac00294bdff89b00609456c0ffd91"
+    },
+    {
+      "logicalPath": "textures/MI_Frigate_TrimHull_02__bc_8374adfa.ktx2",
+      "url": "https://assets.arctracker.io/guides/t/98a770855023efd1.ktx2",
+      "tier": "medium",
+      "bytes": 24580,
+      "sha256": "98a770855023efd14106355ff2651210294f7901285797f27f4f84b5009bf5e5"
+    },
+    {
+      "logicalPath": "textures/MI_Frigate_TrimInterior_01__bc_f0a7d7c6.ktx2",
+      "url": "https://assets.arctracker.io/guides/t/e5ea936abf9266b0.ktx2",
+      "tier": "medium",
+      "bytes": 24330,
+      "sha256": "e5ea936abf9266b00a0d50ab0f5b9f175aea446b4a14fe81b3a54ba362bcc8dd"
+    },
+    {
+      "logicalPath": "textures/MI_Frigate_TrimInterior_02_A__bc_be993ec4.ktx2",
+      "url": "https://assets.arctracker.io/guides/t/928ad3e91edbf8fe.ktx2",
+      "tier": "medium",
+      "bytes": 24343,
+      "sha256": "928ad3e91edbf8fee60a5e68b0ac052e1a062176028a7d372850cffeaee46e20"
+    },
+    {
+      "logicalPath": "textures/MI_Frigate_TrimExhaust_03__bc_c158a82c.ktx2",
+      "url": "https://assets.arctracker.io/guides/t/2b73cdea695c68f2.ktx2",
+      "tier": "medium",
+      "bytes": 24399,
+      "sha256": "2b73cdea695c68f2b5b9bf14c5c5f6535dd48d5a25d9d1a065b4eef07955e548"
+    },
+    {
+      "logicalPath": "textures/MI_Frigate_TrimInterior_03__bc_90d831c9.ktx2",
+      "url": "https://assets.arctracker.io/guides/t/e5ea936abf9266b0.ktx2",
+      "tier": "medium",
+      "bytes": 24330,
+      "sha256": "e5ea936abf9266b00a0d50ab0f5b9f175aea446b4a14fe81b3a54ba362bcc8dd"
+    },
+    {
+      "logicalPath": "textures/MI_Harvester_01_Interior_02__bc_01b4ebd0.ktx2",
+      "url": "https://assets.arctracker.io/guides/t/f9079ee32c370da1.ktx2",
+      "tier": "medium",
+      "bytes": 24318,
+      "sha256": "f9079ee32c370da1b758ef058736b440c4489cd8b173241b7e6b90f1a5a7b675"
+    },
+    {
+      "logicalPath": "textures/MI_WalkerInterior_01_Metal_01__bc_27b4817b.ktx2",
+      "url": "https://assets.arctracker.io/guides/t/1240cc805c7d2be3.ktx2",
+      "tier": "medium",
+      "bytes": 24299,
+      "sha256": "1240cc805c7d2be39d0c7b7cc89073fd4573e06a1743f425a8048c41f88534c4"
+    },
+    {
+      "logicalPath": "textures/MI_Frigate_TrimPaintedMetal_01__bc_5ce4d5f5.ktx2",
+      "url": "https://assets.arctracker.io/guides/t/c85fa0f1ed37f823.ktx2",
+      "tier": "medium",
+      "bytes": 24293,
+      "sha256": "c85fa0f1ed37f823183a944a4c49f41649e8631e56d3c02cae36ceb195503eba"
+    },
+    {
+      "logicalPath": "textures/MI_Harvester_01_InteriorFloor_01__bc_d08a14a3.ktx2",
+      "url": "https://assets.arctracker.io/guides/t/c0e066e331d38d75.ktx2",
+      "tier": "medium",
+      "bytes": 21795,
+      "sha256": "c0e066e331d38d75d163cbd7cf45216cea23912d08d640e42fff22a72536ba4f"
+    },
+    {
+      "logicalPath": "textures/MI_Harvester_01_Interior_01__bc_f24f1bdd.ktx2",
+      "url": "https://assets.arctracker.io/guides/t/0288da0e949a38fd.ktx2",
+      "tier": "medium",
+      "bytes": 24539,
+      "sha256": "0288da0e949a38fd171dfe3de5f9db99589e459cdd72755e6793d2389649ac8d"
+    },
+    {
+      "logicalPath": "textures/T_ARC_Lamp_01_D_XEM.ktx2",
+      "url": "https://assets.arctracker.io/guides/t/5fef4e13582ed316.ktx2",
+      "tier": "medium",
+      "bytes": 17561,
+      "sha256": "5fef4e13582ed316b007f1e74cb29855f38bd8edfd02f81cc1cc7d68d4f9c207"
+    },
+    {
+      "logicalPath": "textures/T_ARC_Lamp_01_D_CR.ktx2",
+      "url": "https://assets.arctracker.io/guides/t/4e16bb8a3e40c5bd.ktx2",
+      "tier": "medium",
+      "bytes": 10868,
+      "sha256": "4e16bb8a3e40c5bd215a18443e57bf6369fb06803628177993899408c51a0ee7"
+    },
+    {
+      "logicalPath": "textures/MI_WalkerInterior_01_Metal_05__bc_8e865e8b.ktx2",
+      "url": "https://assets.arctracker.io/guides/t/8746416a3590bb61.ktx2",
+      "tier": "medium",
+      "bytes": 24646,
+      "sha256": "8746416a3590bb614b4a5231502df70ee0482a6b52ebdc60260da09e1b455723"
+    },
+    {
+      "logicalPath": "textures/T_ARC_Lamp_01_D_NOX.ktx2",
+      "url": "https://assets.arctracker.io/guides/t/b0e8db77d614acd0.ktx2",
+      "tier": "medium",
+      "bytes": 66732,
+      "sha256": "b0e8db77d614acd076fcab9812a6afefa49ad01a077fd52484812b25d0cff166"
+    },
+    {
+      "logicalPath": "textures/TA_Weathering_Props_01_s0+T_ConcreteBuildingWorld_01_GRM__dust.ktx2",
+      "url": "https://assets.arctracker.io/guides/t/515d18135fe10e35.ktx2",
+      "tier": "medium",
+      "bytes": 156189,
+      "sha256": "515d18135fe10e3562ba648c68cd6e6cb2eba769d036bf8db9074c4c7319c53f"
+    },
+    {
+      "logicalPath": "textures/T_ARC_Lamp_01_D_CR+D_NOX+D_XEM__orm.ktx2",
+      "url": "https://assets.arctracker.io/guides/t/1d9bdb9a979faca5.ktx2",
+      "tier": "medium",
+      "bytes": 30072,
+      "sha256": "1d9bdb9a979faca5426651cdc9302d00f8bcfc9abfd30c5fd8d2a526e33395d0"
+    },
+    {
+      "logicalPath": "textures/T_ArcTrim_CR+CR_NMX__orm.ktx2",
+      "url": "https://assets.arctracker.io/guides/t/9a7932cb0c6196de.ktx2",
+      "tier": "medium",
+      "bytes": 193722,
+      "sha256": "9a7932cb0c6196de7b318adedf87a7131d0cf105d4825dbfd67354620d09e4aa"
+    },
+    {
+      "logicalPath": "textures/T_ArcTrim_CR+CR_NMX_m10_rt4aa2a4__orm.ktx2",
+      "url": "https://assets.arctracker.io/guides/t/147920e0b16c948b.ktx2",
+      "tier": "medium",
+      "bytes": 174306,
+      "sha256": "147920e0b16c948bb99e1ac04a5c0440c78f4aefe069fc4095ddf7caf841d1e8"
+    },
+    {
+      "logicalPath": "textures/T_ArcTrim_CR+CR_NMX_m10_rt4aa2a4__orm_mm3587.ktx2",
+      "url": "https://assets.arctracker.io/guides/t/91be33dc19476386.ktx2",
+      "tier": "medium",
+      "bytes": 165583,
+      "sha256": "91be33dc194763866db11b1c695ae5a002fe584fb5adbab2766c516b5f6d2b30"
+    },
+    {
+      "logicalPath": "textures/T_ArcTrim_CR+CR_NMX_m10_rt40a98e__orm.ktx2",
+      "url": "https://assets.arctracker.io/guides/t/48021899a7138d41.ktx2",
+      "tier": "medium",
+      "bytes": 190374,
+      "sha256": "48021899a7138d41d67ec1a3a840d95c82fdca9d0409cbe56e96d431f1f6f66f"
+    },
+    {
+      "logicalPath": "textures/T_ArcTrim_CR+CR_NMX_m10_rt4211ae__orm.ktx2",
+      "url": "https://assets.arctracker.io/guides/t/b8991f25bd9024e5.ktx2",
+      "tier": "medium",
+      "bytes": 179105,
+      "sha256": "b8991f25bd9024e58c0f3e130774937fbb21cef3089b1ae74f8b52f632b5ef53"
+    },
+    {
+      "logicalPath": "textures/T_ArcTrim_CR+CR_NMX_m10__orm.ktx2",
+      "url": "https://assets.arctracker.io/guides/t/d5994561c3b525f1.ktx2",
+      "tier": "medium",
+      "bytes": 197130,
+      "sha256": "d5994561c3b525f15e7d24d365b2c34f9c0d4a72389b57497c669f5dfda11caa"
+    },
+    {
+      "logicalPath": "textures/T_ArcTrim_CR+CR_NMX_m10_rt876614__orm.ktx2",
+      "url": "https://assets.arctracker.io/guides/t/15c0ef904f821992.ktx2",
+      "tier": "medium",
+      "bytes": 184566,
+      "sha256": "15c0ef904f8219921b698d73e8f62c037f5054581bdb114bcdf418c05578d81b"
+    },
+    {
+      "logicalPath": "textures/T_ArcTrim_CR+CR_NMX_m10_rt660cbe__orm.ktx2",
+      "url": "https://assets.arctracker.io/guides/t/77960d57bf40e5f7.ktx2",
+      "tier": "medium",
+      "bytes": 182643,
+      "sha256": "77960d57bf40e5f7e9a146a6425a606c6b87045f96252e781c10af0cf0481dd4"
+    },
+    {
+      "logicalPath": "textures/T_ArcTrim_CR+CR_NMX_m10_rtcaf525__orm.ktx2",
+      "url": "https://assets.arctracker.io/guides/t/c75e66e344a2241c.ktx2",
+      "tier": "medium",
+      "bytes": 209095,
+      "sha256": "c75e66e344a2241c03c9764fcc91eb4c8d2b358ae62fb07263177b7a06d6d70f"
+    },
+    {
+      "logicalPath": "textures/T_ArcTrim_CR+CR_NMX_m10_rt667781__orm_mm1179.ktx2",
+      "url": "https://assets.arctracker.io/guides/t/b57434355b67a34b.ktx2",
+      "tier": "medium",
+      "bytes": 201588,
+      "sha256": "b57434355b67a34b3c4776043d16e223e3d287ce14ba54c41e10ece5d61658b5"
+    },
+    {
+      "logicalPath": "textures/T_ArcTrim_CR+CR_NMX_m10_rtaf68ab__orm.ktx2",
+      "url": "https://assets.arctracker.io/guides/t/66b718d08f3ae26b.ktx2",
+      "tier": "medium",
+      "bytes": 196889,
+      "sha256": "66b718d08f3ae26b66fe38d634b46982f8795b0f000a16731762593323058ef3"
+    },
+    {
+      "logicalPath": "textures/T_ArcTrim_CR+CR_NMX_m10_rtc47009__orm.ktx2",
+      "url": "https://assets.arctracker.io/guides/t/31bdd2d2a0deb73d.ktx2",
+      "tier": "medium",
+      "bytes": 165797,
+      "sha256": "31bdd2d2a0deb73d73864f82f3b5d53e297d8631f5f0932482b00ef17f1f9a1e"
+    },
+    {
+      "logicalPath": "textures/T_ArcTrim_CR.ktx2",
+      "url": "https://assets.arctracker.io/guides/t/928ad3e91edbf8fe.ktx2",
+      "tier": "medium",
+      "bytes": 24343,
+      "sha256": "928ad3e91edbf8fee60a5e68b0ac052e1a062176028a7d372850cffeaee46e20"
+    },
+    {
+      "logicalPath": "textures/T_ArcTrim_CR_NMX.ktx2",
+      "url": "https://assets.arctracker.io/guides/t/b162848cdeb24fa5.ktx2",
+      "tier": "medium",
+      "bytes": 127333,
+      "sha256": "b162848cdeb24fa5e7308a6ac0661dab8cdc869a2be813c15dd0e56a316c4d75"
+    },
+    {
+      "logicalPath": "textures/T_Arc_Door_01_A_CR.ktx2",
+      "url": "https://assets.arctracker.io/guides/t/199879025217f633.ktx2",
+      "tier": "medium",
+      "bytes": 58738,
+      "sha256": "199879025217f633a0c63103fec37bb895481e3f4b5c315c28e3a1132b9b1236"
+    },
+    {
+      "logicalPath": "textures/T_Arc_Door_01_A_XEM.ktx2",
+      "url": "https://assets.arctracker.io/guides/t/ef04fc1d491e434d.ktx2",
+      "tier": "medium",
+      "bytes": 147841,
+      "sha256": "ef04fc1d491e434d56b7d8e13a7eca63894730bbd3ba9907499266491385438e"
+    },
+    {
+      "logicalPath": "textures/T_Arc_Door_01_A_NOX.ktx2",
+      "url": "https://assets.arctracker.io/guides/t/010385f7a963a8f7.ktx2",
+      "tier": "medium",
+      "bytes": 220339,
+      "sha256": "010385f7a963a8f796428a53c73dd96f99698149ea677ce1ecb9a556919cdd0f"
+    },
+    {
+      "logicalPath": "textures/T_Arc_Door_01_A_CR+A_NOX+A_XEM__orm.ktx2",
+      "url": "https://assets.arctracker.io/guides/t/62126a29bae1419b.ktx2",
+      "tier": "medium",
+      "bytes": 262755,
+      "sha256": "62126a29bae1419b5510bccb4970cca04bbdb9faa9711e36db683f8586eb5313"
+    },
+    {
+      "logicalPath": "textures/T_Arc_Door_01_DoorFrame_A_CR.ktx2",
+      "url": "https://assets.arctracker.io/guides/t/4bf5ebe628a0be93.ktx2",
+      "tier": "medium",
+      "bytes": 41602,
+      "sha256": "4bf5ebe628a0be930465f3ee0db18b99eee71518547d77c4c25ba02e108bf4ee"
+    },
+    {
+      "logicalPath": "textures/T_Arc_Door_Light_01_A_CR+A_NOX+A_XEM__orm.ktx2",
+      "url": "https://assets.arctracker.io/guides/t/2a595bdc4ec012cc.ktx2",
+      "tier": "medium",
+      "bytes": 235423,
+      "sha256": "2a595bdc4ec012ccd5a3e12deb2f75ed8f904d9ce18f030524f6015bd3114c77"
+    },
+    {
+      "logicalPath": "textures/T_Arc_Door_01_DoorFrame_A_XEM.ktx2",
+      "url": "https://assets.arctracker.io/guides/t/5bb8333dcc4e7691.ktx2",
+      "tier": "medium",
+      "bytes": 819,
+      "sha256": "5bb8333dcc4e769199bb6bc14cb0ca6d57b83821fc339973dbc41113dfdb19d4"
+    },
+    {
+      "logicalPath": "textures/T_Arc_Door_01_DoorFrame_A_NOX.ktx2",
+      "url": "https://assets.arctracker.io/guides/t/24f0b72e59851c9b.ktx2",
+      "tier": "medium",
+      "bytes": 210756,
+      "sha256": "24f0b72e59851c9bf62d9e5ec3564f777c26c0f895062a345487d6f4a9fe4ee4"
+    },
+    {
+      "logicalPath": "textures/T_Arc_Door_Light_01_A_CR.ktx2",
+      "url": "https://assets.arctracker.io/guides/t/833074f4232837fe.ktx2",
+      "tier": "medium",
+      "bytes": 48115,
+      "sha256": "833074f4232837fe6c0c9220ed8f041a1dcb85bc378a9bf4ed46b95313697001"
+    },
+    {
+      "logicalPath": "textures/T_Arc_Door_01_DoorFrame_A_CR+A_NOX+A_XEM__orm.ktx2",
+      "url": "https://assets.arctracker.io/guides/t/e4caa7f1766d1530.ktx2",
+      "tier": "medium",
+      "bytes": 240834,
+      "sha256": "e4caa7f1766d153052a08ce14d64087f25252438294008ef2383385bc6be984a"
+    },
+    {
+      "logicalPath": "textures/T_Arc_Door_Light_01_A_XEM.ktx2",
+      "url": "https://assets.arctracker.io/guides/t/3ac6c34b7aa14d86.ktx2",
+      "tier": "medium",
+      "bytes": 728,
+      "sha256": "3ac6c34b7aa14d86daa9ffe2b074d04eec561d74eb6a38eeab8c114a0132f9c3"
+    },
+    {
+      "logicalPath": "textures/T_Courier_01_A_CR.ktx2",
+      "url": "https://assets.arctracker.io/guides/t/c116708ef81e598d.ktx2",
+      "tier": "medium",
+      "bytes": 62616,
+      "sha256": "c116708ef81e598db19c4b70cdd4d667f6c9db4154df0a4a89ca40b8bbdfc901"
+    },
+    {
+      "logicalPath": "textures/T_EnemyDecals_01_NAO.ktx2",
+      "url": "https://assets.arctracker.io/guides/t/2fc62d3c873a4287.ktx2",
+      "tier": "medium",
+      "bytes": 191147,
+      "sha256": "2fc62d3c873a4287cc3c0db77f9bb4d49d6decb69cad92224bacf7ec287fe250"
+    },
+    {
+      "logicalPath": "textures/T_Courier_01_A_NOM.ktx2",
+      "url": "https://assets.arctracker.io/guides/t/551d738d6f635731.ktx2",
+      "tier": "medium",
+      "bytes": 267650,
+      "sha256": "551d738d6f6357311b036b23cf3c28fdda1ce6f7a47ed22b671c7af17d2b9ca9"
+    },
+    {
+      "logicalPath": "textures/T_Courier_01_A_CR+A_NOM__orm.ktx2",
+      "url": "https://assets.arctracker.io/guides/t/615b37a31ccf0cfe.ktx2",
+      "tier": "medium",
+      "bytes": 294901,
+      "sha256": "615b37a31ccf0cfeced8b3756dd63fb49e70837c2923922f541ba620a06a35e4"
+    },
+    {
+      "logicalPath": "textures/T_Arc_Door_Light_01_A_NOX.ktx2",
+      "url": "https://assets.arctracker.io/guides/t/5cdfc168837fbf0e.ktx2",
+      "tier": "medium",
+      "bytes": 197123,
+      "sha256": "5cdfc168837fbf0e08f914e9303e17fd9bc335555bbaecc2af0d9efec1abbdee"
+    },
+    {
+      "logicalPath": "textures/T_Frigate_CoreRing_01_A_CR.ktx2",
+      "url": "https://assets.arctracker.io/guides/t/7631457cfc6b3f2d.ktx2",
+      "tier": "medium",
+      "bytes": 60077,
+      "sha256": "7631457cfc6b3f2de0088950fdbf6b924ca54789d439992a930aeb6b90a37618"
+    },
+    {
+      "logicalPath": "textures/T_Frigate_Paneling_02_A_CR.ktx2",
+      "url": "https://assets.arctracker.io/guides/t/80716f86ddde7ab5.ktx2",
+      "tier": "medium",
+      "bytes": 25650,
+      "sha256": "80716f86ddde7ab58ac5d5f270edf18fef138db82720bbc223652a8c0cadbcd7"
+    },
+    {
+      "logicalPath": "textures/T_Frigate_CoreRing_01_A_NOX.ktx2",
+      "url": "https://assets.arctracker.io/guides/t/50ecc29303adcbbe.ktx2",
+      "tier": "medium",
+      "bytes": 206438,
+      "sha256": "50ecc29303adcbbe0fdb49b81fdfee8d45289c221928c160b14f419016350c49"
+    },
+    {
+      "logicalPath": "textures/T_EnemyDecals_02_NAO.ktx2",
+      "url": "https://assets.arctracker.io/guides/t/76228f46d9a1246a.ktx2",
+      "tier": "medium",
+      "bytes": 67416,
+      "sha256": "76228f46d9a1246ad081b1523e5fb116f93ca9ebc2c5ca495bd1e6cccd63df4c"
+    },
+    {
+      "logicalPath": "textures/T_Frigate_Paneling_02_A_CR+A_NMX__orm.ktx2",
+      "url": "https://assets.arctracker.io/guides/t/06a264a176558bba.ktx2",
+      "tier": "medium",
+      "bytes": 288699,
+      "sha256": "06a264a176558bbab7868c79c79e06e96aa6c33570e9a35089159df501254026"
+    },
+    {
+      "logicalPath": "textures/T_Frigate_CoreRing_01_A_CR+A_NOX__orm.ktx2",
+      "url": "https://assets.arctracker.io/guides/t/6377036fdf9c10a3.ktx2",
+      "tier": "medium",
+      "bytes": 210521,
+      "sha256": "6377036fdf9c10a3c69686949f999a52da8f6d8604b63336448e340b2fa71482"
+    },
+    {
+      "logicalPath": "textures/T_Frigate_Panneling_01_A_NMX.ktx2",
+      "url": "https://assets.arctracker.io/guides/t/2fa5d625e4a08e5f.ktx2",
+      "tier": "medium",
+      "bytes": 48315,
+      "sha256": "2fa5d625e4a08e5f5387da039f95be7f816cdf890b441cdbf1be5b9e34fed59a"
+    },
+    {
+      "logicalPath": "textures/T_Frigate_TileableMetal_01_A_NMX.ktx2",
+      "url": "https://assets.arctracker.io/guides/t/82b3f9e27b01f5ea.ktx2",
+      "tier": "medium",
+      "bytes": 75262,
+      "sha256": "82b3f9e27b01f5ea7eff4e7cd10f6d6e9bfb0e53540a2f8249d796378ca4a3c1"
+    },
+    {
+      "logicalPath": "textures/T_Harvester_01_Weakpoints_CR.ktx2",
+      "url": "https://assets.arctracker.io/guides/t/a74aa9b0efabf34a.ktx2",
+      "tier": "medium",
+      "bytes": 54189,
+      "sha256": "a74aa9b0efabf34a5c72d055ffff3c51a7dff2a286d023b1e63068f80041eaf1"
+    },
+    {
+      "logicalPath": "textures/T_Frigate_TileableMetal_01_A_CR.ktx2",
+      "url": "https://assets.arctracker.io/guides/t/d2a1fb17b7e83f83.ktx2",
+      "tier": "medium",
+      "bytes": 15604,
+      "sha256": "d2a1fb17b7e83f83e42de4c25fd71b3b26c25a35a0ffea000bec2e435711a958"
+    },
+    {
+      "logicalPath": "textures/T_Frigate_TileableMetal_01_A_CR+A_NMX__orm.ktx2",
+      "url": "https://assets.arctracker.io/guides/t/f8754371222ef9cd.ktx2",
+      "tier": "medium",
+      "bytes": 238834,
+      "sha256": "f8754371222ef9cd709d632a749aa15df5ed9f79f8d3e4c435eb11811c7d07fa"
+    },
+    {
+      "logicalPath": "textures/T_Harvester_01_Weakpoints_CR+Weakpoints_NOX+Weakpoints_XEM__orm.ktx2",
+      "url": "https://assets.arctracker.io/guides/t/694628e8862020e8.ktx2",
+      "tier": "medium",
+      "bytes": 278867,
+      "sha256": "694628e8862020e8febd244bed07b8a9d1d4aac537679ab110b8c79f1e79caee"
+    },
+    {
+      "logicalPath": "textures/T_Harvester_01_Weakpoints_XEM.ktx2",
+      "url": "https://assets.arctracker.io/guides/t/f504bb83bc77cf2f.ktx2",
+      "tier": "medium",
+      "bytes": 12048,
+      "sha256": "f504bb83bc77cf2f81ec9442e066a056f538fd6a938ffadf80f68cbc6b8b28bd"
+    },
+    {
+      "logicalPath": "textures/T_LightFlourescentBump_01_N.ktx2",
+      "url": "https://assets.arctracker.io/guides/t/ec042493fb0891ba.ktx2",
+      "tier": "medium",
+      "bytes": 2858,
+      "sha256": "ec042493fb0891ba53edf45103b94c65241dc9c03df5c3b0a96c3158ce3dd7de"
+    },
+    {
+      "logicalPath": "textures/T_Kebab_01_A_CR+A_NOM__orm.ktx2",
+      "url": "https://assets.arctracker.io/guides/t/b25875ddd68020d2.ktx2",
+      "tier": "medium",
+      "bytes": 308452,
+      "sha256": "b25875ddd68020d2bee534b75d7f5fe6cdbb9ea9e79447405c2b5427eb012119"
+    },
+    {
+      "logicalPath": "textures/T_Kebab_01_A_NOM.ktx2",
+      "url": "https://assets.arctracker.io/guides/t/5cb3efd027c74884.ktx2",
+      "tier": "medium",
+      "bytes": 269859,
+      "sha256": "5cb3efd027c7488447f1023613fde7e408c6e51c76fe7488b7e4986dabb250c5"
+    },
+    {
+      "logicalPath": "textures/T_Harvester_01_Weakpoints_NOX.ktx2",
+      "url": "https://assets.arctracker.io/guides/t/cd552d542c131a38.ktx2",
+      "tier": "medium",
+      "bytes": 216023,
+      "sha256": "cd552d542c131a3854827f7aded3e07d409b8f3e787106176b0229022c017018"
+    },
+    {
+      "logicalPath": "textures/T_Kebab_01_A_CR.ktx2",
+      "url": "https://assets.arctracker.io/guides/t/c74b3b502b55c05c.ktx2",
+      "tier": "medium",
+      "bytes": 68080,
+      "sha256": "c74b3b502b55c05c892907075c181858d857d0989b1396098379dc10ec715cf9"
+    },
+    {
+      "logicalPath": "textures/T_Walker_TileableMetal_03_A_NMX.ktx2",
+      "url": "https://assets.arctracker.io/guides/t/9319b39f88568375.ktx2",
+      "tier": "medium",
+      "bytes": 70580,
+      "sha256": "9319b39f88568375339f3ee03f7894ede4e3989d4b66169eee9de2cf6410ae26"
+    },
+    {
+      "logicalPath": "textures/T_Walker_TileableMetal_03_A_CR.ktx2",
+      "url": "https://assets.arctracker.io/guides/t/69429ed6f8c08543.ktx2",
+      "tier": "medium",
+      "bytes": 23144,
+      "sha256": "69429ed6f8c08543819e3decaf885e76a9211e851ab4ff1aa0089d10dc4a3cb7"
+    },
+    {
+      "logicalPath": "textures/T_Walker_TileableMetal_03_A_CR+A_NMX__orm.ktx2",
+      "url": "https://assets.arctracker.io/guides/t/53020fae55595e6c.ktx2",
+      "tier": "medium",
+      "bytes": 248343,
+      "sha256": "53020fae55595e6c2436aa39eb35e7459dbcf1f8a4f7fd15139710235dd61b2a"
+    },
+    {
+      "logicalPath": "textures/T_MetalAircraft_01_CR.ktx2",
+      "url": "https://assets.arctracker.io/guides/t/2138a4163c8cae67.ktx2",
+      "tier": "medium",
+      "bytes": 185894,
+      "sha256": "2138a4163c8cae67f5d54d88d2f2e526fec15a82025be7df4cb82ed06af3d3a1"
+    },
+    {
+      "logicalPath": "data/scene.json",
+      "url": "https://assets.arctracker.io/guides/d/5c5c5f8e6ec4309e.json",
+      "bytes": 799252,
+      "sha256": "5c5c5f8e6ec4309e3bb45886ed28d91ccef7bf8f43ed13f17f007a46e912e8fb",
+      "serialization": "JSON compacté après téléchargement"
+    },
+    {
+      "logicalPath": "data/anims.json",
+      "url": "https://assets.arctracker.io/guides/d/046f9e6ba18e8b20.json",
+      "bytes": 1458,
+      "sha256": "046f9e6ba18e8b2006758ee731dfcd7aa8c49661c4cfd8a30624ca7fd8e563d0",
+      "serialization": "JSON compacté après téléchargement"
+    },
+    {
+      "logicalPath": "data/decks.json",
+      "url": "https://assets.arctracker.io/guides/d/61c5f4e17b3ea9ec.json",
+      "bytes": 3404,
+      "sha256": "61c5f4e17b3ea9ec592d98ce17c1d1453e4fd3a903f85c71561da9bc1a3a47b7",
+      "serialization": "JSON compacté après téléchargement"
+    },
+    {
+      "logicalPath": "data/enemies.json",
+      "url": "https://assets.arctracker.io/guides/d/8f5c65058fdfe25b.json",
+      "bytes": 97283,
+      "sha256": "8f5c65058fdfe25ba8947ab21fad3e3595670a25bb4fad82f6d1429271bfe23c",
+      "serialization": "JSON compacté après téléchargement"
+    },
+    {
+      "logicalPath": "data/loot.json",
+      "url": "https://assets.arctracker.io/guides/d/01d0efb68a2f56d3.json",
+      "bytes": 123931,
+      "sha256": "01d0efb68a2f56d3da6fc198cb5d78f77f02d1b0a8e01401ca44b69bbc9644b6",
+      "serialization": "JSON compacté après téléchargement"
+    },
+    {
+      "logicalPath": "data/names.json",
+      "url": "https://assets.arctracker.io/guides/d/757f21c25c3d57be.json",
+      "bytes": 34348,
+      "sha256": "757f21c25c3d57be72fe79d83cee92039d745e8db1cc2b01ebbe99307cc42fc9",
+      "serialization": "JSON compacté après téléchargement"
+    },
+    {
+      "logicalPath": "data/routes.json",
+      "url": "https://assets.arctracker.io/guides/d/cad95d91d5436f45.json",
+      "bytes": 21257,
+      "sha256": "cad95d91d5436f4544d3dceb7a89fe6cab91518502754c638fc890ea06bd32c6",
+      "serialization": "JSON compacté après téléchargement"
+    },
+    {
+      "logicalPath": "data/sources.json",
+      "url": "https://assets.arctracker.io/guides/d/4a7722dd4ccb7965.json",
+      "bytes": 230688,
+      "sha256": "4a7722dd4ccb796556e31724696086169521bdff8ecbe3d7963d7aa556ef588e",
+      "serialization": "JSON compacté après téléchargement"
+    },
+    {
+      "logicalPath": "data/wiring.json",
+      "url": "https://assets.arctracker.io/guides/d/8779a18665b27611.json",
+      "bytes": 174458,
+      "sha256": "8779a18665b276117cdd83a88da327d4d508e87067f63daafa8eeddeac5e259a",
+      "serialization": "JSON compacté après téléchargement"
+    },
+    {
+      "logicalPath": "materials.json",
+      "url": "https://assets.arctracker.io/guides/d/19151c2fbab461c2.json",
+      "bytes": 75204,
+      "sha256": "a19559813e0b6bbe888f98ace8e80e42c96c9ab9b492f558e3ea1c44b3d4f8e1",
+      "serialization": "JSON compacté après téléchargement"
+    },
+    {
+      "logicalPath": "meshes/index.json",
+      "url": "https://assets.arctracker.io/guides/d/a177a1d2500815be.json",
+      "bytes": 56138,
+      "sha256": "4e93474336d30352245bc9583713461bb9bfb6d63a0ab8d2f30970f2ced1616a",
+      "serialization": "JSON compacté après téléchargement"
+    },
+    {
+      "logicalPath": "meshes/overview.json",
+      "url": "https://assets.arctracker.io/guides/d/15abdc1858cadcdc.json",
+      "bytes": 8674,
+      "sha256": "15abdc1858cadcdcf93e8c2fe18001423f1d3451258c1f43a2305ca0726d1d76",
+      "serialization": "JSON compacté après téléchargement"
+    }
+  ]
+}

@@ -1,0 +1,73 @@
+{
+  "note": "Coupes automatiques du visualiseur, pas un décompte officiel des étages du jeu.",
+  "build": "2.00.0-CL1418508",
+  "axis": "Y vertical dans la scène source",
+  "cuts": [
+    {
+      "id": "deck-1",
+      "floor": -37.82,
+      "cut": -35.22,
+      "basis": "roofed-floor"
+    },
+    {
+      "id": "deck-2",
+      "floor": -29.57,
+      "cut": -26.97,
+      "basis": "roofed-floor"
+    },
+    {
+      "id": "deck-3",
+      "floor": -18.32,
+      "cut": -15.72,
+      "basis": "roofed-floor"
+    },
+    {
+      "id": "deck-4",
+      "floor": -14.07,
+      "cut": -11.47,
+      "basis": "roofed-floor"
+    },
+    {
+      "id": "deck-5",
+      "floor": -9.07,
+      "cut": -6.47,
+      "basis": "roofed-floor"
+    },
+    {
+      "id": "deck-6",
+      "floor": -5.82,
+      "cut": -3.22,
+      "basis": "roofed-floor"
+    },
+    {
+      "id": "deck-7",
+      "floor": -0.82,
+      "cut": 1.78,
+      "basis": "roofed-floor"
+    },
+    {
+      "id": "deck-8",
+      "floor": 5.93,
+      "cut": 8.53,
+      "basis": "roofed-floor"
+    },
+    {
+      "id": "deck-9",
+      "floor": 10.93,
+      "cut": 13.53,
+      "basis": "roofed-floor"
+    },
+    {
+      "id": "deck-10",
+      "floor": 15.93,
+      "cut": 18.53,
+      "basis": "roofed-floor"
+    },
+    {
+      "id": "top",
+      "floor": 19.68,
+      "cut": 22.28,
+      "basis": "open-top"
+    }
+  ]
+}

@@ -1,0 +1,999 @@
+{
+  "source": "https://arctracker.io/generated/client/guides/frigate-cargo-run.steps.json",
+  "build": "2.00.0-CL1418508",
+  "views": [
+    {
+      "step": "plan",
+      "beat": "goal",
+      "focus": [
+        "BP_FrigatePlatform_Beams_02_C_7",
+        "BP_FrigatePowerCore_C_3",
+        "BP_FrigatePowerCore_C_4",
+        "BP_FrigatePowerCore_C_5",
+        "BP_FrigatePowerCore_C_8",
+        "BP_Frigate_BreachableCore_C_1",
+        "BP_Frigate_CargoLatch_C_7",
+        "BP_Frigate_CargoLatch_C_5",
+        "BP_Frigate_CargoLatch_C_6",
+        "BP_Frigate_CargoLatch_C_4",
+        "BP_PreciousCargo_C_1"
+      ],
+      "view": {
+        "overview": true
+      },
+      "marks": []
+    },
+    {
+      "step": "board",
+      "beat": "reclaimer",
+      "focus": [
+        "spawn:DockingEntry:0",
+        "spawn:DockingPoint:0",
+        "spawn:DockingPoint:1",
+        "spawn:DockingPoint:2",
+        "spawn:DockingPoint:3",
+        "spawn:DockingPoint:4"
+      ],
+      "view": {
+        "prefer": [
+          -0.75,
+          -0.35,
+          0.55
+        ],
+        "exterior": true
+      },
+      "marks": [
+        {
+          "label": {
+            "key": "marks.reclaimerDocks"
+          },
+          "ids": [
+            "spawn:DockingEntry:0",
+            "spawn:DockingPoint:0",
+            "spawn:DockingPoint:1",
+            "spawn:DockingPoint:2",
+            "spawn:DockingPoint:3",
+            "spawn:DockingPoint:4"
+          ]
+        }
+      ]
+    },
+    {
+      "step": "board",
+      "beat": "cannon",
+      "focus": [
+        "spawn:Spawn_AirToGround:0"
+      ],
+      "view": {
+        "prefer": [
+          -0.4,
+          -0.55,
+          0.75
+        ],
+        "exterior": true
+      },
+      "marks": [
+        {
+          "label": {
+            "game": "enemy.frigateCannon"
+          },
+          "ids": [
+            "spawn:Spawn_AirToGround:0"
+          ]
+        }
+      ]
+    },
+    {
+      "step": "inside",
+      "beat": "lift",
+      "focus": [
+        "BP_FrigatePlatform_Bridge_C_1",
+        "BP_FrigateBridgeInteraction_C_9",
+        "BP_FrigateBridgeInteraction_C_12",
+        "BP_FrigateBridgeInteraction_C_7"
+      ],
+      "view": {
+        "prefer": [
+          0.35,
+          0.8,
+          0.5
+        ]
+      },
+      "marks": [
+        {
+          "label": {
+            "key": "marks.lift"
+          },
+          "ids": [
+            "BP_FrigatePlatform_Bridge_C_1"
+          ]
+        }
+      ]
+    },
+    {
+      "step": "inside",
+      "beat": "panels",
+      "focus": [
+        "BP_FrigatePanel_Breakable_C_10",
+        "BP_FrigatePanel_Breakable_C_11",
+        "BP_FrigatePanel_Breakable_C_4",
+        "BP_FrigatePanel_Breakable_C_5",
+        "BP_FrigatePanel_Breakable_C_7",
+        "BP_FrigatePanel_Breakable_C_9",
+        "BP_FrigateWeakPoint_C_58",
+        "BP_FrigateWeakPoint_C_56",
+        "BP_FrigateWeakPoint_C_52",
+        "BP_FrigateWeakPoint_C_21",
+        "BP_FrigateWeakPoint_C_62",
+        "BP_FrigateWeakPoint_C_60"
+      ],
+      "view": {
+        "prefer": [
+          0.35,
+          0.8,
+          0.5
+        ]
+      },
+      "marks": []
+    },
+    {
+      "step": "inside",
+      "beat": "bridges",
+      "focus": [
+        "BP_FrigatePlatform_Bridge_01_C_1",
+        "BP_FrigatePlatform_Bridge_01_C_2",
+        "BP_FrigateBridgeInteraction_C_16",
+        "BP_FrigateBridgeInteraction_C_8",
+        "BP_FrigateBridgeInteraction_C_13",
+        "BP_FrigateBridgeInteraction_C_10",
+        "BP_FrigateWeakPoint_C_53",
+        "BP_FrigateWeakPoint_C_50",
+        "BP_FrigatePanel_Breakable_C_6",
+        "BP_FrigatePanel_Breakable_C_8"
+      ],
+      "view": {
+        "prefer": [
+          0.3,
+          0.75,
+          0.6
+        ]
+      },
+      "marks": [
+        {
+          "label": {
+            "key": "marks.sideBridge"
+          },
+          "ids": [
+            "BP_FrigatePlatform_Bridge_01_C_1"
+          ]
+        },
+        {
+          "label": {
+            "key": "marks.sideBridge"
+          },
+          "ids": [
+            "BP_FrigatePlatform_Bridge_01_C_2"
+          ]
+        }
+      ]
+    },
+    {
+      "step": "cores",
+      "beat": "core-1",
+      "focus": [
+        "BP_FrigatePlatform_Beams_02_C_7",
+        "BP_FrigatePowerCoreShield_C_50",
+        "BP_FrigatePowerCoreShield_C_28"
+      ],
+      "view": {
+        "prefer": [
+          0.3,
+          0.85,
+          0.4
+        ]
+      },
+      "marks": [
+        {
+          "label": {
+            "key": "names.fireRoomCore"
+          },
+          "ids": [
+            "BP_FrigatePlatform_Beams_02_C_7"
+          ]
+        },
+        {
+          "label": {
+            "key": "marks.fireRoom"
+          },
+          "ids": [
+            "BP_FrigateVentingRoom_C_0"
+          ]
+        },
+        {
+          "label": {
+            "key": "marks.fireRoom"
+          },
+          "ids": [
+            "BP_FrigateVentingRoom_C_1"
+          ]
+        }
+      ]
+    },
+    {
+      "step": "cores",
+      "beat": "core-2",
+      "focus": [
+        "BP_FrigatePowerCore_C_3",
+        "BP_FrigatePowerCoreShield_C_37",
+        "BP_FrigatePowerCoreShield_C_46"
+      ],
+      "view": {
+        "prefer": [
+          0.3,
+          0.85,
+          0.4
+        ]
+      },
+      "marks": [
+        {
+          "label": {
+            "key": "marks.powerCore"
+          },
+          "ids": [
+            "BP_FrigatePowerCore_C_3"
+          ]
+        }
+      ]
+    },
+    {
+      "step": "cores",
+      "beat": "core-3",
+      "focus": [
+        "BP_FrigatePowerCore_C_4",
+        "BP_FrigatePowerCoreShield_C_34",
+        "BP_FrigatePowerCoreShield_C_44",
+        "BP_FrigatePowerCoreShield_C_47"
+      ],
+      "view": {
+        "prefer": [
+          0.3,
+          0.85,
+          0.4
+        ]
+      },
+      "marks": [
+        {
+          "label": {
+            "key": "marks.powerCore"
+          },
+          "ids": [
+            "BP_FrigatePowerCore_C_4"
+          ]
+        }
+      ]
+    },
+    {
+      "step": "cores",
+      "beat": "core-4",
+      "focus": [
+        "BP_FrigatePowerCore_C_5",
+        "BP_FrigatePowerCoreShield_C_36",
+        "BP_FrigatePowerCoreShield_C_24"
+      ],
+      "view": {
+        "prefer": [
+          0.3,
+          0.85,
+          0.4
+        ]
+      },
+      "marks": [
+        {
+          "label": {
+            "key": "marks.powerCore"
+          },
+          "ids": [
+            "BP_FrigatePowerCore_C_5"
+          ]
+        }
+      ]
+    },
+    {
+      "step": "cores",
+      "beat": "core-5",
+      "focus": [
+        "BP_FrigatePowerCore_C_8",
+        "BP_FrigatePowerCoreShield_C_51",
+        "BP_FrigatePowerCoreShield_C_22",
+        "BP_FrigatePowerCoreShield_C_32"
+      ],
+      "view": {
+        "prefer": [
+          0.3,
+          0.85,
+          0.4
+        ]
+      },
+      "marks": [
+        {
+          "label": {
+            "key": "marks.powerCore"
+          },
+          "ids": [
+            "BP_FrigatePowerCore_C_8"
+          ]
+        }
+      ]
+    },
+    {
+      "step": "central",
+      "beat": "arena",
+      "focus": [
+        "BP_Frigate_BreachableCore_C_1"
+      ],
+      "view": {
+        "prefer": [
+          0.6,
+          0.55,
+          0.55
+        ]
+      },
+      "marks": [
+        {
+          "label": {
+            "key": "names.centralCore"
+          },
+          "ids": [
+            "BP_Frigate_BreachableCore_C_1"
+          ]
+        }
+      ]
+    },
+    {
+      "step": "central",
+      "beat": "raise",
+      "focus": [
+        "BP_Frigate_BreachableCore_C_1",
+        "BP_Frigate_BreachableCore_C_1.CoordinatedInteractionComponent",
+        "BP_Frigate_BreachableCore_C_1.CoordinatedInteractionComponent1",
+        "BP_Frigate_BreachableCore_C_1.CoordinatedInteractionComponent2"
+      ],
+      "view": {
+        "prefer": [
+          0.6,
+          0.6,
+          0.5
+        ]
+      },
+      "marks": [
+        {
+          "label": {
+            "key": "marks.control",
+            "values": {
+              "n": 1
+            }
+          },
+          "ids": [
+            "BP_Frigate_BreachableCore_C_1.CoordinatedInteractionComponent"
+          ]
+        },
+        {
+          "label": {
+            "key": "marks.control",
+            "values": {
+              "n": 2
+            }
+          },
+          "ids": [
+            "BP_Frigate_BreachableCore_C_1.CoordinatedInteractionComponent1"
+          ]
+        },
+        {
+          "label": {
+            "key": "marks.control",
+            "values": {
+              "n": 3
+            }
+          },
+          "ids": [
+            "BP_Frigate_BreachableCore_C_1.CoordinatedInteractionComponent2"
+          ]
+        }
+      ]
+    },
+    {
+      "step": "central",
+      "beat": "shields",
+      "focus": [
+        "BP_Frigate_BreachableCore_C_1",
+        "BP_FrigatePowerCoreShield_C_29",
+        "BP_FrigatePowerCoreShield_C_21",
+        "BP_FrigatePowerCoreShield_C_30",
+        "BP_FrigatePowerCoreShield_C_20"
+      ],
+      "view": {
+        "prefer": [
+          0.6,
+          0.45,
+          0.6
+        ]
+      },
+      "marks": []
+    },
+    {
+      "step": "central",
+      "beat": "relay",
+      "focus": [
+        "BP_PuzzleRelay_Triple_C_1",
+        "BP_FrigateHull_Gate_C_2"
+      ],
+      "view": {
+        "prefer": [
+          0.5,
+          0.75,
+          0.45
+        ]
+      },
+      "marks": [
+        {
+          "label": {
+            "key": "names.hatchRelay"
+          },
+          "ids": [
+            "BP_PuzzleRelay_Triple_C_1"
+          ]
+        },
+        {
+          "label": {
+            "key": "names.hullGate"
+          },
+          "ids": [
+            "BP_FrigateHull_Gate_C_2"
+          ]
+        }
+      ]
+    },
+    {
+      "step": "cargo-deck",
+      "beat": "hull-gate",
+      "focus": [
+        "BP_FrigateHull_Gate_C_2"
+      ],
+      "view": {
+        "prefer": [
+          0.45,
+          0.8,
+          0.4
+        ]
+      },
+      "marks": [
+        {
+          "label": {
+            "key": "names.hullGate"
+          },
+          "ids": [
+            "BP_FrigateHull_Gate_C_2"
+          ]
+        }
+      ]
+    },
+    {
+      "step": "cargo-deck",
+      "beat": "hall",
+      "focus": [
+        "BP_PreciousCargo_C_1",
+        "BP_Frigate_CargoLatch_C_7",
+        "BP_Frigate_CargoLatch_C_5",
+        "BP_Frigate_CargoLatch_C_6",
+        "BP_Frigate_CargoLatch_C_4"
+      ],
+      "view": {},
+      "marks": [
+        {
+          "label": {
+            "key": "names.cargoPod"
+          },
+          "ids": [
+            "BP_PreciousCargo_C_1"
+          ]
+        },
+        {
+          "label": {
+            "key": "marks.latch"
+          },
+          "ids": [
+            "BP_Frigate_CargoLatch_C_7"
+          ]
+        },
+        {
+          "label": {
+            "key": "marks.latch"
+          },
+          "ids": [
+            "BP_Frigate_CargoLatch_C_5"
+          ]
+        },
+        {
+          "label": {
+            "key": "marks.latch"
+          },
+          "ids": [
+            "BP_Frigate_CargoLatch_C_6"
+          ]
+        },
+        {
+          "label": {
+            "key": "marks.latch"
+          },
+          "ids": [
+            "BP_Frigate_CargoLatch_C_4"
+          ]
+        }
+      ]
+    },
+    {
+      "step": "cargo-deck",
+      "beat": "side-halls",
+      "focus": [
+        "BP_InteractiveDoor_Walker_01_C_11",
+        "BP_InteractiveDoor_Walker_01_C_21",
+        "BP_FrigateWeakPoint_C_27",
+        "BP_FrigateWeakPoint_C_23",
+        "BP_FrigateWeakPoint_C_30",
+        "BP_FrigateWeakPoint_C_61",
+        "BP_FrigateWeakPoint_C_24",
+        "BP_FrigateWeakPoint_C_29",
+        "BP_FrigateWeakPoint_C_51",
+        "BP_FrigateWeakPoint_C_55"
+      ],
+      "view": {
+        "prefer": [
+          -0.45,
+          0.8,
+          0.4
+        ]
+      },
+      "marks": [
+        {
+          "label": {
+            "key": "marks.sealedDoor"
+          },
+          "ids": [
+            "BP_InteractiveDoor_Walker_01_C_11"
+          ]
+        },
+        {
+          "label": {
+            "key": "marks.sealedDoor"
+          },
+          "ids": [
+            "BP_InteractiveDoor_Walker_01_C_21"
+          ]
+        }
+      ]
+    },
+    {
+      "step": "cargo-deck",
+      "beat": "fan-tunnel",
+      "focus": [
+        "BP_InteractiveDoor_Walker_01_C_17",
+        "BP_InteractiveDoor_Walker_01_C_18",
+        "BP_FrigateWeakPoint_C_31",
+        "BP_FrigateWeakPoint_C_48",
+        "BP_FrigateWeakPoint_C_22",
+        "BP_FrigateWeakPoint_C_16",
+        "BP_FrigateWeakPoint_C_59",
+        "BP_FrigateWeakPoint_C_57",
+        "BP_FrigateWeakPoint_C_28",
+        "BP_FrigateWeakPoint_C_25"
+      ],
+      "view": {
+        "prefer": [
+          0.35,
+          0.85,
+          0.3
+        ]
+      },
+      "marks": [
+        {
+          "label": {
+            "key": "marks.sealedDoor"
+          },
+          "ids": [
+            "BP_InteractiveDoor_Walker_01_C_17"
+          ]
+        },
+        {
+          "label": {
+            "key": "marks.sealedDoor"
+          },
+          "ids": [
+            "BP_InteractiveDoor_Walker_01_C_18"
+          ]
+        },
+        {
+          "label": {
+            "key": "marks.fan"
+          },
+          "ids": [
+            "BP_FrigateVentingFan_C_4"
+          ]
+        },
+        {
+          "label": {
+            "key": "marks.fan"
+          },
+          "ids": [
+            "BP_FrigateVentingFan_C_5"
+          ]
+        },
+        {
+          "label": {
+            "key": "marks.fan"
+          },
+          "ids": [
+            "BP_FrigateVentingFan_C_6"
+          ]
+        },
+        {
+          "label": {
+            "key": "marks.fan"
+          },
+          "ids": [
+            "BP_FrigateVentingFan_C_7"
+          ]
+        }
+      ]
+    },
+    {
+      "step": "latches",
+      "beat": "acid",
+      "focus": [
+        "BP_FrigateVentingFan_C_4",
+        "BP_FrigateVentingFan_C_5",
+        "BP_FrigateVentingFan_C_6",
+        "BP_FrigateVentingFan_C_7",
+        "BP_FrigateWeakPoint_C_63",
+        "BP_FrigateWeakPoint_C_49",
+        "BP_FrigateWeakPoint_C_20",
+        "BP_FrigateWeakPoint_C_18",
+        "BP_FrigateWeakPoint_C_19",
+        "BP_FrigateWeakPoint_C_17",
+        "BP_FrigateWeakPoint_C_54",
+        "BP_FrigateWeakPoint_C_26"
+      ],
+      "view": {
+        "prefer": [
+          0.2,
+          0.85,
+          0.45
+        ]
+      },
+      "marks": [
+        {
+          "label": {
+            "key": "marks.fan"
+          },
+          "ids": [
+            "BP_FrigateVentingFan_C_4"
+          ]
+        },
+        {
+          "label": {
+            "key": "marks.fan"
+          },
+          "ids": [
+            "BP_FrigateVentingFan_C_5"
+          ]
+        },
+        {
+          "label": {
+            "key": "marks.fan"
+          },
+          "ids": [
+            "BP_FrigateVentingFan_C_6"
+          ]
+        },
+        {
+          "label": {
+            "key": "marks.fan"
+          },
+          "ids": [
+            "BP_FrigateVentingFan_C_7"
+          ]
+        }
+      ]
+    },
+    {
+      "step": "latches",
+      "beat": "latch-1",
+      "focus": [
+        "BP_Frigate_CargoLatch_C_7",
+        "BP_FrigatePlatform_Beams_02_C_8",
+        "BP_FrigatePowerCoreShield_C_27",
+        "BP_FrigatePowerCoreShield_C_35"
+      ],
+      "view": {
+        "prefer": [
+          0.3,
+          0.85,
+          0.4
+        ]
+      },
+      "marks": [
+        {
+          "label": {
+            "key": "marks.latch"
+          },
+          "ids": [
+            "BP_Frigate_CargoLatch_C_7"
+          ]
+        },
+        {
+          "label": {
+            "key": "marks.latchCore"
+          },
+          "ids": [
+            "BP_FrigatePlatform_Beams_02_C_8"
+          ]
+        },
+        {
+          "label": {
+            "key": "marks.sideDoor"
+          },
+          "ids": [
+            "BP_Frigate_CargoSideDoor_01_C_2"
+          ]
+        }
+      ]
+    },
+    {
+      "step": "latches",
+      "beat": "latch-2",
+      "focus": [
+        "BP_Frigate_CargoLatch_C_5",
+        "BP_FrigatePlatform_Beams_02_C_5",
+        "BP_FrigatePowerCoreShield_C_23",
+        "BP_FrigatePowerCoreShield_C_38"
+      ],
+      "view": {
+        "prefer": [
+          0.3,
+          0.85,
+          0.4
+        ]
+      },
+      "marks": [
+        {
+          "label": {
+            "key": "marks.latch"
+          },
+          "ids": [
+            "BP_Frigate_CargoLatch_C_5"
+          ]
+        },
+        {
+          "label": {
+            "key": "marks.latchCore"
+          },
+          "ids": [
+            "BP_FrigatePlatform_Beams_02_C_5"
+          ]
+        },
+        {
+          "label": {
+            "key": "marks.sideDoor"
+          },
+          "ids": [
+            "BP_Frigate_CargoSideDoor_01_C_3"
+          ]
+        }
+      ]
+    },
+    {
+      "step": "latches",
+      "beat": "latch-3",
+      "focus": [
+        "BP_Frigate_CargoLatch_C_6",
+        "BP_FrigatePlatform_Beams_02_C_6",
+        "BP_FrigatePowerCoreShield_C_31",
+        "BP_FrigatePowerCoreShield_C_33"
+      ],
+      "view": {
+        "prefer": [
+          0.3,
+          0.85,
+          0.4
+        ]
+      },
+      "marks": [
+        {
+          "label": {
+            "key": "marks.latch"
+          },
+          "ids": [
+            "BP_Frigate_CargoLatch_C_6"
+          ]
+        },
+        {
+          "label": {
+            "key": "marks.latchCore"
+          },
+          "ids": [
+            "BP_FrigatePlatform_Beams_02_C_6"
+          ]
+        }
+      ]
+    },
+    {
+      "step": "latches",
+      "beat": "latch-4",
+      "focus": [
+        "BP_Frigate_CargoLatch_C_4",
+        "BP_FrigatePlatform_Beams_02_C_9",
+        "BP_FrigatePowerCoreShield_C_26",
+        "BP_FrigatePowerCoreShield_C_45"
+      ],
+      "view": {
+        "prefer": [
+          0.3,
+          0.85,
+          0.4
+        ]
+      },
+      "marks": [
+        {
+          "label": {
+            "key": "marks.latch"
+          },
+          "ids": [
+            "BP_Frigate_CargoLatch_C_4"
+          ]
+        },
+        {
+          "label": {
+            "key": "marks.latchCore"
+          },
+          "ids": [
+            "BP_FrigatePlatform_Beams_02_C_9"
+          ]
+        }
+      ]
+    },
+    {
+      "step": "ratchet",
+      "beat": "red-hatch",
+      "focus": [],
+      "view": {},
+      "marks": [
+        {
+          "label": {
+            "key": "marks.redHatch"
+          },
+          "at": [
+            120,
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "step": "ratchet",
+      "beat": "gate-core",
+      "focus": [
+        "BP_FrigatePowerCore_C_9",
+        "BP_FrigatePowerCoreShield_C_39",
+        "BP_FrigatePowerCoreShield_C_25"
+      ],
+      "view": {
+        "prefer": [
+          0.5,
+          0.6,
+          0.6
+        ]
+      },
+      "marks": [
+        {
+          "label": {
+            "key": "names.cargoGateCore"
+          },
+          "ids": [
+            "BP_FrigatePowerCore_C_9"
+          ]
+        }
+      ]
+    },
+    {
+      "step": "ratchet",
+      "beat": "pulls",
+      "focus": [
+        "BP_Frigate_CargoRatchet_C_1",
+        "BP_Frigate_CargoRatchet_C_1.Ratchet Interaction A",
+        "BP_Frigate_CargoRatchet_C_1.Ratchet Interaction B"
+      ],
+      "view": {
+        "prefer": [
+          0.5,
+          0.7,
+          0.5
+        ]
+      },
+      "marks": [
+        {
+          "label": {
+            "key": "marks.handle",
+            "values": {
+              "letter": "A"
+            }
+          },
+          "ids": [
+            "BP_Frigate_CargoRatchet_C_1.Ratchet Interaction A"
+          ]
+        },
+        {
+          "label": {
+            "key": "marks.handle",
+            "values": {
+              "letter": "B"
+            }
+          },
+          "ids": [
+            "BP_Frigate_CargoRatchet_C_1.Ratchet Interaction B"
+          ]
+        }
+      ]
+    },
+    {
+      "step": "release",
+      "beat": "drop",
+      "focus": [
+        "BP_PreciousCargo_C_1"
+      ],
+      "view": {
+        "prefer": [
+          0.55,
+          -0.7,
+          0.45
+        ],
+        "exterior": true
+      },
+      "marks": [
+        {
+          "label": {
+            "key": "names.cargoPod"
+          },
+          "ids": [
+            "BP_PreciousCargo_C_1"
+          ]
+        }
+      ]
+    },
+    {
+      "step": "release",
+      "beat": "loot",
+      "focus": [
+        "BP_PreciousCargo_C_1"
+      ],
+      "view": {
+        "prefer": [
+          0.5,
+          -0.75,
+          0.45
+        ],
+        "exterior": true
+      },
+      "marks": []
+    },
+    {
+      "step": "release",
+      "beat": "extract",
+      "focus": [],
+      "view": {
+        "overview": true,
+        "far": true
+      },
+      "marks": []
+    }
+  ]
+}

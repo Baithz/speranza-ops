@@ -1,0 +1,521 @@
+{
+  "v": 1,
+  "set": "frigate",
+  "build": "2.00.0-CL1418508",
+  "tiers": [
+    "low",
+    "medium"
+  ],
+  "base": "../../",
+  "files": {
+    "data/anims.json": "d/046f9e6ba18e8b20.json",
+    "data/decks.json": "d/61c5f4e17b3ea9ec.json",
+    "data/decks/all.plan.webp": "t/5c3c63c705dcd804.webp",
+    "data/decks/all.side.webp": "t/097617ee1f05d62f.webp",
+    "data/decks/deck-1.plan.webp": "t/dce04a19260b14ab.webp",
+    "data/decks/deck-1.side.webp": "t/3e16a60f7fcd7733.webp",
+    "data/decks/deck-10.plan.webp": "t/3b31815a4b094bfd.webp",
+    "data/decks/deck-10.side.webp": "t/8667050db6f4b9a6.webp",
+    "data/decks/deck-2.plan.webp": "t/5461d73d84227f3e.webp",
+    "data/decks/deck-2.side.webp": "t/fb84ed69c80c691a.webp",
+    "data/decks/deck-3.plan.webp": "t/6c6edbed7d17943d.webp",
+    "data/decks/deck-3.side.webp": "t/e48b25f9bf5b9c6f.webp",
+    "data/decks/deck-4.plan.webp": "t/1a2d202342af948b.webp",
+    "data/decks/deck-4.side.webp": "t/98f367b08c7a1015.webp",
+    "data/decks/deck-5.plan.webp": "t/a460d498470fe007.webp",
+    "data/decks/deck-5.side.webp": "t/00a6e8825c11990a.webp",
+    "data/decks/deck-6.plan.webp": "t/27cd1f63f17561f3.webp",
+    "data/decks/deck-6.side.webp": "t/512c122cf9603156.webp",
+    "data/decks/deck-7.plan.webp": "t/45a36c74a20c2213.webp",
+    "data/decks/deck-7.side.webp": "t/6e5d5c92f58d0c1c.webp",
+    "data/decks/deck-8.plan.webp": "t/0022bb52607c3fb4.webp",
+    "data/decks/deck-8.side.webp": "t/321322e6a73fe3e4.webp",
+    "data/decks/deck-9.plan.webp": "t/3e46ba7f971bdc68.webp",
+    "data/decks/deck-9.side.webp": "t/c125134eb1b831f1.webp",
+    "data/decks/top.plan.webp": "t/315d735ce97c9b2a.webp",
+    "data/decks/top.side.webp": "t/8ac12b058f3decbf.webp",
+    "data/enemies.json": "d/8f5c65058fdfe25b.json",
+    "data/loot.json": "d/01d0efb68a2f56d3.json",
+    "data/names.json": "d/757f21c25c3d57be.json",
+    "data/routes.json": "d/cad95d91d5436f45.json",
+    "data/scene.json": "d/5c5c5f8e6ec4309e.json",
+    "data/sources.json": "d/4a7722dd4ccb7965.json",
+    "data/wiring.json": "d/8779a18665b27611.json",
+    "materials.json": "d/19151c2fbab461c2.json",
+    "meshes/1M_Cube.glb": "m/12d4bb5727b6b5cb.glb",
+    "meshes/Cube.glb": "m/b596b026a2841ba7.glb",
+    "meshes/SK_Courier_01_A.glb": "m/2c8eb3274d2a0015.glb",
+    "meshes/SK_Frigate_Cargo_01_A.glb": "m/22c3df9bb399e073.glb",
+    "meshes/SK_KebabGatling_01_B.glb": "m/654c3dac435d443c.glb",
+    "meshes/SK_Kebab_01_Base.glb": "m/9f303454f3c6a597.glb",
+    "meshes/SK_Rose_01_A.glb": "m/29001ced6cc1dafd.glb",
+    "meshes/SM_ARC_LampMetalBar_01_A.glb": "m/483769eb9066dc81.glb",
+    "meshes/SM_ARC_Lamp_01_B.glb": "m/ff941c9d5247a394.glb",
+    "meshes/SM_ARC_Lamp_01_B_LOD2.glb": "m/21be879a99d77ead.glb",
+    "meshes/SM_ARC_Lamp_01_B_LOD3.glb": "m/203ab8a048689797.glb",
+    "meshes/SM_ARC_Lamp_01_C.glb": "m/3275bd2cfdaf8283.glb",
+    "meshes/SM_ARC_Lamp_01_C_LOD2.glb": "m/780ff27fd58c65e5.glb",
+    "meshes/SM_ARC_Lamp_01_C_LOD3.glb": "m/9f244cc7e9e8cfbb.glb",
+    "meshes/SM_ARC_Lamp_01_D.glb": "m/e9e7fce47542cfa2.glb",
+    "meshes/SM_ARC_Lamp_01_D_LOD2.glb": "m/4899f548fe900e8c.glb",
+    "meshes/SM_ARC_Lamp_01_D_LOD3.glb": "m/c823776c7f3cf1e6.glb",
+    "meshes/SM_Arc_CoreRing_01_A.glb": "m/d74822f206d67cb4.glb",
+    "meshes/SM_Arc_CoreRing_01_A_LOD2.glb": "m/2bb1dec6baa93e5e.glb",
+    "meshes/SM_Arc_CoreRing_01_A_LOD3.glb": "m/b984f2ab09fb5dd2.glb",
+    "meshes/SM_Arc_CoreShield_01_A.glb": "m/413315f2d868a3c9.glb",
+    "meshes/SM_Arc_CoreShield_01_A_LOD2.glb": "m/f1ab9b44862984ce.glb",
+    "meshes/SM_Arc_CoreShield_01_A_LOD3.glb": "m/88ed505c4032e100.glb",
+    "meshes/SM_Arc_Core_01_A.glb": "m/0e8c9b0341e4eab5.glb",
+    "meshes/SM_Arc_Core_01_A_LOD2.glb": "m/0b9e2286923be414.glb",
+    "meshes/SM_Arc_Core_01_A_LOD3.glb": "m/6463f1f143b0cc60.glb",
+    "meshes/SM_Arc_Core_01_B.glb": "m/703a3be17e10ab19.glb",
+    "meshes/SM_Arc_Core_01_B_LOD2.glb": "m/6c6761184c871cbd.glb",
+    "meshes/SM_Arc_Core_01_B_LOD3.glb": "m/3b17437c48cab47b.glb",
+    "meshes/SM_Arc_Door_01_A.glb": "m/d27d0779fe63793b.glb",
+    "meshes/SM_Arc_Door_01_A_LOD2.glb": "m/16e7afce6aef463b.glb",
+    "meshes/SM_Arc_Door_01_A_LOD3.glb": "m/c6604a66ce16ab24.glb",
+    "meshes/SM_Arc_Door_01_DoorFrame_A.glb": "m/8426f61e803fc700.glb",
+    "meshes/SM_Arc_Door_01_DoorFrame_A_LOD2.glb": "m/2b3550cc93fc8ff3.glb",
+    "meshes/SM_Arc_Door_01_DoorFrame_A_LOD3.glb": "m/66d246182741f5b2.glb",
+    "meshes/SM_Arc_Door_Light_01_A.glb": "m/d5e23cbf169d0cb0.glb",
+    "meshes/SM_Arc_Door_Light_01_A_LOD2.glb": "m/bbc5b3a916322753.glb",
+    "meshes/SM_Arc_Door_Light_01_A_LOD3.glb": "m/7323076208e8ee3d.glb",
+    "meshes/SM_Arc_InteractionPoint_01_Base_A.glb": "m/321dbec5db4235e3.glb",
+    "meshes/SM_Arc_InteractionPoint_01_Lid_A.glb": "m/5cdab36eff019f5c.glb",
+    "meshes/SM_Arc_InteractionPoint_01_Lid_A_LOD2.glb": "m/bf97ed53a6fa6778.glb",
+    "meshes/SM_Arc_InteractionPoint_01_Lid_B.glb": "m/98b9a3dac1eea374.glb",
+    "meshes/SM_Arc_InteractionPoint_01_Lid_B_LOD2.glb": "m/fcb0d2490cfb9c3f.glb",
+    "meshes/SM_Arc_ParasiticContainer_01_A.glb": "m/6ef2cd7582b554b5.glb",
+    "meshes/SM_Arc_ParasiticContainer_01_A_LOD2.glb": "m/e0cb6106beee3f4a.glb",
+    "meshes/SM_Arc_ParasiticContainer_01_A_LOD3.glb": "m/1a75dcff4938b833.glb",
+    "meshes/SM_Arc_ParasiticContainer_Base_01_A.glb": "m/7d5006ed387537af.glb",
+    "meshes/SM_DecalMesh_01.glb": "m/83142e8b2db02162.glb",
+    "meshes/SM_FrigateHatch_01_A.glb": "m/7c39bc9bc98df550.glb",
+    "meshes/SM_FrigateHatch_01_A_LOD2.glb": "m/0a1d8d7428bc4a24.glb",
+    "meshes/SM_FrigateHatch_01_A_LOD3.glb": "m/da3229ba27e347f3.glb",
+    "meshes/SM_FrigateHatch_02_A.glb": "m/8ff1959a2584da42.glb",
+    "meshes/SM_FrigateHatch_02_A_LOD2.glb": "m/6c15d31a1c7c6326.glb",
+    "meshes/SM_FrigateHatch_02_A_LOD3.glb": "m/649dbb1cbf155713.glb",
+    "meshes/SM_Frigate_01_ThrusterNozzle_01.glb": "m/70d3dd9973523978.glb",
+    "meshes/SM_Frigate_01_ThrusterNozzle_01_LOD2.glb": "m/23e7620e89aebb29.glb",
+    "meshes/SM_Frigate_01_ThrusterNozzle_01_LOD4.glb": "m/dbf510af4c58b366.glb",
+    "meshes/SM_Frigate_CargoLatch_01_A.glb": "m/eb8e1621e38ecf57.glb",
+    "meshes/SM_Frigate_Docking_01_A.glb": "m/285d0112279e7eba.glb",
+    "meshes/SM_Frigate_Docking_01_A_LOD2.glb": "m/850226daf41e8923.glb",
+    "meshes/SM_Frigate_Docking_01_A_LOD4.glb": "m/ac0907e45a6d0492.glb",
+    "meshes/SM_Frigate_Docking_01_A_LOD5.glb": "m/26a752afe8cbf26f.glb",
+    "meshes/SM_Frigate_FanBase_01.glb": "m/1bee4e690ed73019.glb",
+    "meshes/SM_Frigate_Fan_01_A.glb": "m/c275deb9b378c9d2.glb",
+    "meshes/SM_Frigate_Fan_01_A_LOD1.glb": "m/b69b0477f68a888b.glb",
+    "meshes/SM_Frigate_Front_01.glb": "m/d890e76d3558bac4.glb",
+    "meshes/SM_Frigate_Front_01_LOD2.glb": "m/fc0781bf4b6c6236.glb",
+    "meshes/SM_Frigate_Front_01_LOD4.glb": "m/edfc2d3d18a68637.glb",
+    "meshes/SM_Frigate_InteractionCover_01_A.glb": "m/496fd9546dc21283.glb",
+    "meshes/SM_Frigate_InteractionPoint_01_A.glb": "m/984261ce16598b91.glb",
+    "meshes/SM_Frigate_InteriorCargo_01_A.glb": "m/6f2befa1e3dcf3fc.glb",
+    "meshes/SM_Frigate_InteriorCargo_01_A_LOD2.glb": "m/3f96bddb67bf396f.glb",
+    "meshes/SM_Frigate_InteriorCargo_01_A_LOD4.glb": "m/b0686bbfe8306e57.glb",
+    "meshes/SM_Frigate_InteriorCargo_01_A_LOD5.glb": "m/4bb91caa107c4a40.glb",
+    "meshes/SM_Frigate_Platform_01_A_Static.glb": "m/acf9b30f852aa899.glb",
+    "meshes/SM_Frigate_Platform_01_A_Static_LOD2.glb": "m/35373da7dcd41b3e.glb",
+    "meshes/SM_Frigate_Platform_01_A_Static_LOD3.glb": "m/e3b9413c183615a3.glb",
+    "meshes/SM_Frigate_Platform_02_A_Static.glb": "m/2b83ad8225fc829b.glb",
+    "meshes/SM_Frigate_Platform_03_A.glb": "m/b2c64a2accdf7304.glb",
+    "meshes/SM_Frigate_Platform_03_A_LOD2.glb": "m/87919a325b4544bf.glb",
+    "meshes/SM_Frigate_Platform_03_A_LOD3.glb": "m/23941b4ce48d4558.glb",
+    "meshes/SM_Frigate_Platform_03_A_Static.glb": "m/7784c60039be9ed4.glb",
+    "meshes/SM_Frigate_Platform_03_A_Static_LOD2.glb": "m/934436047f34c449.glb",
+    "meshes/SM_Frigate_Platform_03_A_Static_LOD3.glb": "m/9b4c96db584dc126.glb",
+    "meshes/SM_Frigate_Platform_03_B.glb": "m/211f88cc3b248d4e.glb",
+    "meshes/SM_Frigate_Platform_03_B_LOD2.glb": "m/aa1f1f1667edc43f.glb",
+    "meshes/SM_Frigate_Platform_03_B_LOD3.glb": "m/76d263b091971896.glb",
+    "meshes/SM_Frigate_Platform_03_B_Static.glb": "m/3cf5951b1b3e99b6.glb",
+    "meshes/SM_Frigate_Platform_03_B_Static_LOD2.glb": "m/2d99e75333b1edf1.glb",
+    "meshes/SM_Frigate_Platform_03_B_Static_LOD3.glb": "m/042bfd3b75a0aba6.glb",
+    "meshes/SM_Frigate_ProgressHatch_01_A.glb": "m/343fbd02a85fd134.glb",
+    "meshes/SM_Frigate_Rear_01.glb": "m/37deea187c3add18.glb",
+    "meshes/SM_Frigate_Rear_01_LOD2.glb": "m/8919c3e5ff56fb9b.glb",
+    "meshes/SM_Frigate_Rear_01_LOD4.glb": "m/e791e43ea7d8175e.glb",
+    "meshes/SM_Frigate_Rear_02.glb": "m/1e9d9458253e7054.glb",
+    "meshes/SM_Frigate_Rear_02_LOD2.glb": "m/76c1d2196e53c70e.glb",
+    "meshes/SM_Frigate_Rear_02_LOD4.glb": "m/7fb58987d53299f6.glb",
+    "meshes/SM_Frigate_SideFront_01.glb": "m/eabdd4235e27dc25.glb",
+    "meshes/SM_Frigate_SideFront_01_LOD2.glb": "m/53c71578e34ce2b4.glb",
+    "meshes/SM_Frigate_SideFront_01_LOD4.glb": "m/c26c47652408cca1.glb",
+    "meshes/SM_Frigate_SideFront_R_01.glb": "m/8f53bfc64f0be93e.glb",
+    "meshes/SM_Frigate_SideFront_R_01_LOD2.glb": "m/b264937c55cf1e6a.glb",
+    "meshes/SM_Frigate_SideFront_R_01_LOD3.glb": "m/a8427c3a0cf40931.glb",
+    "meshes/SM_Frigate_SideFront_R_01_LOD4.glb": "m/c253d266f47bbcf1.glb",
+    "meshes/SM_Frigate_SideRear_01.glb": "m/ad0733c4722f525c.glb",
+    "meshes/SM_Frigate_SideRear_01_LOD2.glb": "m/fd0420d1ac0b93e7.glb",
+    "meshes/SM_Frigate_SideRear_01_LOD4.glb": "m/5229e102a26bad90.glb",
+    "meshes/SM_Frigate_SideRear_02.glb": "m/7f9df86c0ec07b38.glb",
+    "meshes/SM_Frigate_SideRear_02_LOD2.glb": "m/08adb413639903f3.glb",
+    "meshes/SM_Frigate_SideRear_02_LOD4.glb": "m/79ec4138d4f517b7.glb",
+    "meshes/SM_Frigate_SideRear_R_01.glb": "m/be552b55ce0c3944.glb",
+    "meshes/SM_Frigate_SideRear_R_01_LOD2.glb": "m/42423c983a0135be.glb",
+    "meshes/SM_Frigate_SideRear_R_01_LOD4.glb": "m/5cbf550103be260a.glb",
+    "meshes/SM_Frigate_SideRear_R_02.glb": "m/df601d9629c60af7.glb",
+    "meshes/SM_Frigate_SideRear_R_02_LOD2.glb": "m/64cba97846617239.glb",
+    "meshes/SM_Frigate_SideRear_R_02_LOD4.glb": "m/da08d90236126d11.glb",
+    "meshes/SM_Frigate_SlidingDoor_01_A.glb": "m/37dac3cf1facf3b4.glb",
+    "meshes/SM_Frigate_SlidingDoor_02_A.glb": "m/613fe1c9042ae617.glb",
+    "meshes/SM_Frigate_SlidingDoor_02_A_LOD2.glb": "m/978751d5ac97c647.glb",
+    "meshes/SM_Frigate_ThrusterRear_01.glb": "m/a1bee37e2ccaf078.glb",
+    "meshes/SM_Frigate_ThrusterRear_01_LOD2.glb": "m/9ef664132ecabb5e.glb",
+    "meshes/SM_Frigate_ThrusterRear_01_LOD4.glb": "m/5ee828d0a1318fe6.glb",
+    "meshes/SM_Frigate_Thruster_01.glb": "m/f4c52d345a07c698.glb",
+    "meshes/SM_Frigate_Thruster_01_LOD2.glb": "m/fb81abb9cefea8e1.glb",
+    "meshes/SM_Frigate_Thruster_01_LOD4.glb": "m/f41825962de6ffd1.glb",
+    "meshes/SM_Harvester_01_Weakpoint_01.glb": "m/6bdd159690f2f34d.glb",
+    "meshes/index.json": "d/a177a1d2500815be.json",
+    "meshes/overview.glb": "m/ccd1de8b648743f1.glb",
+    "meshes/overview.json": "d/15abdc1858cadcdc.json",
+    "textures/MI_ArcInteractionPoint_Trim_01__bc_6069f8f9.ktx2": {
+      "low": "t/bcec2679814d937e.ktx2",
+      "medium": "t/de5fab561e12c464.ktx2"
+    },
+    "textures/MI_ArcInteractionPoint_Trim_02__bc_1f732d85.ktx2": {
+      "low": "t/f17f47d9b633fcbd.ktx2",
+      "medium": "t/943176f0e4d55eb8.ktx2"
+    },
+    "textures/MI_Core_01_InteriorSoot_01__bc_01b4ebd0.ktx2": {
+      "low": "t/40139e84133f8844.ktx2",
+      "medium": "t/f9079ee32c370da1.ktx2"
+    },
+    "textures/MI_Core_01_Interior_01__bc_01b4ebd0.ktx2": {
+      "low": "t/40139e84133f8844.ktx2",
+      "medium": "t/f9079ee32c370da1.ktx2"
+    },
+    "textures/MI_Frigate_Door_01__bc_f65574df.ktx2": {
+      "low": "t/b93ebde640bfe753.ktx2",
+      "medium": "t/99e15cb2085888f5.ktx2"
+    },
+    "textures/MI_Frigate_Door_02__bc_b92fea46.ktx2": {
+      "low": "t/a5aad3dd57075add.ktx2",
+      "medium": "t/649055e41addba37.ktx2"
+    },
+    "textures/MI_Frigate_TrimAirBrakes_02__bc_1a5580e3.ktx2": {
+      "low": "t/c8e7a2eb2f79941c.ktx2",
+      "medium": "t/a0856d2ea68fe07d.ktx2"
+    },
+    "textures/MI_Frigate_TrimCleanMetal_01__bc_1f732d85.ktx2": {
+      "low": "t/f17f47d9b633fcbd.ktx2",
+      "medium": "t/943176f0e4d55eb8.ktx2"
+    },
+    "textures/MI_Frigate_TrimCopper_01__bc_f624808c.ktx2": {
+      "low": "t/f6f07b55f9a244de.ktx2",
+      "medium": "t/57b4dd4323e77a78.ktx2"
+    },
+    "textures/MI_Frigate_TrimDocking_01__bc_75ca16e2.ktx2": {
+      "low": "t/c338bfab5c57bd60.ktx2",
+      "medium": "t/ecb324884d13d61d.ktx2"
+    },
+    "textures/MI_Frigate_TrimExhaust_01__bc_75ca16e2.ktx2": {
+      "low": "t/c338bfab5c57bd60.ktx2",
+      "medium": "t/ecb324884d13d61d.ktx2"
+    },
+    "textures/MI_Frigate_TrimExhaust_02__bc_75ca16e2.ktx2": {
+      "low": "t/c338bfab5c57bd60.ktx2",
+      "medium": "t/ecb324884d13d61d.ktx2"
+    },
+    "textures/MI_Frigate_TrimExhaust_03__bc_c158a82c.ktx2": {
+      "low": "t/558923f7e257cfb9.ktx2",
+      "medium": "t/2b73cdea695c68f2.ktx2"
+    },
+    "textures/MI_Frigate_TrimHull_01__bc_919ecb76.ktx2": {
+      "low": "t/79062cd562f1efec.ktx2",
+      "medium": "t/1650eba7a660a538.ktx2"
+    },
+    "textures/MI_Frigate_TrimHull_02__bc_8374adfa.ktx2": {
+      "low": "t/edd2be4f8445980f.ktx2",
+      "medium": "t/98a770855023efd1.ktx2"
+    },
+    "textures/MI_Frigate_TrimInteriorTunnels_01__bc_75ca16e2.ktx2": {
+      "low": "t/c338bfab5c57bd60.ktx2",
+      "medium": "t/ecb324884d13d61d.ktx2"
+    },
+    "textures/MI_Frigate_TrimInterior_01__bc_f0a7d7c6.ktx2": {
+      "low": "t/be2849c2f65f4792.ktx2",
+      "medium": "t/e5ea936abf9266b0.ktx2"
+    },
+    "textures/MI_Frigate_TrimInterior_02_A__bc_be993ec4.ktx2": {
+      "low": "t/d9d30ca287d305de.ktx2",
+      "medium": "t/928ad3e91edbf8fe.ktx2"
+    },
+    "textures/MI_Frigate_TrimInterior_03__bc_90d831c9.ktx2": {
+      "low": "t/be2849c2f65f4792.ktx2",
+      "medium": "t/e5ea936abf9266b0.ktx2"
+    },
+    "textures/MI_Frigate_TrimPaintedMetal_01__bc_5ce4d5f5.ktx2": {
+      "low": "t/6bc8e9d030708913.ktx2",
+      "medium": "t/c85fa0f1ed37f823.ktx2"
+    },
+    "textures/MI_Harvester_01_InteriorFloor_01__bc_d08a14a3.ktx2": {
+      "low": "t/e882077f9f5d6c83.ktx2",
+      "medium": "t/c0e066e331d38d75.ktx2"
+    },
+    "textures/MI_Harvester_01_Interior_01__bc_f24f1bdd.ktx2": {
+      "low": "t/470ac3f662b802ec.ktx2",
+      "medium": "t/0288da0e949a38fd.ktx2"
+    },
+    "textures/MI_Harvester_01_Interior_02__bc_01b4ebd0.ktx2": {
+      "low": "t/40139e84133f8844.ktx2",
+      "medium": "t/f9079ee32c370da1.ktx2"
+    },
+    "textures/MI_WalkerInterior_01_Metal_01__bc_27b4817b.ktx2": {
+      "low": "t/057f9ad872b416a0.ktx2",
+      "medium": "t/1240cc805c7d2be3.ktx2"
+    },
+    "textures/MI_WalkerInterior_01_Metal_05__bc_8e865e8b.ktx2": {
+      "low": "t/8b7a11b9d82a8047.ktx2",
+      "medium": "t/8746416a3590bb61.ktx2"
+    },
+    "textures/TA_Weathering_Props_01_s0+T_ConcreteBuildingWorld_01_GRM__dust.ktx2": {
+      "low": "t/bd910940e0fd302b.ktx2",
+      "medium": "t/515d18135fe10e35.ktx2"
+    },
+    "textures/T_ARC_Lamp_01_D_CR+D_NOX+D_XEM__orm.ktx2": {
+      "low": "t/bd64f055c6f032a7.ktx2",
+      "medium": "t/1d9bdb9a979faca5.ktx2"
+    },
+    "textures/T_ARC_Lamp_01_D_CR.ktx2": {
+      "low": "t/76a000993093bc0b.ktx2",
+      "medium": "t/4e16bb8a3e40c5bd.ktx2"
+    },
+    "textures/T_ARC_Lamp_01_D_NOX.ktx2": {
+      "low": "t/8b66d0052b933769.ktx2",
+      "medium": "t/b0e8db77d614acd0.ktx2"
+    },
+    "textures/T_ARC_Lamp_01_D_XEM.ktx2": {
+      "low": "t/c8a35e2da0318b50.ktx2",
+      "medium": "t/5fef4e13582ed316.ktx2"
+    },
+    "textures/T_ArcTrim_CR+CR_NMX__orm.ktx2": {
+      "low": "t/1a891630f00863bf.ktx2",
+      "medium": "t/9a7932cb0c6196de.ktx2"
+    },
+    "textures/T_ArcTrim_CR+CR_NMX_m10__orm.ktx2": {
+      "low": "t/de2d47905acf768f.ktx2",
+      "medium": "t/d5994561c3b525f1.ktx2"
+    },
+    "textures/T_ArcTrim_CR+CR_NMX_m10_rt40a98e__orm.ktx2": {
+      "low": "t/2d1f45c8ffc6ad3e.ktx2",
+      "medium": "t/48021899a7138d41.ktx2"
+    },
+    "textures/T_ArcTrim_CR+CR_NMX_m10_rt4211ae__orm.ktx2": {
+      "low": "t/d984c140bfd2c108.ktx2",
+      "medium": "t/b8991f25bd9024e5.ktx2"
+    },
+    "textures/T_ArcTrim_CR+CR_NMX_m10_rt4aa2a4__orm.ktx2": {
+      "low": "t/146a143023cefa35.ktx2",
+      "medium": "t/147920e0b16c948b.ktx2"
+    },
+    "textures/T_ArcTrim_CR+CR_NMX_m10_rt4aa2a4__orm_mm3587.ktx2": {
+      "low": "t/65d73a1033306771.ktx2",
+      "medium": "t/91be33dc19476386.ktx2"
+    },
+    "textures/T_ArcTrim_CR+CR_NMX_m10_rt660cbe__orm.ktx2": {
+      "low": "t/df8d2a39e320293d.ktx2",
+      "medium": "t/77960d57bf40e5f7.ktx2"
+    },
+    "textures/T_ArcTrim_CR+CR_NMX_m10_rt667781__orm_mm1179.ktx2": {
+      "low": "t/6aab1fdc7d0a7834.ktx2",
+      "medium": "t/b57434355b67a34b.ktx2"
+    },
+    "textures/T_ArcTrim_CR+CR_NMX_m10_rt876614__orm.ktx2": {
+      "low": "t/9242a9aafce1e8a6.ktx2",
+      "medium": "t/15c0ef904f821992.ktx2"
+    },
+    "textures/T_ArcTrim_CR+CR_NMX_m10_rtaf68ab__orm.ktx2": {
+      "low": "t/b952ce220ffe6d61.ktx2",
+      "medium": "t/66b718d08f3ae26b.ktx2"
+    },
+    "textures/T_ArcTrim_CR+CR_NMX_m10_rtc47009__orm.ktx2": {
+      "low": "t/41e855f813873e81.ktx2",
+      "medium": "t/31bdd2d2a0deb73d.ktx2"
+    },
+    "textures/T_ArcTrim_CR+CR_NMX_m10_rtcaf525__orm.ktx2": {
+      "low": "t/8fccf7e63cf03204.ktx2",
+      "medium": "t/c75e66e344a2241c.ktx2"
+    },
+    "textures/T_ArcTrim_CR.ktx2": {
+      "low": "t/d9d30ca287d305de.ktx2",
+      "medium": "t/928ad3e91edbf8fe.ktx2"
+    },
+    "textures/T_ArcTrim_CR_NMX.ktx2": {
+      "low": "t/b38e17ddc95003eb.ktx2",
+      "medium": "t/b162848cdeb24fa5.ktx2"
+    },
+    "textures/T_Arc_Door_01_A_CR+A_NOX+A_XEM__orm.ktx2": {
+      "low": "t/038f840a2c927772.ktx2",
+      "medium": "t/62126a29bae1419b.ktx2"
+    },
+    "textures/T_Arc_Door_01_A_CR.ktx2": {
+      "low": "t/131bf3aa5be9556f.ktx2",
+      "medium": "t/199879025217f633.ktx2"
+    },
+    "textures/T_Arc_Door_01_A_NOX.ktx2": {
+      "low": "t/c33b910c4c0e43ef.ktx2",
+      "medium": "t/010385f7a963a8f7.ktx2"
+    },
+    "textures/T_Arc_Door_01_A_XEM.ktx2": {
+      "low": "t/677f92cb0c01e723.ktx2",
+      "medium": "t/ef04fc1d491e434d.ktx2"
+    },
+    "textures/T_Arc_Door_01_DoorFrame_A_CR+A_NOX+A_XEM__orm.ktx2": {
+      "low": "t/f63eac71c1cbbff2.ktx2",
+      "medium": "t/e4caa7f1766d1530.ktx2"
+    },
+    "textures/T_Arc_Door_01_DoorFrame_A_CR.ktx2": {
+      "low": "t/931a4b8016ada78f.ktx2",
+      "medium": "t/4bf5ebe628a0be93.ktx2"
+    },
+    "textures/T_Arc_Door_01_DoorFrame_A_NOX.ktx2": {
+      "low": "t/e956eafa794adad4.ktx2",
+      "medium": "t/24f0b72e59851c9b.ktx2"
+    },
+    "textures/T_Arc_Door_01_DoorFrame_A_XEM.ktx2": {
+      "low": "t/1b612cf223bb00db.ktx2",
+      "medium": "t/5bb8333dcc4e7691.ktx2"
+    },
+    "textures/T_Arc_Door_Light_01_A_CR+A_NOX+A_XEM__orm.ktx2": {
+      "low": "t/6284a9ebe59e5fd9.ktx2",
+      "medium": "t/2a595bdc4ec012cc.ktx2"
+    },
+    "textures/T_Arc_Door_Light_01_A_CR.ktx2": {
+      "low": "t/74d845a5ae1312c8.ktx2",
+      "medium": "t/833074f4232837fe.ktx2"
+    },
+    "textures/T_Arc_Door_Light_01_A_NOX.ktx2": {
+      "low": "t/68ed5976887d5c3f.ktx2",
+      "medium": "t/5cdfc168837fbf0e.ktx2"
+    },
+    "textures/T_Arc_Door_Light_01_A_XEM.ktx2": {
+      "low": "t/26291112512495f7.ktx2",
+      "medium": "t/3ac6c34b7aa14d86.ktx2"
+    },
+    "textures/T_Courier_01_A_CR+A_NOM__orm.ktx2": {
+      "low": "t/47e14d298eda946e.ktx2",
+      "medium": "t/615b37a31ccf0cfe.ktx2"
+    },
+    "textures/T_Courier_01_A_CR.ktx2": {
+      "low": "t/1b20fa3bd278826b.ktx2",
+      "medium": "t/c116708ef81e598d.ktx2"
+    },
+    "textures/T_Courier_01_A_NOM.ktx2": {
+      "low": "t/25ec0dfe0f0bda6c.ktx2",
+      "medium": "t/551d738d6f635731.ktx2"
+    },
+    "textures/T_EnemyDecals_01_NAO.ktx2": {
+      "low": "t/ec691121ec6d2f2f.ktx2",
+      "medium": "t/2fc62d3c873a4287.ktx2"
+    },
+    "textures/T_EnemyDecals_02_NAO.ktx2": {
+      "low": "t/74e11fb686d2911c.ktx2",
+      "medium": "t/76228f46d9a1246a.ktx2"
+    },
+    "textures/T_Frigate_CoreRing_01_A_CR+A_NOX__orm.ktx2": {
+      "low": "t/ea0a9ec8eb906d29.ktx2",
+      "medium": "t/6377036fdf9c10a3.ktx2"
+    },
+    "textures/T_Frigate_CoreRing_01_A_CR.ktx2": {
+      "low": "t/8ca58a37caa7d6e4.ktx2",
+      "medium": "t/7631457cfc6b3f2d.ktx2"
+    },
+    "textures/T_Frigate_CoreRing_01_A_NOX.ktx2": {
+      "low": "t/8b755fb106713e0e.ktx2",
+      "medium": "t/50ecc29303adcbbe.ktx2"
+    },
+    "textures/T_Frigate_Paneling_02_A_CR+A_NMX__orm.ktx2": {
+      "low": "t/4fe44e7c86314d8f.ktx2",
+      "medium": "t/06a264a176558bba.ktx2"
+    },
+    "textures/T_Frigate_Paneling_02_A_CR.ktx2": {
+      "low": "t/a91647853317d8ea.ktx2",
+      "medium": "t/80716f86ddde7ab5.ktx2"
+    },
+    "textures/T_Frigate_Panneling_01_A_NMX.ktx2": {
+      "low": "t/0b6708b034b9eb46.ktx2",
+      "medium": "t/2fa5d625e4a08e5f.ktx2"
+    },
+    "textures/T_Frigate_TileableMetal_01_A_CR+A_NMX__orm.ktx2": {
+      "low": "t/7648e445afe74eb3.ktx2",
+      "medium": "t/f8754371222ef9cd.ktx2"
+    },
+    "textures/T_Frigate_TileableMetal_01_A_CR.ktx2": {
+      "low": "t/24cf75d8dbfff6ef.ktx2",
+      "medium": "t/d2a1fb17b7e83f83.ktx2"
+    },
+    "textures/T_Frigate_TileableMetal_01_A_NMX.ktx2": {
+      "low": "t/8b34cf415c43186d.ktx2",
+      "medium": "t/82b3f9e27b01f5ea.ktx2"
+    },
+    "textures/T_Harvester_01_Weakpoints_CR+Weakpoints_NOX+Weakpoints_XEM__orm.ktx2": {
+      "low": "t/357ac133e8ff52c7.ktx2",
+      "medium": "t/694628e8862020e8.ktx2"
+    },
+    "textures/T_Harvester_01_Weakpoints_CR.ktx2": {
+      "low": "t/fe95430752c10208.ktx2",
+      "medium": "t/a74aa9b0efabf34a.ktx2"
+    },
+    "textures/T_Harvester_01_Weakpoints_NOX.ktx2": {
+      "low": "t/3f3049c8e9a7619d.ktx2",
+      "medium": "t/cd552d542c131a38.ktx2"
+    },
+    "textures/T_Harvester_01_Weakpoints_XEM.ktx2": {
+      "low": "t/6f34f7878317c99e.ktx2",
+      "medium": "t/f504bb83bc77cf2f.ktx2"
+    },
+    "textures/T_Kebab_01_A_CR+A_NOM__orm.ktx2": {
+      "low": "t/b1e28f14232ff6a5.ktx2",
+      "medium": "t/b25875ddd68020d2.ktx2"
+    },
+    "textures/T_Kebab_01_A_CR.ktx2": {
+      "low": "t/b694714065fd1a67.ktx2",
+      "medium": "t/c74b3b502b55c05c.ktx2"
+    },
+    "textures/T_Kebab_01_A_NOM.ktx2": {
+      "low": "t/e07249dfff84eaef.ktx2",
+      "medium": "t/5cb3efd027c74884.ktx2"
+    },
+    "textures/T_LightFlourescentBump_01_N.ktx2": "t/ec042493fb0891ba.ktx2",
+    "textures/T_MetalAircraft_01_CR.ktx2": {
+      "low": "t/c09be6fc5b8b31bd.ktx2",
+      "medium": "t/2138a4163c8cae67.ktx2"
+    },
+    "textures/T_Walker_TileableMetal_03_A_CR+A_NMX__orm.ktx2": {
+      "low": "t/6546a83d2e94e4c3.ktx2",
+      "medium": "t/53020fae55595e6c.ktx2"
+    },
+    "textures/T_Walker_TileableMetal_03_A_CR.ktx2": {
+      "low": "t/3958e5db46c778c1.ktx2",
+      "medium": "t/69429ed6f8c08543.ktx2"
+    },
+    "textures/T_Walker_TileableMetal_03_A_NMX.ktx2": {
+      "low": "t/5fea74cf5f0c0952.ktx2",
+      "medium": "t/9319b39f88568375.ktx2"
+    },
+    "posters/poster.jpg": "p/e74ed3449ae2d608.jpg",
+    "posters/poster.webp": "p/bdc4a5273f5bee6b.webp",
+    "posters/step-1-plan.jpg": "p/182f87735f267a52.jpg",
+    "posters/step-1-plan.webp": "p/8dee33d0573f482f.webp",
+    "posters/step-2-board.jpg": "p/68c3bfab9cb72f4f.jpg",
+    "posters/step-2-board.webp": "p/e7031bc4d6712e59.webp",
+    "posters/step-3-inside.jpg": "p/703f94e2e0948342.jpg",
+    "posters/step-3-inside.webp": "p/e1beeb5ee8c0d5f0.webp",
+    "posters/step-4-cores.jpg": "p/baa81c85939e4867.jpg",
+    "posters/step-4-cores.webp": "p/69fd9d6fc6ebe1e0.webp",
+    "posters/step-5-central.jpg": "p/2f184de028dc25e4.jpg",
+    "posters/step-5-central.webp": "p/639214b1649f9796.webp",
+    "posters/step-6-cargo-deck.jpg": "p/cf13037be3dfa921.jpg",
+    "posters/step-6-cargo-deck.webp": "p/45b52e0b8890ddf3.webp",
+    "posters/step-7-latches.jpg": "p/05d980c0a992e772.jpg",
+    "posters/step-7-latches.webp": "p/27ed125540073cb1.webp",
+    "posters/step-8-ratchet.jpg": "p/6c7a265b516040d5.jpg",
+    "posters/step-8-ratchet.webp": "p/fd19d61c4bbec751.webp",
+    "posters/step-9-release.jpg": "p/16cbff1bc68a0ff5.jpg",
+    "posters/step-9-release.webp": "p/4c5b4358801c7279.webp"
+  },
+  "wiringHash": "e8c0bbb0df1370ed"
+}

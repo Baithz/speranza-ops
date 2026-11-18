@@ -1,0 +1,1032 @@
+{
+  "build": "2.00.0-CL1418508",
+  "exportedBounds": {
+    "min": [
+      -134.548,
+      -51.818,
+      -125.257
+    ],
+    "max": [
+      237.765,
+      40.395,
+      125.257
+    ]
+  },
+  "dimensionsXYZ": [
+    372.313,
+    92.213,
+    250.514
+  ],
+  "counts": {
+    "actors": 415,
+    "byCategory": {
+      "structure": 19,
+      "other": 35,
+      "light": 115,
+      "powercore": 11,
+      "door": 15,
+      "cargo": 6,
+      "platform": 5,
+      "interaction": 10,
+      "exhaust": 8,
+      "fan": 4,
+      "panel": 8,
+      "hazard": 2,
+      "shield": 26,
+      "vent": 4,
+      "weakpoint": 32,
+      "loot": 64,
+      "fx": 51
+    },
+    "meshes": 518,
+    "visibleMeshes": 513,
+    "uniqueMeshes": 53,
+    "lights": 115,
+    "spawnSlots": 39
+  },
+  "visibleUniqueMeshes": 51,
+  "uniqueTriangles": 1144616,
+  "instancedTriangles": 2298766,
+  "materials": 68,
+  "materialsWithLimitations": 61,
+  "wiringNodes": 168,
+  "wiringEdges": 144,
+  "inferredWiringEdges": 117,
+  "meshCompression": [
+    "EXT_meshopt_compression",
+    "KHR_mesh_quantization"
+  ],
+  "sourceFiles": 169,
+  "sourceBytes": 23370591,
+  "meshes": [
+    {
+      "path": "/Engine/BasicShapes/Cube",
+      "file": "Cube.glb",
+      "triangles": 12,
+      "instances": 10,
+      "bounds": [
+        [
+          -0.5,
+          -0.5,
+          -0.5
+        ],
+        [
+          0.5,
+          0.5,
+          0.5
+        ]
+      ],
+      "slots": 1
+    },
+    {
+      "path": "/Game/Pioneer/Environment/Props/Arc/ARC_Lamp_01/SM_ARC_LampMetalBar_01_A",
+      "file": "SM_ARC_LampMetalBar_01_A.glb",
+      "triangles": 1450,
+      "instances": 48,
+      "bounds": [
+        [
+          -1.23313,
+          0,
+          -0.04973
+        ],
+        [
+          1.23313,
+          0.04612,
+          0.04973
+        ]
+      ],
+      "slots": 3
+    },
+    {
+      "path": "/Game/Pioneer/Environment/Props/Arc/ARC_Lamp_01/SM_ARC_Lamp_01_B",
+      "file": "SM_ARC_Lamp_01_B.glb",
+      "triangles": 1496,
+      "instances": 39,
+      "bounds": [
+        [
+          -0.14326,
+          0.00523,
+          -0.13762
+        ],
+        [
+          0.14149,
+          0.19876,
+          0.13762
+        ]
+      ],
+      "slots": 4
+    },
+    {
+      "path": "/Game/Pioneer/Environment/Props/Arc/ARC_Lamp_01/SM_ARC_Lamp_01_C",
+      "file": "SM_ARC_Lamp_01_C.glb",
+      "triangles": 1428,
+      "instances": 9,
+      "bounds": [
+        [
+          -0.14208,
+          -0.00025,
+          -0.13788
+        ],
+        [
+          0.26415,
+          0.48338,
+          0.13736
+        ]
+      ],
+      "slots": 4
+    },
+    {
+      "path": "/Game/Pioneer/Environment/Props/Arc/ARC_Lamp_01/SM_ARC_Lamp_01_D",
+      "file": "SM_ARC_Lamp_01_D.glb",
+      "triangles": 252,
+      "instances": 19,
+      "bounds": [
+        [
+          -0.37988,
+          0,
+          -2.44903
+        ],
+        [
+          0.37994,
+          0.10583,
+          2.39373
+        ]
+      ],
+      "slots": 3
+    },
+    {
+      "path": "/Game/Pioneer/Environment/Props/Arc/Arc_Core_01/SM_Arc_CoreRing_01_A",
+      "file": "SM_Arc_CoreRing_01_A.glb",
+      "triangles": 4560,
+      "instances": 26,
+      "bounds": [
+        [
+          -3.06954,
+          -0.63329,
+          -3.08787
+        ],
+        [
+          3.08568,
+          0.36755,
+          3.06617
+        ]
+      ],
+      "slots": 2
+    },
+    {
+      "path": "/Game/Pioneer/Environment/Props/Arc/Arc_Core_01/SM_Arc_CoreShield_01_A",
+      "file": "SM_Arc_CoreShield_01_A.glb",
+      "triangles": 3840,
+      "instances": 26,
+      "bounds": [
+        [
+          -2.05196,
+          -1.13366,
+          -3.15105
+        ],
+        [
+          3.18924,
+          1.13366,
+          3.18986
+        ]
+      ],
+      "slots": 2
+    },
+    {
+      "path": "/Game/Pioneer/Environment/Props/Arc/Arc_Core_01/SM_Arc_Core_01_A",
+      "file": "SM_Arc_Core_01_A.glb",
+      "triangles": 32156,
+      "instances": 1,
+      "bounds": [
+        [
+          -3.23791,
+          0.05462,
+          -3.23791
+        ],
+        [
+          3.23791,
+          15.9294,
+          3.23791
+        ]
+      ],
+      "slots": 6
+    },
+    {
+      "path": "/Game/Pioneer/Environment/Props/Arc/Arc_Core_01/SM_Arc_Core_01_B",
+      "file": "SM_Arc_Core_01_B.glb",
+      "triangles": 28328,
+      "instances": 10,
+      "bounds": [
+        [
+          -3.23791,
+          -4.94039,
+          -3.23791
+        ],
+        [
+          3.23791,
+          4.94039,
+          3.23791
+        ]
+      ],
+      "slots": 6
+    },
+    {
+      "path": "/Game/Pioneer/Environment/Props/Arc/Arc_Door_01/SM_Arc_Door_01_A",
+      "file": "SM_Arc_Door_01_A.glb",
+      "triangles": 3186,
+      "instances": 11,
+      "bounds": [
+        [
+          -0.22694,
+          0,
+          -2
+        ],
+        [
+          0.23285,
+          2,
+          2
+        ]
+      ],
+      "slots": 1
+    },
+    {
+      "path": "/Game/Pioneer/Environment/Props/Arc/Arc_Door_01/SM_Arc_Door_01_DoorFrame_A",
+      "file": "SM_Arc_Door_01_DoorFrame_A.glb",
+      "triangles": 5080,
+      "instances": 11,
+      "bounds": [
+        [
+          -0.56529,
+          0.00001,
+          -3.00435
+        ],
+        [
+          0.67202,
+          3.00872,
+          3.00435
+        ]
+      ],
+      "slots": 1
+    },
+    {
+      "path": "/Game/Pioneer/Environment/Props/Arc/Arc_Door_01/SM_Arc_Door_Light_01_A",
+      "file": "SM_Arc_Door_Light_01_A.glb",
+      "triangles": 3324,
+      "instances": 22,
+      "bounds": [
+        [
+          0.29028,
+          -0.63812,
+          -2.73454
+        ],
+        [
+          0.4836,
+          0.63834,
+          2.73454
+        ]
+      ],
+      "slots": 2
+    },
+    {
+      "path": "/Game/Pioneer/Environment/Props/Arc/Arc_InteractionPoint_01/SM_Arc_InteractionPoint_01_Base_A",
+      "file": "SM_Arc_InteractionPoint_01_Base_A.glb",
+      "triangles": 336,
+      "instances": 12,
+      "bounds": [
+        [
+          -0.04434,
+          -0.29846,
+          -0.44189
+        ],
+        [
+          0.26175,
+          0.33329,
+          0.44189
+        ]
+      ],
+      "slots": 2
+    },
+    {
+      "path": "/Game/Pioneer/Environment/Props/Arc/Arc_InteractionPoint_01/SM_Arc_InteractionPoint_01_Lid_A",
+      "file": "SM_Arc_InteractionPoint_01_Lid_A.glb",
+      "triangles": 1092,
+      "instances": 9,
+      "bounds": [
+        [
+          -0.21686,
+          -0.21301,
+          -0.35481
+        ],
+        [
+          0.31781,
+          0.21485,
+          0.35481
+        ]
+      ],
+      "slots": 6
+    },
+    {
+      "path": "/Game/Pioneer/Environment/Props/Arc/Arc_InteractionPoint_01/SM_Arc_InteractionPoint_01_Lid_B",
+      "file": "SM_Arc_InteractionPoint_01_Lid_B.glb",
+      "triangles": 1156,
+      "instances": 3,
+      "bounds": [
+        [
+          -0.21686,
+          -0.21301,
+          -0.35481
+        ],
+        [
+          0.31781,
+          0.21485,
+          0.35481
+        ]
+      ],
+      "slots": 6
+    },
+    {
+      "path": "/Game/Pioneer/Environment/Props/Arc/Arc_ParasiticContainer_01/SM_Arc_ParasiticContainer_01_A",
+      "file": "SM_Arc_ParasiticContainer_01_A.glb",
+      "triangles": 3644,
+      "instances": 64,
+      "bounds": [
+        [
+          -1.52487,
+          -0.78356,
+          -0.78356
+        ],
+        [
+          0.28775,
+          0.78356,
+          0.78356
+        ]
+      ],
+      "slots": 4
+    },
+    {
+      "path": "/Game/Pioneer/Environment/Props/Arc/Arc_ParasiticContainer_01/SM_Arc_ParasiticContainer_Base_01_A",
+      "file": "SM_Arc_ParasiticContainer_Base_01_A.glb",
+      "triangles": 2,
+      "instances": 64,
+      "bounds": [
+        [
+          0.01156,
+          -1.05754,
+          -1.05753
+        ],
+        [
+          0.01156,
+          1.05754,
+          1.05754
+        ]
+      ],
+      "slots": 1
+    },
+    {
+      "path": "/Game/Pioneer/Environment/Props/Interactables/Harvester_01/SM_Harvester_01_Weakpoint_01",
+      "file": "SM_Harvester_01_Weakpoint_01.glb",
+      "triangles": 613,
+      "instances": 32,
+      "bounds": [
+        [
+          -0.82631,
+          -0.34564,
+          -0.45733
+        ],
+        [
+          0.10607,
+          0.31759,
+          0.25481
+        ]
+      ],
+      "slots": 1
+    },
+    {
+      "path": "/Game/Pioneer/Interactables/Frigate/Art/Mesh/SM_Frigate_01_ThrusterNozzle_01",
+      "file": "SM_Frigate_01_ThrusterNozzle_01.glb",
+      "triangles": 22240,
+      "instances": 1,
+      "bounds": [
+        [
+          -58.7258,
+          -13.9514,
+          -117.54287
+        ],
+        [
+          180.02525,
+          15.14538,
+          117.54295
+        ]
+      ],
+      "slots": 3
+    },
+    {
+      "path": "/Game/Pioneer/Interactables/Frigate/Art/Mesh/SM_Frigate_CargoLatch_01_A",
+      "file": "SM_Frigate_CargoLatch_01_A.glb",
+      "triangles": 1740,
+      "instances": 2,
+      "bounds": [
+        [
+          -10.59051,
+          -0.34509,
+          -6.41694
+        ],
+        [
+          10.59051,
+          0.62536,
+          0.21061
+        ]
+      ],
+      "slots": 1
+    },
+    {
+      "path": "/Game/Pioneer/Interactables/Frigate/Art/Mesh/SM_Frigate_Docking_01_A",
+      "file": "SM_Frigate_Docking_01_A.glb",
+      "triangles": 117808,
+      "instances": 1,
+      "bounds": [
+        [
+          -66.38585,
+          -46.37698,
+          -32.70072
+        ],
+        [
+          2.32675,
+          -17.96519,
+          32.70072
+        ]
+      ],
+      "slots": 10
+    },
+    {
+      "path": "/Game/Pioneer/Interactables/Frigate/Art/Mesh/SM_Frigate_FanBase_01",
+      "file": "SM_Frigate_FanBase_01.glb",
+      "triangles": 1672,
+      "instances": 4,
+      "bounds": [
+        [
+          -4.3646,
+          -2.02086,
+          -4.3646
+        ],
+        [
+          4.3646,
+          2.02086,
+          4.3646
+        ]
+      ],
+      "slots": 1
+    },
+    {
+      "path": "/Game/Pioneer/Interactables/Frigate/Art/Mesh/SM_Frigate_Fan_01_A",
+      "file": "SM_Frigate_Fan_01_A.glb",
+      "triangles": 3036,
+      "instances": 4,
+      "bounds": [
+        [
+          -5.64235,
+          -0.83925,
+          -5.64236
+        ],
+        [
+          5.64235,
+          0.83925,
+          5.64235
+        ]
+      ],
+      "slots": 1
+    },
+    {
+      "path": "/Game/Pioneer/Interactables/Frigate/Art/Mesh/SM_Frigate_Front_01",
+      "file": "SM_Frigate_Front_01.glb",
+      "triangles": 38729,
+      "instances": 1,
+      "bounds": [
+        [
+          38.20925,
+          -26.9062,
+          -41.77116
+        ],
+        [
+          237.76488,
+          36.35689,
+          41.7422
+        ]
+      ],
+      "slots": 7
+    },
+    {
+      "path": "/Game/Pioneer/Interactables/Frigate/Art/Mesh/SM_Frigate_InteractionCover_01_A",
+      "file": "SM_Frigate_InteractionCover_01_A.glb",
+      "triangles": 1165,
+      "instances": 4,
+      "bounds": [
+        [
+          -2.01463,
+          0.03452,
+          -0.82858
+        ],
+        [
+          1.20739,
+          0.47236,
+          0.83037
+        ]
+      ],
+      "slots": 4
+    },
+    {
+      "path": "/Game/Pioneer/Interactables/Frigate/Art/Mesh/SM_Frigate_InteractionPoint_01_A",
+      "file": "SM_Frigate_InteractionPoint_01_A.glb",
+      "triangles": 824,
+      "instances": 2,
+      "bounds": [
+        [
+          -0.56672,
+          -2.16605,
+          -0.56672
+        ],
+        [
+          0.56672,
+          0.51486,
+          0.56672
+        ]
+      ],
+      "slots": 3
+    },
+    {
+      "path": "/Game/Pioneer/Interactables/Frigate/Art/Mesh/SM_Frigate_InteriorCargo_01_A",
+      "file": "SM_Frigate_InteriorCargo_01_A.glb",
+      "triangles": 114754,
+      "instances": 1,
+      "bounds": [
+        [
+          87.42947,
+          -13.18331,
+          -43.57397
+        ],
+        [
+          183.91994,
+          24.12406,
+          43.574
+        ]
+      ],
+      "slots": 12
+    },
+    {
+      "path": "/Game/Pioneer/Interactables/Frigate/Art/Mesh/SM_Frigate_ProgressHatch_01_A",
+      "file": "SM_Frigate_ProgressHatch_01_A.glb",
+      "triangles": 176,
+      "instances": 12,
+      "bounds": [
+        [
+          -0.00615,
+          -0.994,
+          -7.36685
+        ],
+        [
+          5.9536,
+          0.00028,
+          2.6555
+        ]
+      ],
+      "slots": 1
+    },
+    {
+      "path": "/Game/Pioneer/Interactables/Frigate/Art/Mesh/SM_Frigate_Rear_01",
+      "file": "SM_Frigate_Rear_01.glb",
+      "triangles": 152661,
+      "instances": 1,
+      "bounds": [
+        [
+          -103.45483,
+          -30.8292,
+          -38.98891
+        ],
+        [
+          93.33108,
+          19.2943,
+          38.98895
+        ]
+      ],
+      "slots": 15
+    },
+    {
+      "path": "/Game/Pioneer/Interactables/Frigate/Art/Mesh/SM_Frigate_Rear_02",
+      "file": "SM_Frigate_Rear_02.glb",
+      "triangles": 5080,
+      "instances": 1,
+      "bounds": [
+        [
+          -42.63192,
+          -51.81853,
+          -33.9838
+        ],
+        [
+          62.39406,
+          -25.76782,
+          33.98384
+        ]
+      ],
+      "slots": 5
+    },
+    {
+      "path": "/Game/Pioneer/Interactables/Frigate/Art/Mesh/SM_Frigate_SideFront_01",
+      "file": "SM_Frigate_SideFront_01.glb",
+      "triangles": 46476,
+      "instances": 1,
+      "bounds": [
+        [
+          59.26716,
+          -20.23062,
+          -125.25667
+        ],
+        [
+          230.67955,
+          37.51698,
+          -20.04577
+        ]
+      ],
+      "slots": 11
+    },
+    {
+      "path": "/Game/Pioneer/Interactables/Frigate/Art/Mesh/SM_Frigate_SideFront_R_01",
+      "file": "SM_Frigate_SideFront_R_01.glb",
+      "triangles": 46488,
+      "instances": 1,
+      "bounds": [
+        [
+          59.26718,
+          -20.23059,
+          -0.99997
+        ],
+        [
+          230.67957,
+          37.51699,
+          125.25669
+        ]
+      ],
+      "slots": 11
+    },
+    {
+      "path": "/Game/Pioneer/Interactables/Frigate/Art/Mesh/SM_Frigate_SideRear_01",
+      "file": "SM_Frigate_SideRear_01.glb",
+      "triangles": 61630,
+      "instances": 1,
+      "bounds": [
+        [
+          -94.15696,
+          -7.0543,
+          -110.5499
+        ],
+        [
+          97.99671,
+          25.60629,
+          -27.19477
+        ]
+      ],
+      "slots": 11
+    },
+    {
+      "path": "/Game/Pioneer/Interactables/Frigate/Art/Mesh/SM_Frigate_SideRear_02",
+      "file": "SM_Frigate_SideRear_02.glb",
+      "triangles": 93021,
+      "instances": 1,
+      "bounds": [
+        [
+          -80.18356,
+          -41.4982,
+          -88.53913
+        ],
+        [
+          84.47999,
+          19.3182,
+          0.05183
+        ]
+      ],
+      "slots": 11
+    },
+    {
+      "path": "/Game/Pioneer/Interactables/Frigate/Art/Mesh/SM_Frigate_SideRear_R_01",
+      "file": "SM_Frigate_SideRear_R_01.glb",
+      "triangles": 61642,
+      "instances": 1,
+      "bounds": [
+        [
+          -94.15697,
+          -7.05428,
+          -0.99998
+        ],
+        [
+          97.99671,
+          25.60631,
+          110.5499
+        ]
+      ],
+      "slots": 11
+    },
+    {
+      "path": "/Game/Pioneer/Interactables/Frigate/Art/Mesh/SM_Frigate_SideRear_R_02",
+      "file": "SM_Frigate_SideRear_R_02.glb",
+      "triangles": 93034,
+      "instances": 1,
+      "bounds": [
+        [
+          -80.18357,
+          -41.4982,
+          -0.99997
+        ],
+        [
+          100.95919,
+          19.31823,
+          88.53912
+        ]
+      ],
+      "slots": 11
+    },
+    {
+      "path": "/Game/Pioneer/Interactables/Frigate/Art/Mesh/SM_Frigate_SlidingDoor_01_A",
+      "file": "SM_Frigate_SlidingDoor_01_A.glb",
+      "triangles": 638,
+      "instances": 2,
+      "bounds": [
+        [
+          -33.12463,
+          -1.59492,
+          -24.20273
+        ],
+        [
+          13.21351,
+          1.37781,
+          25.15855
+        ]
+      ],
+      "slots": 2
+    },
+    {
+      "path": "/Game/Pioneer/Interactables/Frigate/Art/Mesh/SM_Frigate_SlidingDoor_02_A",
+      "file": "SM_Frigate_SlidingDoor_02_A.glb",
+      "triangles": 1360,
+      "instances": 2,
+      "bounds": [
+        [
+          -5.31951,
+          -2.29072,
+          -0.07133
+        ],
+        [
+          5.31952,
+          2.23987,
+          0.30281
+        ]
+      ],
+      "slots": 2
+    },
+    {
+      "path": "/Game/Pioneer/Interactables/Frigate/Art/Mesh/SM_Frigate_ThrusterRear_01",
+      "file": "SM_Frigate_ThrusterRear_01.glb",
+      "triangles": 5116,
+      "instances": 1,
+      "bounds": [
+        [
+          -134.54799,
+          1.86291,
+          -75.84055
+        ],
+        [
+          -86.09357,
+          19.45832,
+          75.84047
+        ]
+      ],
+      "slots": 5
+    },
+    {
+      "path": "/Game/Pioneer/Interactables/Frigate/Art/Mesh/SM_Frigate_Thruster_01",
+      "file": "SM_Frigate_Thruster_01.glb",
+      "triangles": 74460,
+      "instances": 1,
+      "bounds": [
+        [
+          -60.64943,
+          13.18956,
+          -116.65231
+        ],
+        [
+          180.65854,
+          40.39454,
+          116.41804
+        ]
+      ],
+      "slots": 5
+    },
+    {
+      "path": "/Game/Pioneer/Interactables/Frigate/Art/SM_FrigateHatch_01_A",
+      "file": "SM_FrigateHatch_01_A.glb",
+      "triangles": 8156,
+      "instances": 8,
+      "bounds": [
+        [
+          -3.87782,
+          -1.71405,
+          -4.35274
+        ],
+        [
+          3.87783,
+          0,
+          0.90235
+        ]
+      ],
+      "slots": 4
+    },
+    {
+      "path": "/Game/Pioneer/Interactables/Frigate/Art/SM_FrigateHatch_02_A",
+      "file": "SM_FrigateHatch_02_A.glb",
+      "triangles": 4548,
+      "instances": 6,
+      "bounds": [
+        [
+          -1.68898,
+          -1.06429,
+          -2.34691
+        ],
+        [
+          1.68898,
+          4.35274,
+          0
+        ]
+      ],
+      "slots": 4
+    },
+    {
+      "path": "/Game/Pioneer/Interactables/Frigate/Art/SM_Frigate_Platform_01_A_Static",
+      "file": "SM_Frigate_Platform_01_A_Static.glb",
+      "triangles": 752,
+      "instances": 8,
+      "bounds": [
+        [
+          0.01621,
+          0.04803,
+          -3.83965
+        ],
+        [
+          4.32754,
+          0.97004,
+          3.83965
+        ]
+      ],
+      "slots": 1
+    },
+    {
+      "path": "/Game/Pioneer/Interactables/Frigate/Art/SM_Frigate_Platform_02_A_Static",
+      "file": "SM_Frigate_Platform_02_A_Static.glb",
+      "triangles": 532,
+      "instances": 6,
+      "bounds": [
+        [
+          0.01621,
+          0.04803,
+          -1.69725
+        ],
+        [
+          4.32754,
+          0.93287,
+          1.69725
+        ]
+      ],
+      "slots": 1
+    },
+    {
+      "path": "/Game/Pioneer/Interactables/Frigate/Art/SM_Frigate_Platform_03_A",
+      "file": "SM_Frigate_Platform_03_A.glb",
+      "triangles": 10202,
+      "instances": 2,
+      "bounds": [
+        [
+          -1.48186,
+          -1,
+          -17.8591
+        ],
+        [
+          2.44662,
+          1,
+          17.8591
+        ]
+      ],
+      "slots": 3
+    },
+    {
+      "path": "/Game/Pioneer/Interactables/Frigate/Art/SM_Frigate_Platform_03_A_Static",
+      "file": "SM_Frigate_Platform_03_A_Static.glb",
+      "triangles": 10010,
+      "instances": 2,
+      "bounds": [
+        [
+          -2.97363,
+          -1.0212,
+          -18.70338
+        ],
+        [
+          -1.47441,
+          1.0211,
+          18.31032
+        ]
+      ],
+      "slots": 2
+    },
+    {
+      "path": "/Game/Pioneer/Interactables/Frigate/Art/SM_Frigate_Platform_03_B",
+      "file": "SM_Frigate_Platform_03_B.glb",
+      "triangles": 9995,
+      "instances": 1,
+      "bounds": [
+        [
+          -8.95526,
+          1.09396,
+          -0.98528
+        ],
+        [
+          8.90384,
+          2.47077,
+          1.15442
+        ]
+      ],
+      "slots": 2
+    },
+    {
+      "path": "/Game/Pioneer/Interactables/Frigate/Art/SM_Frigate_Platform_03_B_Static",
+      "file": "SM_Frigate_Platform_03_B_Static.glb",
+      "triangles": 12148,
+      "instances": 1,
+      "bounds": [
+        [
+          -11.28809,
+          -9.40738,
+          -1.00639
+        ],
+        [
+          10.0715,
+          2.25356,
+          1.42488
+        ]
+      ],
+      "slots": 2
+    },
+    {
+      "path": "/Game/Pioneer/Interactables/Frigate/Cargo/SK_Frigate_Cargo_01_A",
+      "file": "SK_Frigate_Cargo_01_A.glb",
+      "triangles": 52554,
+      "instances": 1,
+      "bounds": [
+        [
+          -6.44142,
+          -3.05073,
+          -10.37631
+        ],
+        [
+          6.44142,
+          2.73708,
+          10.37631
+        ]
+      ],
+      "slots": 4
+    },
+    {
+      "path": "/Game/Pioneer/MaterialLibrary/Textures/Decals/SM_DecalMesh_01",
+      "file": "SM_DecalMesh_01.glb",
+      "triangles": 2,
+      "instances": 4,
+      "bounds": [
+        [
+          -1,
+          0,
+          -1
+        ],
+        [
+          1,
+          0,
+          1
+        ]
+      ],
+      "slots": 1
+    },
+    {
+      "path": "/Game/ThirdPerson/Meshes/1M_Cube",
+      "file": "1M_Cube.glb",
+      "triangles": 12,
+      "instances": 12,
+      "bounds": [
+        [
+          -0.5,
+          -0.5,
+          -0.5
+        ],
+        [
+          0.5,
+          0.5,
+          0.5
+        ]
+      ],
+      "slots": 1
+    }
+  ]
+}

@@ -1,0 +1,558 @@
+{
+  "date": "2026-11-10",
+  "status": "community topology, unverified game dimensions",
+  "source": "https://topsideatlas.com/",
+  "author": "Space-Wayfarer",
+  "observedAsset": "https://topsideatlas.com/assets/emperor.d7bcd56b36.glb",
+  "note": "Positions and sizes are approximate according to the author. Units are arbitrary, Y is up. These are reference connections, not a guaranteed path for any raid. No geometry or textures are redistributed.",
+  "rooms": [
+    {
+      "id": "bottom-north-tube",
+      "label": "bottom north tube",
+      "positionApproximate": [
+        3.75,
+        4,
+        3.75
+      ]
+    },
+    {
+      "id": "compactor-vent",
+      "label": "compactor vent",
+      "positionApproximate": [
+        2.25,
+        8.75,
+        0
+      ]
+    },
+    {
+      "id": "electric-box-room",
+      "label": "electric box room",
+      "positionApproximate": [
+        4.25,
+        8.5,
+        -4
+      ]
+    },
+    {
+      "id": "elevator-room",
+      "label": "elevator room",
+      "positionApproximate": [
+        -1.25,
+        11,
+        4.25
+      ]
+    },
+    {
+      "id": "entry",
+      "label": "entry",
+      "positionApproximate": [
+        -7,
+        0,
+        0
+      ]
+    },
+    {
+      "id": "hydra-room",
+      "label": "hydra room",
+      "positionApproximate": [
+        6.5,
+        12,
+        0
+      ]
+    },
+    {
+      "id": "hydra-room-side-exit",
+      "label": "hydra room side exit",
+      "positionApproximate": [
+        7.25,
+        10.25,
+        -3.625
+      ]
+    },
+    {
+      "id": "hydra-tunnel",
+      "label": "hydra tunnel",
+      "positionApproximate": [
+        -1,
+        0,
+        0
+      ]
+    },
+    {
+      "id": "hydra-vent",
+      "label": "hydra vent",
+      "positionApproximate": [
+        1,
+        10,
+        -1.5
+      ]
+    },
+    {
+      "id": "laser-room",
+      "label": "laser room",
+      "positionApproximate": [
+        3.25,
+        14,
+        6.75
+      ]
+    },
+    {
+      "id": "lift-level-0",
+      "label": "lift level 0",
+      "positionApproximate": [
+        1,
+        0,
+        0
+      ]
+    },
+    {
+      "id": "lift-level-1",
+      "label": "lift level 1",
+      "positionApproximate": [
+        1,
+        2,
+        0
+      ]
+    },
+    {
+      "id": "lift-level-2",
+      "label": "lift level 2",
+      "positionApproximate": [
+        1.25,
+        4,
+        0
+      ]
+    },
+    {
+      "id": "lift-level-3",
+      "label": "lift level 3",
+      "positionApproximate": [
+        1,
+        6,
+        0
+      ]
+    },
+    {
+      "id": "lift-level-4",
+      "label": "lift level 4",
+      "positionApproximate": [
+        1,
+        8,
+        1.125
+      ]
+    },
+    {
+      "id": "loot-room",
+      "label": "loot room",
+      "positionApproximate": [
+        -4.5,
+        8,
+        0
+      ]
+    },
+    {
+      "id": "maze-room",
+      "label": "maze room",
+      "positionApproximate": [
+        6.5,
+        2,
+        0
+      ]
+    },
+    {
+      "id": "north-drop",
+      "label": "north drop",
+      "positionApproximate": [
+        -1,
+        4.25,
+        3.25
+      ]
+    },
+    {
+      "id": "north-vent",
+      "label": "north vent",
+      "positionApproximate": [
+        0.9967254400253296,
+        10,
+        2.246725559234619
+      ]
+    },
+    {
+      "id": "south-drop",
+      "label": "south drop",
+      "positionApproximate": [
+        -1,
+        4.25,
+        -3.25
+      ]
+    },
+    {
+      "id": "south-empty-space",
+      "label": "south empty space",
+      "positionApproximate": [
+        0.5,
+        8,
+        -5
+      ]
+    },
+    {
+      "id": "south-shaft",
+      "label": "south shaft",
+      "positionApproximate": [
+        3.5,
+        6.5,
+        -4
+      ]
+    },
+    {
+      "id": "south-tube",
+      "label": "south tube",
+      "positionApproximate": [
+        5,
+        2,
+        -3.4375
+      ]
+    },
+    {
+      "id": "top-north-tube",
+      "label": "top north tube",
+      "positionApproximate": [
+        3.375,
+        13,
+        4.6875
+      ]
+    },
+    {
+      "id": "trash-compactor-room",
+      "label": "trash compactor room",
+      "positionApproximate": [
+        6.5,
+        7,
+        0
+      ]
+    },
+    {
+      "id": "upper-north-tube",
+      "label": "upper north tube",
+      "positionApproximate": [
+        2.75,
+        9,
+        3.75
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "block_bottom-north-tube_to_elevator-room",
+      "from": "bottom-north-tube",
+      "to": "elevator-room",
+      "kind": "block",
+      "series": true,
+      "exitFrom": null
+    },
+    {
+      "id": "block_bottom-north-tube_to_upper-north-tube",
+      "from": "bottom-north-tube",
+      "to": "upper-north-tube",
+      "kind": "block",
+      "series": false,
+      "exitFrom": null
+    },
+    {
+      "id": "block_elevator-room_to_loot-room",
+      "from": "elevator-room",
+      "to": "loot-room",
+      "kind": "block",
+      "series": false,
+      "exitFrom": null
+    },
+    {
+      "id": "block_hydra-room_to_laser-room",
+      "from": "hydra-room",
+      "to": "laser-room",
+      "kind": "block",
+      "series": false,
+      "exitFrom": null
+    },
+    {
+      "id": "block_loot-room_to_south-empty-space",
+      "from": "loot-room",
+      "to": "south-empty-space",
+      "kind": "block",
+      "series": false,
+      "exitFrom": null
+    },
+    {
+      "id": "block_top-north-tube_to_upper-north-tube",
+      "from": "top-north-tube",
+      "to": "upper-north-tube",
+      "kind": "block",
+      "series": false,
+      "exitFrom": null
+    },
+    {
+      "id": "door_bottom-north-tube_to_elevator-room",
+      "from": "bottom-north-tube",
+      "to": "elevator-room",
+      "kind": "doorway",
+      "series": true,
+      "exitFrom": null
+    },
+    {
+      "id": "door_bottom-north-tube_to_maze-room",
+      "from": "bottom-north-tube",
+      "to": "maze-room",
+      "kind": "doorway",
+      "series": false,
+      "exitFrom": null
+    },
+    {
+      "id": "door_electric-box-room_to_south-empty-space",
+      "from": "electric-box-room",
+      "to": "south-empty-space",
+      "kind": "doorway",
+      "series": false,
+      "exitFrom": null
+    },
+    {
+      "id": "door_elevator-room_to_lift-level-4",
+      "from": "elevator-room",
+      "to": "lift-level-4",
+      "kind": "doorway",
+      "series": false,
+      "exitFrom": null
+    },
+    {
+      "id": "door_hydra-room_to_hydra-room-side-exit",
+      "from": "hydra-room",
+      "to": "hydra-room-side-exit",
+      "kind": "doorway",
+      "series": false,
+      "exitFrom": null
+    },
+    {
+      "id": "door_hydra-room_to_hydra-vent",
+      "from": "hydra-room",
+      "to": "hydra-vent",
+      "kind": "doorway",
+      "series": false,
+      "exitFrom": null
+    },
+    {
+      "id": "door_hydra-vent_to_loot-room",
+      "from": "hydra-vent",
+      "to": "loot-room",
+      "kind": "doorway",
+      "series": false,
+      "exitFrom": null
+    },
+    {
+      "id": "door_laser-room_to_top-north-tube",
+      "from": "laser-room",
+      "to": "top-north-tube",
+      "kind": "doorway",
+      "series": false,
+      "exitFrom": null
+    },
+    {
+      "id": "door_lift-level-2_to_maze-room",
+      "from": "lift-level-2",
+      "to": "maze-room",
+      "kind": "doorway",
+      "series": false,
+      "exitFrom": null
+    },
+    {
+      "id": "door_lift-level-3_to_loot-room",
+      "from": "lift-level-3",
+      "to": "loot-room",
+      "kind": "doorway",
+      "series": false,
+      "exitFrom": "loot-room"
+    },
+    {
+      "id": "door_lift-level-3_to_trash-compactor-room",
+      "from": "lift-level-3",
+      "to": "trash-compactor-room",
+      "kind": "doorway",
+      "series": false,
+      "exitFrom": null
+    },
+    {
+      "id": "door_loot-room_to_north-drop",
+      "from": "loot-room",
+      "to": "north-drop",
+      "kind": "doorway",
+      "series": false,
+      "exitFrom": "loot-room"
+    },
+    {
+      "id": "door_loot-room_to_north-vent",
+      "from": "loot-room",
+      "to": "north-vent",
+      "kind": "doorway",
+      "series": false,
+      "exitFrom": null
+    },
+    {
+      "id": "door_loot-room_to_outside",
+      "from": "loot-room",
+      "to": "outside",
+      "kind": "exit",
+      "series": false,
+      "exitFrom": null
+    },
+    {
+      "id": "door_loot-room_to_south-drop",
+      "from": "loot-room",
+      "to": "south-drop",
+      "kind": "doorway",
+      "series": false,
+      "exitFrom": "loot-room"
+    },
+    {
+      "id": "door_maze-room_to_south-tube",
+      "from": "maze-room",
+      "to": "south-tube",
+      "kind": "doorway",
+      "series": false,
+      "exitFrom": null
+    },
+    {
+      "id": "door_maze-room_to_trash-compactor-room",
+      "from": "maze-room",
+      "to": "trash-compactor-room",
+      "kind": "hatch",
+      "series": false,
+      "exitFrom": null
+    },
+    {
+      "id": "door_north-drop_to_outside",
+      "from": "north-drop",
+      "to": "outside",
+      "kind": "exit",
+      "series": false,
+      "exitFrom": null
+    },
+    {
+      "id": "door_north-vent_to_upper-north-tube",
+      "from": "north-vent",
+      "to": "upper-north-tube",
+      "kind": "doorway",
+      "series": false,
+      "exitFrom": null
+    },
+    {
+      "id": "door_south-drop_to_outside",
+      "from": "south-drop",
+      "to": "outside",
+      "kind": "exit",
+      "series": false,
+      "exitFrom": null
+    },
+    {
+      "id": "link_compactor-vent_to_hydra-room",
+      "from": "compactor-vent",
+      "to": "hydra-room",
+      "kind": "open",
+      "series": false,
+      "exitFrom": null
+    },
+    {
+      "id": "link_compactor-vent_to_trash-compactor-room",
+      "from": "compactor-vent",
+      "to": "trash-compactor-room",
+      "kind": "open",
+      "series": false,
+      "exitFrom": null
+    },
+    {
+      "id": "link_compactor-vent_to_trash-compactor-room__2",
+      "from": "compactor-vent",
+      "to": "trash-compactor-room",
+      "kind": "open",
+      "series": false,
+      "exitFrom": null
+    },
+    {
+      "id": "link_electric-box-room_to_hydra-room-side-exit",
+      "from": "electric-box-room",
+      "to": "hydra-room-side-exit",
+      "kind": "open",
+      "series": false,
+      "exitFrom": null
+    },
+    {
+      "id": "link_electric-box-room_to_south-shaft",
+      "from": "electric-box-room",
+      "to": "south-shaft",
+      "kind": "open",
+      "series": false,
+      "exitFrom": null
+    },
+    {
+      "id": "link_elevator-room_to_laser-room",
+      "from": "elevator-room",
+      "to": "laser-room",
+      "kind": "open",
+      "series": false,
+      "exitFrom": null
+    },
+    {
+      "id": "link_entry_to_hydra-tunnel",
+      "from": "entry",
+      "to": "hydra-tunnel",
+      "kind": "open",
+      "series": false,
+      "exitFrom": null
+    },
+    {
+      "id": "link_hydra-tunnel_to_lift-level-0",
+      "from": "hydra-tunnel",
+      "to": "lift-level-0",
+      "kind": "open",
+      "series": false,
+      "exitFrom": null
+    },
+    {
+      "id": "link_lift-level-0_to_lift-level-1",
+      "from": "lift-level-0",
+      "to": "lift-level-1",
+      "kind": "lift",
+      "series": false,
+      "exitFrom": null
+    },
+    {
+      "id": "link_lift-level-1_to_lift-level-2",
+      "from": "lift-level-1",
+      "to": "lift-level-2",
+      "kind": "lift",
+      "series": false,
+      "exitFrom": null
+    },
+    {
+      "id": "link_lift-level-2_to_lift-level-3",
+      "from": "lift-level-2",
+      "to": "lift-level-3",
+      "kind": "lift",
+      "series": false,
+      "exitFrom": null
+    },
+    {
+      "id": "link_lift-level-3_to_lift-level-4",
+      "from": "lift-level-3",
+      "to": "lift-level-4",
+      "kind": "lift",
+      "series": false,
+      "exitFrom": null
+    },
+    {
+      "id": "link_south-shaft_to_south-tube",
+      "from": "south-shaft",
+      "to": "south-tube",
+      "kind": "open",
+      "series": false,
+      "exitFrom": null
+    }
+  ]
+}

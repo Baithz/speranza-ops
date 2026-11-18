@@ -1,0 +1,28 @@
+# Entretien quotidien de la base : efface les avis de plus de 90 jours et garde le projet
+# Supabase gratuit éveillé (il se met en pause après 7 jours sans requête).
+# Deux secrets à créer dans le dépôt : SUPABASE_URL et SUPABASE_SERVICE_KEY.
+name: Entretien de la base
+
+on:
+  schedule:
+    - cron: '17 5 * * *'
+  workflow_dispatch:
+
+jobs:
+  menage:
+    name: Ménage et réveil
+    runs-on: ubuntu-latest
+    steps:
+      - name: Appeler menage()
+        env:
+          URL: ${{ secrets.SUPABASE_URL }}
+          CLE: ${{ secrets.SUPABASE_SERVICE_KEY }}
+        run: |
+          if [ -z "$URL" ] || [ -z "$CLE" ]; then
+            echo "::error::Secrets SUPABASE_URL ou SUPABASE_SERVICE_KEY absents. Voir docs/01_MISE_EN_LIGNE.md."
+            exit 1
+          fi
+          code=$(curl -sS -o reponse.txt -w '%{http_code}' -X POST "$URL/rest/v1/rpc/menage" \
+            -H "apikey: $CLE" -H "Authorization: Bearer $CLE" -H 'Content-Type: application/json' -d '{}')
+          echo "reponse $code : $(cat reponse.txt)"
+          [ "$code" = "200" ] || { echo "::error::La base n'a pas repondu correctement."; exit 1; }

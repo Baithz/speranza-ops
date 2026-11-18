@@ -1,0 +1,55 @@
+#duoOpen {white-space:nowrap;display:inline-flex;align-items:center;gap:7px}
+.duo-lamp {display:inline-block;width:8px;height:8px;border-radius:50%;background:#657b9d}
+#duoOpen[data-state="wait"] .duo-lamp {background:#ffca75}
+#duoOpen[data-state="live"] .duo-lamp {background:#7ae59e;box-shadow:0 0 8px #72e8aa80}
+#duoOpen[data-state="issue"] .duo-lamp {background:#ff956d}
+#duoDialog {width:min(470px,calc(100vw - 28px));max-height:88dvh;overflow:auto;box-sizing:border-box;margin:auto;padding:26px;background:#162030;color:#efeede;border:1px solid #546783;border-top:3px solid #89d4aa;border-radius:8px;box-shadow:0 20px 90px #0008}
+#duoDialog::backdrop {background:#070b11cc;backdrop-filter:blur(3px)}
+.duo-kicker {font:600 var(--type-meta) var(--mono,monospace);letter-spacing:1.5px;color:#9bd8bd}
+#duoDialog h2 {font:700 2rem var(--display,system-ui);margin:8px 0 12px}
+#duoDialog p {font:var(--type-ui)/1.52 system-ui;margin:10px 0 14px}
+#duoDialog #duoState {border-left:3px solid #aec5a6;padding:7px 10px;background:#0f1722;font-weight:650}
+.duo-buttons {display:flex;gap:8px;flex-wrap:wrap}
+.duo-buttons button,.duo-action,#duoReveal {border:1px solid #849d87;background:#273b58;color:#eef9e9;border-radius:4px;padding:9px 12px;font:600 var(--type-ui) system-ui;cursor:pointer}
+.duo-buttons button:hover,.duo-action:hover,#duoReveal:hover {background:#3d4b60}
+.duo-close,.duo-quiet,#duoDismiss {cursor:pointer;border:0;background:transparent;color:#d3d6cb}
+.duo-close {float:right;font-size:1.5625rem;line-height:1}.duo-quiet {display:block;padding:11px 0;text-decoration:underline;text-underline-offset:3px}
+#duoDialog details {border-top:1px solid #47576e;margin-top:16px;padding-top:14px;font:var(--type-ui) system-ui;color:#c5ccbc}
+#duoDialog summary {cursor:pointer}#duoDialog details a {color:#a6dbc8}
+.duo-follow {display:flex;align-items:center;gap:8px;font:600 var(--type-ui) system-ui}.duo-follow input {accent-color:#8be0b0}
+.rm-boardhead {flex-wrap:wrap}
+.duo-map-radio {border:1px solid #4b5c75;background:#1b283c;color:#bce6ce;border-radius:4px;padding:4px 8px;cursor:pointer;font:600 var(--type-meta) system-ui}
+.duo-map-radio:hover {background:#273b58}
+#duoDialog .duo-note {font-size:var(--type-meta);color:#bfc9b9}
+#duoNotice {position:fixed;z-index:24;bottom:18px;right:18px;display:flex;align-items:center;gap:12px;max-width:min(510px,calc(100vw - 20px));padding:12px 14px;border:1px solid #5a6f8e;border-left:3px solid #8cd5b4;border-radius:6px;color:#eef0df;background:#131d2bf5;box-shadow:0 4px 22px #0007}
+#duoNotice p {font:600 var(--type-ui)/1.4 system-ui;margin:4px 0 0}#duoDismiss {font-size:1.25rem}#duoReveal {flex:none}
+#duoNotice[hidden],#duoDialog [hidden],#duoNotice [hidden] {display:none}
+@media(max-width:1220px) and (min-width:797px){.mast-in {gap:12px}.mast-tools #backup span {display:none}}
+@media(min-width:797px) and (max-width:880px){.mast-in{display:grid;grid-template-columns:1fr auto;gap:0;height:auto;padding-top:12px}.mast-tools{grid-column:2;grid-row:1}.mast-nav{grid-column:1/-1;grid-row:2;height:40px;margin-top:5px;justify-content:space-between}}
+@media(max-width:490px){.mast-tools #backup span {display:none}#duoNotice {right:10px;bottom:10px;gap:8px}}
+@media(prefers-reduced-motion:no-preference){#duoDialog[open],#duoNotice:not([hidden]){animation:sheet-in .17s ease-out}}
+
+/* La fenêtre radio et les avis restent utilisables avec un texte agrandi. */
+#duoDialog{padding:clamp(18px,3vw,28px);width:min(28rem,calc(100vw - 20px));max-height:calc(100dvh - 24px);overscroll-behavior:contain;scrollbar-gutter:stable}
+#duoDialog .duo-close{width:48px;height:48px;display:grid;place-items:center;margin:-8px -8px 8px 8px;border-radius:4px;background:#22334d;line-height:1}
+#duoDialog .duo-close:is(:hover,:focus-visible){background:#3c4a5f;color:#ffe1a0}
+#duoDialog .duo-kicker{display:block;padding-right:42px;line-height:1.45;letter-spacing:.06em}
+#duoDialog h2{font-size:2rem;line-height:1.1;overflow-wrap:break-word}
+#duoDialog p{font-size:var(--type-ui);line-height:1.55;color:#d3ddca;overflow-wrap:anywhere}
+#duoDialog .duo-buttons{gap:10px}
+#duoDialog :is(.duo-buttons button,.duo-action,.duo-quiet,summary){min-height:48px;padding:11px 13px;line-height:1.4;max-width:100%;text-align:left;white-space:normal}
+#duoDialog .duo-action{margin:6px 0}
+#duoDialog .duo-quiet{padding-inline:0}
+#duoDialog .duo-follow{min-height:48px;align-items:flex-start;gap:11px;line-height:1.45}
+#duoDialog .duo-follow input{width:24px;height:24px;flex:none;margin:4px 0 0}
+#duoDialog summary{padding-inline:0;color:#e8f0df}
+#duoDialog details p{line-height:1.55}
+#duoNotice{gap:10px;align-items:flex-start;flex-wrap:wrap;max-height:calc(100dvh - 24px);overflow:auto}
+#duoNotice>div{min-width:0;flex:1 1 10rem}
+#duoNotice p{line-height:1.45;overflow-wrap:anywhere}
+#duoNotice :is(#duoReveal,#duoDismiss){min-height:48px;min-width:48px;line-height:1.35}
+#duoReveal{max-width:100%;white-space:normal}
+#duoDismiss{margin-left:auto}
+@media(max-width:480px){#duoDialog .duo-buttons{display:grid;grid-template-columns:minmax(0,1fr)}#duoDialog .duo-buttons button{width:100%}}
+html[data-reduce-motion] #duoDialog[open],html[data-reduce-motion] #duoNotice{animation:none;transition:none}
+#duoDialog>form{position:sticky;top:0;z-index:3;height:0}

@@ -1,0 +1,23 @@
+{
+  "date": "2026-11-10",
+  "sourceFiles": 169,
+  "sha256Checked": 169,
+  "formats": {
+    "glb": 51,
+    "ktx2": 82,
+    "json": 12,
+    "webp": 24,
+    "errors": []
+  },
+  "documents": [
+    {
+      "file": "RECHERCHE_3D.md",
+      "localLinks": 29
+    },
+    {
+      "file": "SPECIFICATION_3D.md",
+      "localLinks": 7
+    }
+  ],
+  "scope": "Intégrité et liens de la recherche. Aucun nouveau modèle assemblé ni validation de fidélité au jeu."
+}
