@@ -11,6 +11,15 @@
   const LOOT=window.LOOT_DATA||{};
   const lootIds=Object.keys(LOOT).sort((a,b)=>LOOT[a].name.localeCompare(LOOT[b].name,'fr'));
   const nomDe=o=>o.t==='bp'?(bpById.get(o.id)?.name||o.id):(LOOT[o.id]?.name||o.id);
+  /* Un nom seul ne dit rien à qui joue depuis une semaine : on montre l'objet.
+     Les schémas ont leur propre image, le butin vit dans une planche de sprites commune. */
+  const sprRows=Math.ceil(lootIds.length/16);
+  const sprite=i=>i?.pos==null?'<span class="spr none" aria-hidden="true"></span>'
+    :'<span class="spr" aria-hidden="true" style="background-position:'+((i.pos%16)*100/15)+'% '+(Math.floor(i.pos/16)*100/(sprRows-1))+'%"></span>';
+  function visuel(o){
+    const b=o.t==='bp'?bpById.get(o.id):null;
+    return b?.image?'<img src="'+esc(b.image)+'" alt="" loading="lazy" decoding="async" onerror="this.closest(\'.mg-art\').classList.add(\'sans-image\');this.remove()">':sprite(o.t==='loot'?LOOT[o.id]:null);
+  }
   const GENRES={don:'Don',echange:'Échange',recherche:'Recherche'};
 
   let liste=null,chargement=false,erreur='',filtre='pour-moi',q='',arret=null;
@@ -41,9 +50,16 @@
   const age=t=>{const m=Math.round((Date.now()-Date.parse(t))/60000);
     return m<2?'à l’instant':m<60?'il y a '+m+' min':m<1440?'il y a '+Math.round(m/60)+' h':'il y a '+Math.round(m/1440)+' j';};
 
-  function puce(o,classe=''){
-    const i=o.t==='loot'?LOOT[o.id]:null;
-    return '<button class="chip-btn '+classe+'" data-act="'+(o.t==='bp'?'bp':'loot')+'" data-id="'+esc(o.id)+'">'+esc(nomDe(o))+'</button>';
+  /* Vignette d'objet : image, nom, et la rareté du schéma en liseré comme dans le mur.
+     opts.manque marque ce qui te fait défaut ; opts.retirer transforme la vignette en bouton de retrait. */
+  function vignette(o,opts={}){
+    const b=o.t==='bp'?bpById.get(o.id):null,nom=nomDe(o);
+    const act=opts.retirer?'mg-retirer':o.t==='bp'?'bp':'loot';
+    const extra=opts.retirer?' data-c="'+opts.retirer+'" data-k="'+esc(clef(o))+'"':' data-id="'+esc(o.id)+'"';
+    return '<button class="mg-obj'+(b?' '+O.rarityClass(b.rarity):' est-butin')+(opts.manque?' manque':'')+(opts.retirer?' a-retirer':'')+'"'+
+      ' data-act="'+act+'"'+extra+' title="'+esc(nom)+(opts.manque?' — il te manque':'')+'" aria-label="'+esc(nom)+(opts.retirer?', retirer de la liste':'')+'">'+
+      '<span class="mg-art">'+visuel(o)+(opts.retirer?'<span class="mg-x" aria-hidden="true">×</span>':'')+'</span>'+
+      '<b>'+esc(nom)+'</b></button>';
   }
 
   function carte(a){
@@ -51,13 +67,19 @@
     const banniere=score===3?'<p class="mg-match parfait">'+ico('check')+'Échange parfait : il a ce qui te manque, et tu as ce qu’il cherche.</p>'
       :ilDonne.length?'<p class="mg-match">'+ico('check')+'Il propose '+ilDonne.length+' schéma'+(ilDonne.length>1?'s':'')+' qui te manque'+(ilDonne.length>1?'nt':'')+'.</p>'
       :ilVeut.length?'<p class="mg-match">'+ico('check')+'Tu as en trop ce qu’il cherche.</p>':'';
-    const col=(titre,l,vide)=>'<div><h4>'+titre+' <b>'+l.length+'</b></h4>'+(l.length?'<div class="chips">'+l.map(o=>puce(o,(o.t==='bp'&&!owned(o.id)?'manque':''))).join('')+'</div>':'<p class="fine">'+vide+'</p>')+'</div>';
+    const mesTrop=P.spare?.()||[];
+    const col=(titre,l,vide,cherche)=>{
+      const v=l.map(o=>vignette(o,{manque:o.t==='bp'&&(cherche?mesTrop.includes(o.id):!owned(o.id))}));
+      const corps=v.length<=6?v.join('')
+        :v.slice(0,5).join('')+'<details class="mg-plus-obj"><summary title="Voir les '+(v.length-5)+' autres">+'+(v.length-5)+'</summary></details>'+
+          '<div class="mg-reste">'+v.slice(5).join('')+'</div>';
+      return '<div><h4>'+titre+' <b>'+l.length+'</b></h4>'+(l.length?'<div class="mg-objets">'+corps+'</div>':'<p class="fine">'+vide+'</p>')+'</div>';};
     return '<article class="mg-card" data-genre="'+a.genre+'"'+(score?' data-match="'+score+'"':'')+'>'+banniere+
       '<header><span class="mg-genre" data-g="'+a.genre+'">'+GENRES[a.genre]+'</span><b class="mg-pseudo">'+esc(a.pseudo)+'</b><small>'+age(a.cree_le)+'</small></header>'+
       (a.mot?'<p class="mg-mot">'+esc(a.mot)+'</p>':'')+
       '<div class="mg-cols">'+
         (a.genre!=='recherche'?col('Il donne',a.donne,'—'):'')+
-        (a.genre!=='don'?col(a.genre==='recherche'?'Il cherche':'Il veut en retour',a.cherche,'À discuter'):'')+
+        (a.genre!=='don'?col(a.genre==='recherche'?'Il cherche':'Il veut en retour',a.cherche,'À discuter',true):'')+
       '</div>'+
       '<div class="row tight">'+
         (a.mienne?'<button class="btn small danger" data-act="mg-fermer" data-id="'+a.id+'">Retirer mon annonce</button>'
@@ -113,19 +135,22 @@
     if(!l.length)return cible==='donne'
       ? '<p class="fine">Tu n’as marqué aucun schéma en trop. Dans Schémas, touche « En trop » sur tes doublons : ils apparaîtront ici en un clic.</p>'
       : '<p class="fine">Ta collection est complète : rien à demander côté schémas.</p>';
-    return '<div class="chips">'+l.map(o=>'<button class="chip-btn" data-act="mg-ajout" data-c="'+cible+'" data-t="bp" data-id="'+esc(o.id)+'">'+esc(nomDe(o))+'</button>').join('')+'</div>';
+    return '<div class="mg-objets">'+l.map(o=>proposable(o,cible)).join('')+'</div>';
   }
   function resultats(cible,texte){
     const t=norm(texte);if(t.length<2)return '';
     const bps=BP.filter(b=>norm(b.name).includes(t)).slice(0,8).map(b=>({t:'bp',id:b.id}));
     const lts=lootIds.filter(id=>norm(LOOT[id].name).includes(t)).slice(0,8).map(id=>({t:'loot',id}));
     const l=[...bps,...lts];
-    return l.length?'<div class="chips">'+l.map(o=>'<button class="chip-btn" data-act="mg-ajout" data-c="'+cible+'" data-t="'+o.t+'" data-id="'+esc(o.id)+'">'+esc(nomDe(o))+'<small>'+(o.t==='bp'?'schéma':'butin')+'</small></button>').join('')+'</div>':'<p class="fine">Rien à ce nom.</p>';
+    return l.length?'<div class="mg-objets">'+l.map(o=>proposable(o,cible)).join('')+'</div>':'<p class="fine">Rien à ce nom.</p>';
   }
+  const proposable=(o,cible)=>{const b=o.t==='bp'?bpById.get(o.id):null;
+    return '<button class="mg-obj'+(b?' '+O.rarityClass(b.rarity):' est-butin')+'" data-act="mg-ajout" data-c="'+cible+'" data-t="'+o.t+'" data-id="'+esc(o.id)+'" title="'+esc(nomDe(o))+'" aria-label="Ajouter '+esc(nomDe(o))+'">'+
+      '<span class="mg-art">'+visuel(o)+'<span class="mg-plus" aria-hidden="true">+</span></span><b>'+esc(nomDe(o))+'</b></button>';};
   function bloc(cible,titre,aide){
     const l=projet[cible];
     return '<section class="mg-bloc"><h3>'+titre+'</h3><p class="fine">'+aide+'</p>'+
-      '<div class="mg-panier">'+(l.length?l.map(o=>'<button class="chip-btn on" data-act="mg-retirer" data-c="'+cible+'" data-k="'+esc(clef(o))+'">'+esc(nomDe(o))+' ×</button>').join(''):'<span class="fine">Rien pour l’instant.</span>')+'</div>'+
+      '<div class="mg-panier">'+(l.length?'<div class="mg-objets">'+l.map(o=>vignette(o,{retirer:cible})).join('')+'</div>':'<span class="fine">Rien pour l’instant. Cherche un objet ci-dessous, ou ouvre la liste.</span>')+'</div>'+
       '<label class="search"><input type="search" data-cherche="'+cible+'" placeholder="Chercher un schéma ou un objet" aria-label="Chercher un objet à ajouter"></label>'+
       '<div data-res="'+cible+'"></div>'+
       '<details class="mg-sug"><summary>'+(cible==='donne'?'Mes schémas en trop':'Ce qui me manque')+'</summary>'+choixRapides(cible)+'</details></section>';
