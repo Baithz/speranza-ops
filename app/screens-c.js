@@ -10,7 +10,20 @@
   const node=()=>D[st.op].nodes.find(n=>n.id===st.node[st.op]),meta=()=>N[st.op][st.node[st.op]];
   const count=n=>Math.min(Number(st.steps[st.op+'.'+n.id])||0,n.do.length);
   const button=(act,text,extra='',cls='')=>`<button type="button" class="${cls}" data-act="${act}" ${extra}>${text}</button>`;
-  function mount(el){host=el;host.classList.add('ops-cockpit');host.innerHTML=`
+  /* 13 Mo de modèles 3D : sur un téléphone en 4G, c'est une minute et un forfait entamé.
+     On demande avant de charger, une fois par session. Le choix n'est pas gardé : il ne coûte qu'un clic,
+     et personne ne doit se retrouver à télécharger ça sans l'avoir voulu. */
+  let accepte=false;
+  function porte(el){
+    el.classList.remove('ops-cockpit');
+    el.innerHTML='<div class="oc-gate"><h1>Opérations</h1>'+
+      '<p>Les modèles 3D de la Frégate et de l’Empereur, pour reconnaître les salles et préparer l’intérieur.</p>'+
+      '<p class="oc-gate-poids"><b>13 Mo à télécharger</b> et quelques secondes de chargement. En 4G, mieux vaut le savoir.</p>'+
+      '<div class="row"><button class="btn primary big" data-act="op-charger">Charger les modèles</button></div></div>';
+  }
+  function mount(el){
+    if(!accepte)return porte(el);
+    host=el;host.classList.remove('oc-gate-hote');host.classList.add('ops-cockpit');host.innerHTML=`
     <header class="oc-header"><div><p class="oc-eyebrow">Speranza / Opérations</p><h1>Reconnaître. Avancer. Extraire.</h1></div><div class="oc-head-actions">${button('op-info','Préparation & sources','', 'btn small')}${button('op-reset','Nouvelle sortie','', 'btn small')}</div></header>
     <div class="oc-op-switch" aria-label="Choisir une opération">${['frigate','emperor'].map(op=>button('op-pick',D[op].name,`data-v="${op}" aria-pressed="false"`)).join('')}<span class="oc-operation-note"></span></div>
     <div class="oc-workspace"><aside class="oc-route"><div class="oc-route-title"><h2>Se repérer</h2><span class="oc-route-count"></span></div><p class="oc-route-help"></p><nav class="oc-zones" aria-label="Zones de l’opération"></nav><div class="oc-route-foot"><span class="oc-dot"></span><span>Position déclarée par toi</span></div></aside>
@@ -72,8 +85,9 @@
     if(kind==='zone')body=`<p>${esc(n.what)}</p><ol>${n.do.map((x,i)=>'<li'+(i<count(n)?' class="oc-done"':'')+'>'+esc(x)+'</li>').join('')}</ol>${(n.warn||[]).map(x=>'<p class="oc-warning">'+esc(x)+'</p>').join('')}<div class="oc-shot" data-key="${st.op+'.'+n.id}"></div>`;
     else body=`<h3>À emporter</h3><dl>${d.kit.map(([a,b])=>'<dt>'+esc(a)+'</dt><dd>'+esc(b)+'</dd>').join('')}</dl><h3>À savoir</h3>${d.alerts.map(x=>'<p>'+esc(x)+'</p>').join('')}<h3>Butin</h3><p>${d.loot.map(esc).join(' · ')}</p><h3>Références et précision</h3><p>${st.op==='frigate'?'513 composants et textures issus de l’export public ARC Tracker, build 2.00.0. Les matériaux ont été adaptés au rendu web. Certaines dépendances et animations sont des démonstrations ; la révision 2.3 des portes reste à comparer.':'La maquette intacte reste non validée. La reconstruction doit maintenant confronter la forme du marcheur à la coque et aux passages réellement jouables de Pendola. Les captures montrent les accès, le puits central, le hangar et ses sorties.'}</p><ul>${st.op==='emperor'?'<li><a href="research/operations-3d/emperor-pendola.html" target="_blank" rel="noopener">Pendola : coque, accès et passages des Raiders</a></li><li><a href="research/operations-3d/emperor-intact.html" target="_blank" rel="noopener">Étude visuelle de l’Empereur intact</a></li><li><a href="research/operations-3d/emperor-study.html" target="_blank" rel="noopener">Maquette 3D des volumes · non validée</a></li>':''}${d.sources.map(([l,u])=>`<li><a href="${esc(u)}" target="_blank" rel="noopener noreferrer">${esc(l)}</a></li>`).join('')}<li><a href="research/operations-3d/RECHERCHE_3D.md" target="_blank">Dossier de recherche local</a></li></ul><p>La position est déclarée manuellement ; aucune connexion au raid.</p>`;
     dialog.innerHTML=`<header><h2>${kind==='zone'?esc(n.name):'Préparer · '+esc(d.name)}</h2>${button('op-close','×','aria-label="Fermer les détails"','oc-close')}</header><div class="oc-dialog-body">${body}</div>`;dialog.showModal();showShot();}
-  O.register('operations',{title:'Opérations',short:'Opés',icon:'ops',pos:6.5,mount,show(p){if(p?.op&&D[p.op])st.op=p.op;if(p?.mode)st.mode=p.mode;refresh();},refresh(){if(host&&!host.hidden&&loadedOp===st.op)return;refresh();},hide(){viewer?.suspend();emperor?.suspend();dialog?.close();},reset(){epoch++;viewer?.dispose();viewer=null;loadedOp=null;loadingOp=null;emperor?.suspend();emperor?.reset();restore();if(host&&!host.hidden)refresh();}});
+  O.register('operations',{title:'Opérations',short:'Opés',icon:'ops',pos:6.5,mount,show(p){if(!accepte)return;if(p?.op&&D[p.op])st.op=p.op;if(p?.mode)st.mode=p.mode;refresh();},refresh(){if(!accepte)return;if(host&&!host.hidden&&loadedOp===st.op)return;refresh();},hide(){viewer?.suspend();emperor?.suspend();dialog?.close();},reset(){epoch++;viewer?.dispose();viewer=null;loadedOp=null;loadingOp=null;emperor?.suspend();emperor?.reset();restore();if(host&&!host.hidden)refresh();}});
   Object.assign(actions,{
+    'op-charger':()=>{accepte=true;const v=O.views.operations;mount(v.el);v.refresh?.();},
     'op-pick':d=>{if(!D[d.v]||d.v===st.op)return;st.op=d.v;st.mode='exterior';refresh();},
     'op-node':d=>{if(!N[st.op][d.id])return;st.node[st.op]=d.id;if(st.mode==='exterior')st.mode='cut';refresh();},
     'op-mode':d=>{st.mode=st.op==='emperor'?'reference':d.v;setMode();save();},'op-here':()=>{st.here[st.op]=node().id;refresh();},

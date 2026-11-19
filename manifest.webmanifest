@@ -1,0 +1,24 @@
+{
+  "name": "Speranza Ops — compagnon ARC Raiders",
+  "short_name": "Speranza Ops",
+  "description": "Cartes, schémas manquants, quêtes et chronos de spawn des ARC. Projet de fan, non officiel.",
+  "lang": "fr",
+  "dir": "ltr",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#0b111a",
+  "theme_color": "#0b111a",
+  "categories": ["games", "utilities"],
+  "icons": [
+    { "src": "assets/atlas/icone-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "assets/atlas/icone-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "assets/atlas/icone-512-masque.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ],
+  "shortcuts": [
+    { "name": "Spawn ARC", "url": "./#cartes", "description": "Chronos de retour des gros ARC" },
+    { "name": "Mes schémas", "url": "./#collection", "description": "Le mur de la collection" },
+    { "name": "Quêtes", "url": "./#quetes", "description": "Ce qu'on peut avancer maintenant" }
+  ]
+}

@@ -7,6 +7,9 @@
   <meta name="description" content="Speranza Ops : le poste de préparation de raid pour ARC Raiders : cartes, schémas manquants, spawns des gros ARC, escouade et réseau d’entraide.">
   <title>Speranza Ops</title>
   <link rel="icon" href="assets/atlas/signal.svg">
+  <link rel="manifest" href="manifest.webmanifest">
+  <meta name="mobile-web-app-capable" content="yes">
+  <link rel="apple-touch-icon" href="assets/atlas/icone-192.png">
   <link rel="stylesheet" href="engine/atlas.css">
   <link rel="stylesheet" href="engine/armory.css">
   <link rel="stylesheet" href="engine/field.css">
@@ -66,12 +69,17 @@
 <script src="app/spawns.js?v=2026.11.16.1"></script>
 <script src="app/engines.js?v=2026.11.16.1"></script>
 <script src="app/squad.js?v=2026.11.16.1"></script>
-<script src="app/network-config.js?v=2026.11.16.1"></script>
-<script src="app/network.js?v=2026.11.16.1"></script>
+<script src="app/base-config.js?v=2026.11.16.1"></script>
+<script src="app/base.js?v=2026.11.16.1"></script>
 <script src="app/sites.js?v=2026.11.16.1"></script>
 <script src="app/quests.js?v=2026.11.16.1"></script>
 <script src="app/update.js?v=2026.11.16.1"></script>
 <script src="app/capture.js"></script>
 <script>OPS.start();</script>
+<script>
+  // Rend le site installable et ouvrable hors connexion. Sans effet en fichier local.
+  if('serviceWorker' in navigator && location.protocol.startsWith('http'))
+    addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}));
+</script>
 <script src="app/motion.js"></script>
 </body></html>

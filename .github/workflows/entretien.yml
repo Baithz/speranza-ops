@@ -22,7 +22,9 @@ jobs:
             echo "::error::Secrets SUPABASE_URL ou SUPABASE_SERVICE_KEY absents. Voir docs/01_MISE_EN_LIGNE.md."
             exit 1
           fi
+          # Les nouvelles cles Supabase (sb_secret_...) ne sont pas des JWT : elles passent par
+          # l'en-tete apikey uniquement. Un « Authorization: Bearer <cle> » serait rejete.
           code=$(curl -sS -o reponse.txt -w '%{http_code}' -X POST "$URL/rest/v1/rpc/menage" \
-            -H "apikey: $CLE" -H "Authorization: Bearer $CLE" -H 'Content-Type: application/json' -d '{}')
+            -H "apikey: $CLE" -H 'Content-Type: application/json' -d '{}')
           echo "reponse $code : $(cat reponse.txt)"
           [ "$code" = "200" ] || { echo "::error::La base n'a pas repondu correctement."; exit 1; }

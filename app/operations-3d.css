@@ -40,3 +40,9 @@
 @media(max-width:1160px){.em4-layout{grid-template-columns:minmax(0,1fr) 215px;gap:12px}.em4-side{padding-left:12px}.em4-switch>span{font-size:9px}}
 @media(min-width:621px) and (max-width:900px){.oc-construction.oc-emperor{min-height:520px;height:calc(100dvh - 225px);flex:none}.em4-layout{grid-template-columns:minmax(0,1fr) 205px}.em4-switch>span{width:100%;margin-left:0}}
 @media(max-width:620px){.oc-construction.oc-emperor{padding:12px;flex:none;overflow:visible;gap:12px}.em4-heading{align-items:start!important}.oc-emperor h2{font-size:23px}.em4-badge{font-size:8px;padding:4px 6px}.em4-switch>span{width:100%;margin:2px 0 0}.em4-layout{display:flex;flex-direction:column;gap:16px}.em4-main{height:52dvh;min-height:330px;max-height:530px;flex:none}.em4-side{border-left:0;border-top:1px solid #2c4350;padding:14px 0 0;overflow:visible}.oc-emperor button{padding:8px 9px;font-size:11px}.em4-views{gap:4px}.em4-side p{font-size:12px}.em4-help{min-height:28px}}
+
+/* On demande avant de télécharger 13 Mo de modèles. */
+.oc-gate{display:grid;gap:.8rem;justify-items:start;max-width:34rem;padding:1.4rem;margin:1rem auto 0;border:1px solid var(--edge2);border-radius:.7rem;background:var(--hull)}
+.oc-gate h1{margin:0;font:800 clamp(1.8rem,3vw,2.4rem)/1 var(--display)}
+.oc-gate p{margin:0;color:var(--soft)}
+.oc-gate-poids b{color:var(--paper)}

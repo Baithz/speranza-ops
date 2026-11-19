@@ -54,11 +54,25 @@
     for(const [k,v] of Object.entries(S.stats))if(k.split('|')[1]===type){lo.push(...(v.lo||[]));hi.push(...(v.hi||[]));}
     return {lo,hi};
   }
+  // Bornes calculées par la base sur les relevés de tous les raiders.
+  let duServeur={};
+  async function chargerBornes(mapId){
+    const b=await O.net?.bornes?.(mapId);
+    if(b&&Object.keys(b).length){duServeur=Object.assign(duServeur,b);repaint();}
+  }
   function fenetre(key){
     const [mapId,type]=key.split('|'),t=typeOf(type);
     const ref=t.sec*modifier(mapById(mapId)).f;
     if(!t||t.once||!t.sec)return {lo:0,hi:0,n:0,ref:0,source:'aucune'};
     const propre=S.stats[key]||{};let lo=propre.lo||[],hi=propre.hi||[],source='ce point';
+    const srv=duServeur[key];
+    if(lo.length+hi.length<3&&srv&&(srv.basse||srv.haute)){
+      // La base ne renvoie pas les relevés un par un, mais les deux bornes déjà calculées.
+      if(srv.basse)lo=[srv.basse];if(srv.haute)hi=[srv.haute];
+      const bas=((srv.basse??0)*(srv.n||1)+K*ref*.9)/((srv.basse?(srv.n||1):0)+K);
+      const haut=((srv.haute??0)*(srv.n||1)+K*ref*1.1)/((srv.haute?(srv.n||1):0)+K);
+      return {lo:Math.round(Math.min(bas,haut)),hi:Math.round(Math.max(bas,haut)),n:srv.n||0,ref:Math.round(ref),source:'tous les raiders'};
+    }
     if(lo.length+hi.length<3){const p=pool(type);if(p.lo.length+p.hi.length){lo=p.lo;hi=p.hi;source='ce type d’ARC';}else source='la référence';}
     const qlo=quantile(lo,.9),qhi=quantile(hi,.1);
     let bas=((qlo??0)*lo.length+K*ref*.9)/(lo.length+K);
@@ -82,7 +96,7 @@
         if(r.kind!=='clear'&&!O.net?.on?.()){if(r.kind==='absent')st.absent++;else st.seen++;st.net=(st.net||0)+1;}
         save();return 'history';}
     }
-    let net=null;const rd=raidOn(mapId,at),bk=rd?bucketAt(rd,at):null,obs=S.obs??={};
+    let net=null,ecart=null;const rd=raidOn(mapId,at),bk=rd?bucketAt(rd,at):null,obs=S.obs??={};
     const tally=i=>{if(bk===null)return;const b=(st.b??=[[0,0],[0,0],[0,0]])[bk];b[i]++;};
     const once=typeOf(type).once;
     if(r.kind==='kill'&&once){st.seen++;tally(0);net=['seen'];S.live[r.key]={at,lo:0,hi:0,once:true,told:true,by:String(r.by||'').slice(0,24)};}
@@ -91,17 +105,17 @@
       st.seen++;tally(0);delete obs[r.key];net=['seen'];
       // Revu après l'avoir abattu : le délai réel est au plus cet écart. Borne haute.
       if(live){const t=typeOf(type),d=(at-live.at)/1000;
-        if(!once&&d>0){(st.hi??=[]).push(borne(d,t));st.hi=st.hi.slice(-24);net[1]=Math.round(d);}
+        if(!once&&d>0){(st.hi??=[]).push(borne(d,t));st.hi=st.hi.slice(-24);net[1]=ecart=Math.round(d);}
         delete S.live[r.key];}
     }else if(r.kind==='absent'){if(!live){st.absent++;tally(1);net=['absent'];if(rd&&once)S.live[r.key]={at,lo:0,hi:0,once:true,told:true,empty:true};else if(rd&&!obs[r.key])obs[r.key]={at,hi:fenetre(r.key).hi};}
       // Toujours vide alors que le chrono tourne : le délai réel est plus grand que cet écart. Borne basse.
       else if(!live.once){const t=typeOf(type),d=(at-live.at)/1000;
-        if(d>0){(st.lo??=[]).push(borne(d,t));st.lo=st.lo.slice(-24);}
+        if(d>0){(st.lo??=[]).push(borne(d,t));st.lo=st.lo.slice(-24);ecart=Math.round(d);}
         if(at>live.at+(live.hi||0)*1000)live.late=true;}}
     else if(r.kind==='clear'){delete S.live[r.key];delete obs[r.key];}
     save();
     if(!remote){window.AtlasDuo?.send?.({t:'spawn',id:r.id,key:r.key,kind:r.kind,at,by:O.P.name(),raid:rd?.id||raidOn(mapId)?.id||null});
-      if(rd?.code&&r.kind!=='clear')O.net?.gameSend?.({id:r.id,key:r.key,kind:r.kind,end:rd.endAt});if(net)O.net?.obs(r.key,net[0],net[1],bk);}
+      if(rd?.code&&r.kind!=='clear')O.net?.gameSend?.({id:r.id,key:r.key,kind:r.kind,end:rd.endAt});if(r.kind!=='clear')O.net?.obs?.(r.key,r.kind,ecart,rd?Math.round(ageAt(rd,at)):0,rd?.code||'');}
     return true;
   }
   // Canal de partie : un signalement n'est retenu que si le raider annonce la même carte et la même heure de fin (à 45 s près).
@@ -124,7 +138,10 @@
     if(m.kind==='seen'){st.seen++;if(d>=ref*.5&&d<=ref*3){st.delays.push(Math.round(d));st.delays=st.delays.slice(-12);}}else st.absent++;
     st.net=(st.net||0)+1;save();return true;
   }
-  const netLine=()=>{const N=O.net;if(!N)return '';return '<p class="sp-net" data-state="'+N.state()+'">'+(N.on()?'<i class="duo-lamp" aria-hidden="true"></i>Réseau d’entraide : '+esc(N.label())+(N.got()?' · '+N.got()+' avis reçus':'')+'. Ces avis nourrissent l’historique des points, jamais tes chronos.':'Réseau d’entraide non rejoint. <button class="link" data-act="sp-net">Rejoindre les autres raiders</button>')+'</p>';};
+  const netLine=()=>{const N=O.net;if(!N||!N.usable)return '';
+    return '<p class="sp-net" data-state="'+N.state()+'"><i class="duo-lamp" aria-hidden="true"></i>'+
+      (N.on()?'Réseau d’entraide : '+esc(N.label())+(N.got()?' · '+N.got()+' avis reçus':'')+'. Tes signalements nourrissent l’historique des points, jamais tes chronos.'
+             :'Réseau d’entraide : '+esc(N.label())+'.')+'</p>';};
   const report=(key,kind)=>apply({id:Date.now().toString(36)+Math.random().toString(36).slice(2,8),key,kind,at:Date.now(),by:O.P.name()});
   window.addEventListener('ops:squad-msg',e=>{const m=e.detail?.m;if(m?.t!=='spawn')return;
     if(m.kind==='sync'){
@@ -266,9 +283,10 @@
     const avail=mapsWith();if(!avail.some(m=>m.id===curMap))curMap=(O.ops().plan&&avail.find(m=>m.id===O.ops().plan.map)||avail[0])?.id;
     const m=mapById(curMap),now=Date.now(),md=window.RAID_MAP_DATA.maps.find(x=>x.id===curMap),layer=md.layers[0];
     const all=TYPES.flatMap(t=>points(curMap,t.id)),list=all.filter(p=>!filter||p.type===filter),act=sched.active(m,now);
-    all.forEach((p,i)=>p.n=i+1);                 // même numéro sur le plan et dans la liste, quel que soit le filtre
+    all.forEach((p,i)=>p.n=i+1);
+    if(O.net?.bornes&&!duServeur['_'+curMap]){duServeur['_'+curMap]=1;chargerBornes(curMap);}                 // même numéro sur le plan et dans la liste, quel que soit le filtre
     const running=all.filter(p=>stateOf(p.key,now)==='wait').length;
-    const N=O.net,netChip=!N?'':N.on()?'<span class="sp-netchip" data-state="'+N.state()+'" title="'+esc(N.label())+'"><i class="duo-lamp" aria-hidden="true"></i>Réseau · '+N.count()+'</span>':'<button class="link" data-act="sp-net">Rejoindre le réseau</button>';
+    const N=O.net,netChip=!N||!N.usable?'':'<span class="sp-netchip" data-state="'+N.state()+'" title="'+esc(N.label())+'"><i class="duo-lamp" aria-hidden="true"></i>Réseau · '+esc(N.on()?N.count()+' raider'+(N.count()>1?'s':''):N.label())+'</span>';
     pane.innerHTML='<div class="sp-map"><div class="sp-img" style="aspect-ratio:'+layer.width+'/'+layer.height+'"><img src="'+layer.image+'" alt="Plan de '+esc(m.name)+'">'+
         list.filter(p=>p.layer===0).map(p=>{const st=stateOf(p.key,now),t=typeOf(p.type),w=whenOf(p.key,now),name='Point '+p.n+' · '+tname(t)+' · '+p.label+' · '+STATE[st];
           return '<button class="sp-pin" data-act="sp-pick" data-k="'+p.key+'" data-state="'+st+'" style="left:'+p.x+'%;top:'+p.y+'%;--c:'+t.c+'" title="'+esc(name)+'" aria-label="'+esc(name)+'"><i class="sp-num" aria-hidden="true">'+p.n+'</i>'+(st==='gone'?'×':t.ab)+((st==='wait'||st==='window')?'<i class="mono" data-clock="'+w+'">'+O.mmss(w-now)+'</i>':'')+'</button>';}).join('')+'</div></div>'+
@@ -320,11 +338,11 @@
     'sp-map':(d,el)=>{curMap=el.value;write('speranza.ops.spawns.map',curMap);drawPane();},
     'sp-pick':d=>{const li=$('.sp-list li[data-key="'+d.k+'"]');if(!li)return;li.scrollIntoView({block:'nearest'});li.setAttribute('data-flash','');setTimeout(()=>li.removeAttribute('data-flash'),1200);$('button',li)?.focus({preventScroll:true});},
     'sp-open':async d=>{curMap=d.map;await O.go('cartes');actions['maps-tab']({t:'spawn'});},
-    'sp-net':()=>document.getElementById('duoOpen')?.click(),
+
     'sp-reset':()=>{if(confirm('Effacer les signalements et délais observés enregistrés sur cet appareil ?')){S={stats:{},live:{},ids:[]};save();repaint();}},
     'sp-about':()=>O.openSheet('<h2>Spawn ARC : ce qu’on sait, ce qu’on mesure</h2>'+
       '<h3>Ce qui est connu</h3><ul class="plain"><li>Bastion, Artificier et Bombardier occupent des points fixes. Ceux du site viennent des cartes communautaires.</li><li>Le jeu ne publie aucun horaire d’apparition, et aucune source consultée ne décrit la première apparition du raid.</li><li>Délais de retour relevés par des joueurs : Bastion 6 min, Bombardier 6 min, Artificier 7 min.</li><li>Au terme du délai, l’apparition est bloquée si un Raider se trouve à environ 50 à 150 m.</li><li>Raid nocturne, Tempête électromagnétique, Bunker caché : 15 % plus rapide. Portail verrouillé, Vague de froid : 10 % plus lent.</li></ul>'+
-      '<h3>Ce que le site calcule</h3><ul class="plain"><li><b>Fiabilité d’un point</b> : part des passages où l’ARC était bien là (« Vu » ou « Abattu ») sur l’ensemble des passages signalés.</li><li><b>Délais de référence</b> : Bastion, Bombardier et Bondisseur 6 min, Artificier 7 min, à partir de l’élimination. Le retour est bloqué tant qu’un Raider reste à moins de 50 à 150 m. Tant que le Bombardier vit, ses Observateurs reviennent chaque minute. Si tu entres en cours de raid, un point vide a pu être nettoyé avant toi : marque-le « Vide » pour obtenir son retour au plus tard.</li><li><b>Chrono du jeu</b> : un raid dure 30 min au compteur du jeu, mais on y entre souvent en cours de route. Tu tapes le temps restant affiché en jeu ; le site en déduit l’âge de la carte et donne chaque retour à l’heure du compteur du jeu. Le calage part vers ton escouade.</li><li><b>Bondisseur et Sentinelle</b> : le Bondisseur revient comme un Bastion (6 min de référence, certains joueurs relèvent plutôt 8). La Sentinelle ne revient pas : une fois abattue, son point reste vide jusqu’à la fin du raid.</li><li><b>Chrono après « Abattu »</b> : heure de l’élimination + délai de référence corrigé par l’événement en cours. Si le retour tombe après la fin du raid, c’est écrit.</li><li><b>Fenêtre après « Vide »</b> : l’ARC a été abattu avant ton passage, donc au plus tôt un délai entier avant. Son retour tombe au plus tard un délai après ton constat, sauf zone occupée.</li><li><b>Présence à ce stade du raid</b> : les avis sont rangés par tranche de 10 min de carte. À partir de 3 avis dans la tranche en cours, le site affiche la part de passages où l’ARC était là.</li><li><b>Délai observé</b> : quand un ARC abattu est revu, l’écart est enregistré. À partir de deux mesures, si le retour observé est plus court que la référence, c’est lui qui sert au chrono.</li><li><b>Escouade</b> : quand l’un de vous cale le chrono, les autres voient « Tu es dans la même partie ? ». Seuls ceux qui répondent « J’y suis » partagent les chronos de ce raid. Un coéquipier parti sur une autre partie ne change rien aux tiens.</li><li><b>Code de partie</b> : le jeu affiche un code en bas de l’écran. Si d’autres raiders de ta partie utilisent le site et tapent le même code, vous partagez vos chronos sans être dans la même escouade. Le site vérifie aussi la carte et l’heure de fin du raid. Embark ne documente pas ce code : s’il n’est pas commun aux joueurs d’une même partie, il ne reliera simplement personne.</li><li><b>Historique tous raids</b> : la ligne grise sous chaque point additionne les avis de toutes les parties, les tiennes et celles des autres. Elle dit si un point est souvent occupé, pas ce qui s’y passe maintenant.</li><li><b>Réseau d’entraide (salons de 100 raiders)</b> : seuls partent les avis qui comptent pour la fiabilité d’un point et les délais mesurés. Les chronos n’y passent pas : un ARC abattu dans un autre raid ne dit rien du tien. Un avis par raider et par point toutes les 20 minutes.</li></ul>'+
+      '<h3>Ce que le site calcule</h3><ul class="plain"><li><b>Fiabilité d’un point</b> : part des passages où l’ARC était bien là (« Vu » ou « Abattu ») sur l’ensemble des passages signalés.</li><li><b>Délais de référence</b> : Bastion, Bombardier et Bondisseur 6 min, Artificier 7 min, à partir de l’élimination. Le retour est bloqué tant qu’un Raider reste à moins de 50 à 150 m. Tant que le Bombardier vit, ses Observateurs reviennent chaque minute. Si tu entres en cours de raid, un point vide a pu être nettoyé avant toi : marque-le « Vide » pour obtenir son retour au plus tard.</li><li><b>Chrono du jeu</b> : un raid dure 30 min au compteur du jeu, mais on y entre souvent en cours de route. Tu tapes le temps restant affiché en jeu ; le site en déduit l’âge de la carte et donne chaque retour à l’heure du compteur du jeu. Le calage part vers ton escouade.</li><li><b>Bondisseur et Sentinelle</b> : le Bondisseur revient comme un Bastion (6 min de référence, certains joueurs relèvent plutôt 8). La Sentinelle ne revient pas : une fois abattue, son point reste vide jusqu’à la fin du raid.</li><li><b>Chrono après « Abattu »</b> : heure de l’élimination + délai de référence corrigé par l’événement en cours. Si le retour tombe après la fin du raid, c’est écrit.</li><li><b>Fenêtre après « Vide »</b> : l’ARC a été abattu avant ton passage, donc au plus tôt un délai entier avant. Son retour tombe au plus tard un délai après ton constat, sauf zone occupée.</li><li><b>Présence à ce stade du raid</b> : les avis sont rangés par tranche de 10 min de carte. À partir de 3 avis dans la tranche en cours, le site affiche la part de passages où l’ARC était là.</li><li><b>Délai observé</b> : quand un ARC abattu est revu, l’écart est enregistré. À partir de deux mesures, si le retour observé est plus court que la référence, c’est lui qui sert au chrono.</li><li><b>Escouade</b> : quand l’un de vous cale le chrono, les autres voient « Tu es dans la même partie ? ». Seuls ceux qui répondent « J’y suis » partagent les chronos de ce raid. Un coéquipier parti sur une autre partie ne change rien aux tiens.</li><li><b>Code de partie</b> : le jeu affiche un code en bas de l’écran. Si d’autres raiders de ta partie utilisent le site et tapent le même code, vous partagez vos chronos sans être dans la même escouade. Le site vérifie aussi la carte et l’heure de fin du raid. Embark ne documente pas ce code : s’il n’est pas commun aux joueurs d’une même partie, il ne reliera simplement personne.</li><li><b>Historique tous raids</b> : la ligne grise sous chaque point additionne les avis de toutes les parties, les tiennes et celles des autres. Elle dit si un point est souvent occupé, pas ce qui s’y passe maintenant.</li><li><b>Réseau d’entraide</b> : tous les raiders qui ouvrent le site partagent la même base, sans salon ni inscription. Seuls partent les avis qui comptent pour la fiabilité d’un point et les bornes de retour. Les chronos n’y passent pas : un ARC abattu dans un autre raid ne dit rien du tien. Ni pseudo, ni collection, ni position.</li></ul>'+
       '<p class="notice">Les délais de référence sont donnés comme vérifiés au 7 septembre 2026 et peuvent changer avec les patchs. Le chrono indique un « au plus tôt ».</p>'+
       '<h3>Sources</h3><ul class="plain">'+SRC.map(([l,u])=>'<li><a href="'+u+'" target="_blank" rel="noopener noreferrer">'+esc(l)+'</a></li>').join('')+'</ul>',{label:'Spawn ARC'})
   });
