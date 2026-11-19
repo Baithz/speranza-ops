@@ -8,11 +8,45 @@
 (() => {
   'use strict';
   const O=window.OPS,{$,$$,esc,ico,read,write,actions,sched,mapById,MAPS}=O;
-  const TYPES=[{id:'arc-bastion',arc:'bastion',ab:'Ba',sec:360,c:'#fa684d'},{id:'arc-rocketeer',arc:'rocketeer',ab:'Ar',sec:420,c:'#50dae4'},{id:'arc-bombardier',arc:'bombardier',ab:'Bo',sec:360,c:'#ffd456'},{id:'arc-leaper',arc:'leaper',ab:'Bd',sec:360,c:'#a78bfa'},
-    // La Sentinelle ne revient pas une fois abattu : pas de chrono, seulement « abattu pour ce raid ».
-    {id:'arc-sentinel',arc:'sentinel',ab:'Se',sec:0,once:true,c:'#7ee081'}];
+  /* Tous les ARC relevés sur les cartes, et pas seulement les cinq gros.
+     sec : délai de retour de référence, en secondes (0 = aucun relevé publié).
+     once : ne revient pas une fois abattu, le point reste vide jusqu'à la fin du raid.
+     rang : lourd (gros ARC à chrono) · fixe (poste qui ne bouge pas) · leger (petits ARC) · boss (boss et événements). */
+  const TYPES=[
+    {id:'arc-bastion',arc:'bastion',ab:'Ba',sec:360,c:'#fa684d',rang:'lourd'},
+    {id:'arc-bombardier',arc:'bombardier',ab:'Bo',sec:360,c:'#ffd456',rang:'lourd'},
+    {id:'arc-rocketeer',arc:'rocketeer',ab:'Ar',sec:420,c:'#50dae4',rang:'lourd'},
+    {id:'arc-leaper',arc:'leaper',ab:'Bd',sec:360,c:'#a78bfa',rang:'lourd'},
+    {id:'arc-shredder',arc:'shredder',ab:'Dé',sec:300,c:'#ff8ab8',rang:'lourd'},
+    {id:'arc-surveyor',arc:'arc-surveyor',ab:'Gu',sec:720,c:'#9fb4c7',rang:'lourd'},
+    // Délai de retour non publié : le point s'affiche et se signale, sans chrono inventé.
+    {id:'arc-comet',arc:'comet',ab:'Cm',sec:0,c:'#ffb07a',rang:'lourd'},
+    {id:'arc-firefly',arc:'firefly',ab:'Lu',sec:0,c:'#ffe066',rang:'lourd'},
+    {id:'arc-vaporizer',arc:'vaporizer',ab:'Vp',sec:0,c:'#6ee7d6',rang:'lourd'},
+    {id:'arc-bully',arc:'bully',ab:'Br',sec:0,c:'#f48fb1',rang:'lourd'},
+    {id:'arc-skulker',arc:'skulker',ab:'Rô',sec:0,c:'#8fa3b8',rang:'lourd'},
+    // La Sentinelle ne revient pas une fois abattue : pas de chrono, seulement « abattue pour ce raid ».
+    {id:'arc-sentinel',arc:'sentinel',ab:'Se',sec:0,once:true,c:'#7ee081',rang:'fixe'},
+    {id:'turret',arc:'turret',ab:'To',sec:480,c:'#c0c6cc',rang:'fixe'},
+    {id:'arc-hydra',arc:'hydra',ab:'Hy',sec:0,once:true,c:'#ff6f91',rang:'fixe'},
+    {id:'arc-assesor',arc:'arc-assessor',ab:'Év',sec:0,once:true,c:'#c9b6ff',rang:'fixe'},
+    {id:'arc-wasp',arc:'wasp',ab:'Gp',sec:180,c:'#8ad6ff',rang:'leger'},
+    {id:'arc-hornet',arc:'hornet',ab:'Fr',sec:180,c:'#ffa94d',rang:'leger'},
+    {id:'arc-pop',arc:'pop',ab:'Po',sec:240,c:'#ff7a7a',rang:'leger'},
+    {id:'arc-fireball',arc:'fireball',ab:'Bl',sec:240,c:'#ff9a3d',rang:'leger'},
+    {id:'arc-snitch',arc:'snitch',ab:'Mo',sec:300,c:'#d7f06a',rang:'leger'},
+    {id:'arc-tick',arc:'tick',ab:'Ti',sec:360,c:'#b9a0ff',rang:'leger'},
+    {id:'arc-courier',arc:'arc-courier',ab:'Co',sec:0,c:'#a0e8c0',rang:'leger'},
+    // Boss et événements : ils arrivent sur annonce du jeu, pas sur un délai de retour.
+    {id:'arc-turbine',arc:'arc-turbine',ab:'Tu',sec:0,c:'#7cc6ff',rang:'boss',fenetre:[16,13]},
+    {id:'arc-matriarch',arc:'matriarch',ab:'Ma',sec:0,once:true,c:'#ff5c8a',rang:'boss'},
+    {id:'arc-queen',arc:'queen',ab:'Re',sec:0,once:true,c:'#ffb3c7',rang:'boss'}];
+  const RANGS=[['lourd','Gros ARC'],['fixe','Postes fixes'],['leger','ARC légers'],['boss','Boss et événements']];
+  const rangOf=id=>typeOf(id)?.rang||'leger';
   const FAST=['Raid nocturne','Tempête électromagnétique','Bunker caché'],SLOW=['Portail verrouillé','Vague de froid'];
-  const SRC=[['Gamers Together · délais de retour','https://gamerstogether.cz/en/arc-raiders-enemy-respawn-times/'],['IGGM · points d’apparition fixes','https://www.iggm.com/news/arc-raiders-trials-best-maps-enemy-spawn-points-fastest-methods'],['TheGamer · Bastion et Bombardier','https://www.thegamer.com/arc-raiders-bombardier-bastion-cells-combat-strategies-best-weapons-loadout-guide-how-to/']];
+  const SRC=[['Gamers Together · délais de retour des 15 ARC','https://gamerstogether.cz/en/arc-raiders-enemy-respawn-times/'],
+    ['ARC Intel · fenêtre d’apparition de la Turbine','https://arcraidersintel.org/guides/arc-raiders-turbine-guide-how-to-find-fight-and-loot-the-turbine'],
+    ['The ARC Raiders · base des ARC et points faibles','https://thearcraiders.com/arcs/'],['IGGM · points d’apparition fixes','https://www.iggm.com/news/arc-raiders-trials-best-maps-enemy-spawn-points-fastest-methods'],['TheGamer · Bastion et Bombardier','https://www.thegamer.com/arc-raiders-bombardier-bastion-cells-combat-strategies-best-weapons-loadout-guide-how-to/']];
   const typeOf=id=>TYPES.find(t=>t.id===id),tname=t=>O.arcById.get(t.arc)?.name||t.arc;
   const dur=s=>{s=Math.round(s);return Math.floor(s/60)+' min'+(s%60?' '+String(s%60).padStart(2,'0')+' s':'');};
   const KEY='speranza.ops.spawns.v1';
@@ -100,6 +134,7 @@
     const tally=i=>{if(bk===null)return;const b=(st.b??=[[0,0],[0,0],[0,0]])[bk];b[i]++;};
     const once=typeOf(type).once;
     if(r.kind==='kill'&&once){st.seen++;tally(0);net=['seen'];S.live[r.key]={at,lo:0,hi:0,once:true,told:true,by:String(r.by||'').slice(0,24)};}
+    else if(r.kind==='kill'&&!typeOf(type).sec){st.seen++;tally(0);delete obs[r.key];net=['seen'];S.live[r.key]={at,lo:0,hi:0,sansDelai:true,told:true,by:String(r.by||'').slice(0,24)};}
     else if(r.kind==='kill'){const f=fenetre(r.key);st.seen++;tally(0);delete obs[r.key];net=['seen'];S.live[r.key]={at,lo:f.lo,hi:f.hi,by:String(r.by||'').slice(0,24),told:false};}
     else if(r.kind==='seen'){
       st.seen++;tally(0);delete obs[r.key];net=['seen'];
@@ -153,11 +188,11 @@
     }
     const res=apply(m,true);if(res===true){if(m.kind==='kill')O.toast((m.by||'Un raider')+' a abattu : '+labelOf(m.key)+'.');repaint();}});
   const labelOf=key=>{const [mapId,type,i]=key.split('|'),p=points(mapId,type)[Number(i)];return tname(typeOf(type))+' · '+(p?.label||'');};
-  const stateOf=(key,now)=>{const l=S.live[key];if(l?.once)return 'gone';
+  const stateOf=(key,now)=>{const l=S.live[key];if(l?.once)return 'gone';if(l?.sansDelai)return 'down';
     const w=l?timerOf(key):(raidOn(key.split('|')[0],now)&&S.obs?.[key]?timerOf(key):null);
     if(!w)return 'idle';
     return now<w.at+w.lo*1000?'wait':now<=w.at+w.hi*1000?'window':'due';};
-  const ORDER={wait:0,window:1,due:2,idle:3,gone:4},STATE={wait:'retour en cours',window:'vide, retour attendu',due:'peut être revenu',idle:'à vérifier',gone:'ne reviendra pas ce raid'};
+  const ORDER={wait:0,window:1,due:2,idle:3,down:4,gone:5},STATE={wait:'retour en cours',window:'vide, retour attendu',due:'peut être revenu',idle:'à vérifier',down:'abattu, retour non relevé',gone:'ne reviendra pas ce raid'};
   const badge=t=>'<span class="sp-badge" style="--c:'+t.c+'" aria-hidden="true">'+t.ab+'</span>';
   const whenOf=(key,now)=>{const w=timerOf(key);if(!w)return 0;return now<w.at+w.lo*1000?w.at+w.lo*1000:w.at+w.hi*1000;};
   function row(p,now){
@@ -175,6 +210,7 @@
     return '<li data-state="'+st+'" data-key="'+p.key+'">'+badge(t)+'<i class="sp-num" aria-hidden="true">'+(p.n||'')+'</i><div><b>'+esc(p.label)+(p.floor&&p.floor!=='Surface'?' <em>'+esc(p.floor)+'</em>':'')+'</b>'+hist+'</div>'+
       (st==='wait'?'<span class="hv-wait"><small>Pas avant</small><b class="mono" data-clock="'+when+'">'+O.mmss(when-now)+'</b>'+atGame(when)+'</span>'+cancel
       :st==='window'?'<span class="hv-wait open"><small>'+(l?'Fenêtre ouverte · avant':'Vide · retour avant')+'</small><b class="mono" data-clock="'+when+'">'+O.mmss(when-now)+'</b>'+atGame(when)+'</span>'+btn('seen','Vu','Il est revenu')+cancel
+      :st==='down'?'<em class="tag">Abattu · délai non relevé</em>'+btn('seen','Revu','Il est revenu')+cancel
       :st==='gone'?'<em class="tag">Ne reviendra pas</em>'+cancel
       :st==='due'?'<em class="tag hot">'+(l?.late?'En retard':'Devrait être revenu')+'</em>'+three
       :three)+'</li>';
@@ -182,8 +218,27 @@
   // Liste triée par urgence : ce qui bouge maintenant en haut, ce qui est hors jeu en bas.
   function rows(list,now){
     const sorted=list.map(p=>({p,st:stateOf(p.key,now)})).sort((a,b)=>ORDER[a.st]-ORDER[b.st]||whenOf(a.p.key,now)-whenOf(b.p.key,now));
-    const groups=[['Chronos en cours',x=>x.st==='wait'||x.st==='window'],['Peut-être revenus',x=>x.st==='due'],['À vérifier',x=>x.st==='idle'],['Ne reviendront pas',x=>x.st==='gone']];
+    const groups=[['Chronos en cours',x=>x.st==='wait'||x.st==='window'],['Peut-être revenus',x=>x.st==='due'],['À vérifier',x=>x.st==='idle'],['Abattus, délai non relevé',x=>x.st==='down'],['Ne reviendront pas',x=>x.st==='gone']];
     return groups.map(([title,test])=>{const g=sorted.filter(test);return g.length?'<li class="sp-sep">'+title+' <b>'+g.length+'</b></li>'+g.map(x=>row(x.p,now)).join(''):'';}).join('');
+  }
+  /* Certains ARC n'ont pas de délai de retour : ils arrivent à une heure connue du raid.
+     La Turbine se pose entre 16 et 13 minutes restantes, et pas à chaque partie. Dès que le chrono
+     est calé, le site sait dire « dans X min », « c'est maintenant » ou « plus ce raid ». */
+  function fenetresRaid(mapId,now=Date.now()){
+    const rd=raidOn(mapId,now);if(!rd)return [];
+    return TYPES.filter(t=>t.fenetre&&points(mapId,t.id).length).map(t=>{
+      const reste=(rd.endAt-now)/1000,[ouvre,ferme]=t.fenetre.map(v=>v*60);
+      const etat=reste>ouvre?'avant':reste>=ferme?'ouverte':'passee';
+      return {t,etat,fin:Math.round(reste-ferme),at:rd.endAt-ouvre*1000};
+    });
+  }
+  function ligneFenetres(mapId,now){
+    const l=fenetresRaid(mapId,now);if(!l.length)return '';
+    return l.map(f=>'<p class="sp-window" data-state="'+f.etat+'"><span class="sp-badge" style="--c:'+f.t.c+'" aria-hidden="true">'+f.t.ab+'</span>'+
+      (f.etat==='avant'?'<span><b>'+esc(tname(f.t))+'</b> peut tomber dans <b class="mono" data-clock="'+f.at+'">'+O.mmss(f.at-now)+'</b></span>'
+       :f.etat==='ouverte'?'<span><b>'+esc(tname(f.t))+'</b> : fenêtre ouverte, encore '+dur(f.fin)+'. Écoute le ciel.</span>'
+       :'<span><b>'+esc(tname(f.t))+'</b> : la fenêtre est passée, elle ne viendra plus ce raid.</span>')+
+      '<button class="link" data-act="sp-fenetre" data-t="'+f.t.id+'">Pourquoi ?</button></p>').join('');
   }
   // Ligne « chrono du jeu » : saisie du temps restant affiché en haut de l'écran du jeu.
   let editClock=false,sansChrono=false;
@@ -194,7 +249,7 @@
     const form=label=>'<label class="sp-sync"><span>'+label+'</span><input type="text" inputmode="numeric" autocomplete="off" maxlength="5" placeholder="mm:ss" aria-label="Temps restant affiché en jeu, minutes et secondes"><button type="button" class="btn small primary" data-act="sp-sync" data-map="'+mapId+'">Caler</button></label>';
     if(here)return '<div class="sp-clock" data-on>'+inv+
       '<p class="sp-time"><b class="mono" data-clock="'+rd.endAt+'" aria-label="Temps restant">'+O.mmss(rd.endAt-now)+'</b><span>restant<small>carte ouverte depuis <b class="mono" data-age="'+rd.endAt+'">'+O.mmss((RAID*1000)-(rd.endAt-now))+'</b></small></span><button class="link" data-act="sp-edit">Recaler</button><button class="link" data-act="sp-unsync">Arrêter</button></p>'+
-      (editClock?form('Temps restant en jeu'):'')+
+      (editClock?form('Temps restant en jeu'):'')+ligneFenetres(mapId,now)+
       (rd.code?'<p class="sp-game"><i class="duo-lamp" aria-hidden="true"></i><span>Partie <b class="mono">'+esc(rd.code.slice(0,5))+'…</b> · <b>'+gameN+'</b> raider'+(gameN>1?'s':'')+' du site</span><button class="link" data-act="sp-code-off">Retirer</button></p>'
         :'<label class="sp-codef"><span>Code de partie</span><input type="text" autocomplete="off" spellcheck="false" maxlength="40" placeholder="en bas de l’écran du jeu" aria-label="Code de partie affiché en bas de l’écran du jeu"><button type="button" class="btn small" data-act="sp-code">Relier</button></label>')+'</div>';
     return '<div class="sp-clock">'+inv+form(rd?'Autre raid en cours sur '+esc(mapById(rd.map)?.short||'')+'. Temps restant ici':'Temps restant en jeu')+'</div>';
@@ -246,8 +301,9 @@
     const b=S.stats[key]?.b?.[bucketAt(r,now)];if(!b||b[0]+b[1]<3)return null;
     return {pct:Math.round((b[0]+1)/(b[0]+b[1]+2)*100),n:b[0]+b[1]};
   }
+  const SORTIE=t=>t.rang!=='leger';
   function raidPanel(plan){
-    const m=mapById(plan.map),now=Date.now(),sets=TYPES.map(t=>({t,list:points(m.id,t.id)})).filter(x=>x.list.length);
+    const m=mapById(plan.map),now=Date.now(),sets=TYPES.filter(SORTIE).map(t=>({t,list:points(m.id,t.id)})).filter(x=>x.list.length);
     if(!sets.length)return '<section class="heavy"><h2>Gros ARC</h2><p class="fine">Aucun point de gros ARC n’est relevé sur cette carte.</p></section>';
     if(!sets.some(x=>x.t.id===raidTab))raidTab=sets[0].t.id;const cur=sets.find(x=>x.t.id===raidTab);
     return '<section class="heavy"><h2>Gros ARC <small>'+esc(m.short)+'</small></h2><div class="seg" role="radiogroup" aria-label="Type de gros ARC">'+sets.map(x=>{const run=x.list.filter(p=>stateOf(p.key,now)==='wait').length;return '<button role="radio" aria-checked="'+(x.t.id===raidTab)+'" data-act="sp-raidtab" data-v="'+x.t.id+'">'+esc(tname(x.t))+' <b>'+x.list.length+'</b>'+(run?'<i class="dot"></i>':'')+'</button>';}).join('')+'</div>'+
@@ -260,8 +316,8 @@
     $('.heavy',v.el)?.remove();
     if(plan.startedAt){const list=$('.live-list',v.el);if(!list)return;const last=[...list.querySelectorAll(':scope>h2')].at(-1);(last||list).insertAdjacentHTML(last?'beforebegin':'beforeend',raidPanel(plan));}
     else if((v.step||1)===3){
-      const m=mapById(plan.map),mod=modifier(m),sets=TYPES.map(t=>({t,n:points(m.id,t.id).length})).filter(x=>x.n);if(!sets.length)return;
-      $('.step>h2',v.el)?.insertAdjacentHTML('afterend','<section class="heavy brief-hv"><h3>Gros ARC sur cette carte</h3><div class="chips">'+sets.map(x=>'<button class="chip-btn" data-act="sp-open" data-map="'+m.id+'">'+ico('map')+esc(tname(x.t))+' · '+x.n+' point'+(x.n>1?'s':'')+(x.t.once?' · ne revient pas':' · retour '+dur(x.t.sec*mod.f))+'</button>').join('')+'</div></section>');
+      const m=mapById(plan.map),mod=modifier(m),sets=TYPES.filter(SORTIE).map(t=>({t,n:points(m.id,t.id).length})).filter(x=>x.n);if(!sets.length)return;
+      $('.step>h2',v.el)?.insertAdjacentHTML('afterend','<section class="heavy brief-hv"><h3>Gros ARC sur cette carte</h3><div class="chips">'+sets.map(x=>'<button class="chip-btn" data-act="sp-open" data-map="'+m.id+'">'+ico('map')+esc(tname(x.t))+' · '+x.n+' point'+(x.n>1?'s':'')+(x.t.once?' · ne revient pas':x.t.sec?' · retour '+dur(x.t.sec*mod.f):x.t.fenetre?' · entre '+x.t.fenetre[0]+' et '+x.t.fenetre[1]+' min restantes':' · délai non relevé')+'</button>').join('')+'</div></section>');
     }
   }
   const raid=O.views.raid,rr=raid.refresh;raid.refresh=function(){rr.apply(this,arguments);injectRaid();};
@@ -277,21 +333,31 @@
   }
 
   /* ── Onglet « Spawn ARC » de l'écran Cartes ── */
-  let pane=null,curMap=read('speranza.ops.spawns.map'),filter='';
+  let pane=null,curMap=read('speranza.ops.spawns.map'),filter='',rang=read('speranza.ops.spawns.rang')||'lourd';
   function drawPane(){
     if(!pane)return;
     const avail=mapsWith();if(!avail.some(m=>m.id===curMap))curMap=(O.ops().plan&&avail.find(m=>m.id===O.ops().plan.map)||avail[0])?.id;
     const m=mapById(curMap),now=Date.now(),md=window.RAID_MAP_DATA.maps.find(x=>x.id===curMap),layer=md.layers[0];
-    const all=TYPES.flatMap(t=>points(curMap,t.id)),list=all.filter(p=>!filter||p.type===filter),act=sched.active(m,now);
+    const all=TYPES.flatMap(t=>points(curMap,t.id)),act=sched.active(m,now);
     all.forEach((p,i)=>p.n=i+1);
+    const dansRang=p=>rang==='tous'||rangOf(p.type)===rang;
+    if(rang!=='tous'&&!all.some(dansRang))rang='tous';
+    if(filter&&(!all.some(p=>p.type===filter)||(rang!=='tous'&&rangOf(filter)!==rang)))filter='';
+    const list=all.filter(p=>dansRang(p)&&(!filter||p.type===filter));
     if(O.net?.bornes&&!duServeur['_'+curMap]){duServeur['_'+curMap]=1;chargerBornes(curMap);}                 // même numéro sur le plan et dans la liste, quel que soit le filtre
     const running=all.filter(p=>stateOf(p.key,now)==='wait').length;
     const N=O.net,netChip=!N||!N.usable?'':'<span class="sp-netchip" data-state="'+N.state()+'" title="'+esc(N.label())+'"><i class="duo-lamp" aria-hidden="true"></i>Réseau · '+esc(N.on()?N.count()+' raider'+(N.count()>1?'s':''):N.label())+'</span>';
     pane.innerHTML='<div class="sp-map"><div class="sp-img" style="aspect-ratio:'+layer.width+'/'+layer.height+'"><img src="'+layer.image+'" alt="Plan de '+esc(m.name)+'">'+
         list.filter(p=>p.layer===0).map(p=>{const st=stateOf(p.key,now),t=typeOf(p.type),w=whenOf(p.key,now),name='Point '+p.n+' · '+tname(t)+' · '+p.label+' · '+STATE[st];
-          return '<button class="sp-pin" data-act="sp-pick" data-k="'+p.key+'" data-state="'+st+'" style="left:'+p.x+'%;top:'+p.y+'%;--c:'+t.c+'" title="'+esc(name)+'" aria-label="'+esc(name)+'"><i class="sp-num" aria-hidden="true">'+p.n+'</i>'+(st==='gone'?'×':t.ab)+((st==='wait'||st==='window')?'<i class="mono" data-clock="'+w+'">'+O.mmss(w-now)+'</i>':'')+'</button>';}).join('')+'</div></div>'+
+          // Le minuteur reste lisible sur le plan : compte à rebours tant qu'il tourne, puis « à vérifier » en clair.
+          const chrono=(st==='wait'||st==='window')?'<i class="mono" data-clock="'+w+'">'+O.mmss(w-now)+'</i>':st==='due'?'<i class="mono hot">à vérifier</i>':'';
+          return '<button class="sp-pin'+(t.rang==='leger'?' mini':'')+(t.rang==='boss'?' boss':'')+'" data-act="sp-pick" data-k="'+p.key+'" data-state="'+st+'" style="left:'+p.x+'%;top:'+p.y+'%;--c:'+t.c+'" title="'+esc(name)+'" aria-label="'+esc(name)+'"><i class="sp-num" aria-hidden="true">'+p.n+'</i>'+(st==='gone'||st==='down'?'×':t.ab)+chrono+'</button>';}).join('')+'</div></div>'+
       '<div class="sp-side"><div class="sp-head"><label class="field inline">Carte<select data-act="sp-map">'+avail.map(x=>'<option value="'+x.id+'"'+(x.id===curMap?' selected':'')+'>'+esc(x.name)+'</option>').join('')+'</select></label>'+
-        '<div class="seg" role="radiogroup" aria-label="Type"><button role="radio" aria-checked="'+(!filter)+'" data-act="sp-filter" data-v="">Tous <b>'+all.length+'</b></button>'+TYPES.map(t=>{const n=points(curMap,t.id).length;return n?'<button role="radio" aria-checked="'+(filter===t.id)+'" data-act="sp-filter" data-v="'+t.id+'">'+badge(t)+esc(tname(t))+' <b>'+n+'</b></button>':'';}).join('')+'</div></div>'+
+        '<div class="seg" role="radiogroup" aria-label="Famille d’ARC">'+
+          [['tous','Tous']].concat(RANGS).map(([k,nom])=>{const n=k==='tous'?all.length:all.filter(p=>rangOf(p.type)===k).length;
+            return n?'<button role="radio" aria-checked="'+(rang===k)+'" data-act="sp-rang" data-v="'+k+'">'+esc(nom)+' <b>'+n+'</b></button>':'';}).join('')+'</div>'+
+        '<div class="seg thin" role="radiogroup" aria-label="Type d’ARC"><button role="radio" aria-checked="'+(!filter)+'" data-act="sp-filter" data-v="">Tous <b>'+all.filter(dansRang).length+'</b></button>'+
+          TYPES.filter(t=>rang==='tous'||t.rang===rang).map(t=>{const n=points(curMap,t.id).length;return n?'<button role="radio" aria-checked="'+(filter===t.id)+'" data-act="sp-filter" data-v="'+t.id+'">'+badge(t)+esc(tname(t))+' <b>'+n+'</b></button>':'';}).join('')+'</div></div>'+
         clockLine(curMap)+
         (raidOn(curMap,now)||sansChrono?'<ul class="hv-list sp-list">'+rows(list,now)+'</ul>'
           :'<div class="sp-gate"><h3>Cale le chrono du jeu</h3>'+
@@ -304,6 +370,36 @@
     prune();if(document.activeElement?.matches?.('.sp-sync input,.sp-codef input'))return;
     if(O.current()==='cartes'&&pane&&!pane.hidden&&$('#maps-view')?.dataset.pane==='spawn'){const top=$('.sp-list',pane)?.scrollTop||0;drawPane();const l=$('.sp-list',pane);if(l)l.scrollTop=top;}
     const s=$('.heavy:not(.brief-hv)',raid.el),plan=O.ops().plan;if(s&&plan?.startedAt)s.outerHTML=raidPanel(plan);
+  }
+  /* Clic sur un point du plan : tout ce qu'il faut savoir sur cet ARC, sans quitter la carte.
+     Comment il attaque, où frapper, et les mêmes boutons de signalement que dans la liste. */
+  function fiche(key){
+    const [mapId,type,i]=key.split('|'),t=typeOf(type),a=O.arcById.get(t.arc),p=points(mapId,type)[Number(i)];
+    if(!t||!p)return;
+    const now=Date.now(),st=stateOf(key,now),f=t.once||!t.sec?null:fenetre(key),tr=trust(key),w=whenOf(key,now),rd=raidOn(mapId,now);
+    const bloc=(titre,txt)=>txt?'<section class="fact"><h3>'+titre+'</h3><p>'+esc(txt)+'</p></section>':'';
+    const btn=(kind,label,titre)=>'<button class="btn'+(kind==='kill'?' primary':'')+'" data-act="sp-rep" data-k="'+key+'" data-kind="'+kind+'" title="'+esc(titre)+'">'+label+'</button>';
+    const etat=st==='wait'||st==='window'
+        ? '<p class="sp-fiche-etat" data-state="'+st+'">'+(st==='wait'?'Retour en cours':'Fenêtre ouverte')+' · <b class="mono" data-clock="'+w+'">'+O.mmss(w-now)+'</b>'+(rd?' <small>soit '+gameClock(rd,w)+' au compteur du jeu</small>':'')+'</p>'
+      : st==='due' ? '<p class="sp-fiche-etat" data-state="due">Il devrait être revenu. Confirme quand tu le vois.</p>'
+      : st==='gone' ? '<p class="sp-fiche-etat" data-state="gone">Abattu : il ne reviendra pas d’ici la fin du raid.</p>'
+      : st==='down' ? '<p class="sp-fiche-etat" data-state="down">Abattu. Aucun délai de retour n’a été relevé pour cet ARC.</p>'
+      : '<p class="sp-fiche-etat">Rien n’est signalé ici pour l’instant.</p>';
+    const ref=t.once?'Une fois abattu, le point reste vide jusqu’à la fin du raid.'
+      :t.sec?'Retour de référence : '+dur(t.sec*modifier(mapById(mapId)).f)+' après l’élimination, bloqué tant qu’un Raider reste à moins de 50 à 150 m.'
+      :t.fenetre?'Il arrive en cours de raid, entre '+t.fenetre[0]+' et '+t.fenetre[1]+' minutes restantes. Pas à chaque partie.'
+      :'Aucun délai de retour publié pour cet ARC : le site n’en invente pas.';
+    O.openSheet((a?.image?'<div class="sheet-hero dark"><img src="'+a.image+'" alt="'+esc(a.name)+'"></div>':'')+
+      '<p class="o-kicker">'+esc(mapById(mapId)?.name||'')+' · point '+(p.n||Number(i)+1)+'</p><h2>'+esc(tname(t))+'</h2><p class="fine">'+esc(p.label)+(p.floor&&p.floor!=='Surface'?' · '+esc(p.floor):'')+'</p>'+
+      etat+
+      '<div class="row sp-fiche-btns">'+btn('seen','Il est là','Je le vois')+btn('absent','Rien ici','Le point est vide')+btn('kill','Je l’ai abattu','Lancer le chrono')+'</div>'+
+      (a?'<div class="stats"><div><b>'+esc(a.hp||'?')+'</b><span>points de vie</span></div><div><b>'+esc(a.armor||'—')+'</b><span>blindage</span></div><div><b>'+esc(a.xp??'—')+'</b><span>XP en jeu</span></div></div>':'')+
+      bloc('Point faible',a?.weak)+bloc('Quand tirer',a?.opening)+bloc('Tactique',a?.tactic)+bloc('Comportement',a?.behavior)+
+      '<section class="fact"><h3>Retour</h3><p>'+ref+'</p>'+
+        (f?'<p class="fine">Sur ce point : entre '+dur(f.lo)+' et '+dur(f.hi)+', d’après '+(f.n?f.n+' relevé'+(f.n>1?'s':'')+' sur '+f.source:'la référence')+'.</p>':'')+
+        (tr?'<p class="fine">Présent dans '+tr.pct+' % des '+tr.n+' passages signalés ici.</p>':'')+'</section>'+
+      (a?'<div class="row"><button class="btn" data-act="arc" data-id="'+a.id+'">Fiche complète de l’ARC</button></div>':''),
+      {label:tname(t)});
   }
   O.spawns={net:fromNet,raid:()=>raidOn(null),async mount(host){await data();if(!pane){pane=document.createElement('section');pane.className='spawn-pane';pane.setAttribute('aria-label','Spawn ARC');host.append(pane);
       // Survoler une ligne éclaire son point sur le plan, et inversement : on sait tout de suite de quel « Complexe de dômes » on parle.
@@ -328,6 +424,14 @@
       if(!c||!S.raid){O.toast('Recopie le code affiché en bas de l’écran du jeu, par exemple p4967-8fkpz-x6mm2.');inp.focus();return;}
       S.raid.code=c;save();inp.blur();linkGame();window.AtlasDuo?.send?.(syncMsg());O.toast('Partie reliée. Les raiders qui tapent le même code partagent leurs chronos avec toi.');repaint();},
     'sp-skip':()=>{sansChrono=true;repaint();},
+    'sp-fenetre':d=>{const t=typeOf(d.t);if(!t?.fenetre)return;
+      O.openSheet('<h2>'+esc(tname(t))+' : une arrivée, pas un retour</h2>'+
+        '<p>Cet ARC n’occupe pas un point fixe qu’on peut vider puis attendre. Il se pose en cours de raid, dans une fenêtre connue du compteur du jeu : entre <b>'+t.fenetre[0]+'</b> et <b>'+t.fenetre[1]+' minutes restantes</b>.</p>'+
+        '<ul class="plain"><li>Elle ne tombe pas à chaque partie. Si rien n’est arrivé à la fin de la fenêtre, il n’y en aura pas ce raid.</li>'+
+        '<li>Les raids nocturnes augmentent nettement ses chances.</li>'+
+        '<li>Les points marqués sur le plan sont les zones d’atterrissage relevées par les joueurs, pas une position garantie.</li></ul>'+
+        '<p class="notice">C’est la raison du chrono : sans le temps restant affiché en jeu, le site ne peut rien dire de cette fenêtre.</p>'+
+        '<h3>Sources</h3><ul class="plain"><li><a href="https://arcraidersintel.org/guides/arc-raiders-turbine-guide-how-to-find-fight-and-loot-the-turbine" target="_blank" rel="noopener noreferrer">ARC Intel · guide de la Turbine</a></li><li><a href="https://gamer-guides.com/arc-raiders/how-to-kill-turbine/" target="_blank" rel="noopener noreferrer">Gamer Guides · fenêtre d’apparition</a></li></ul>',{label:tname(t)});},
     'sp-code-off':()=>{if(S.raid){S.raid.code='';save();linkGame();repaint();}},
     'sp-join':()=>{const v=S.invite;if(!v)return;setRaid(v.map,v.endAt,v.by,true,v.id,v.code);curMap=v.map;O.toast('Tu partages maintenant les chronos de ce raid avec '+v.by+'.');repaint();},
     'sp-decline':()=>{if(S.invite){S.declined=S.invite.id;delete S.invite;save();repaint();}},
@@ -335,13 +439,20 @@
     'sp-unsync':()=>endRaid('Chrono arrêté. Les retours d’ARC sont remis à zéro.'),
     'sp-raidtab':d=>{raidTab=d.v;repaint();},
     'sp-filter':d=>{filter=d.v;drawPane();},
+    'sp-rang':d=>{rang=d.v;filter='';write('speranza.ops.spawns.rang',rang);drawPane();},
     'sp-map':(d,el)=>{curMap=el.value;write('speranza.ops.spawns.map',curMap);drawPane();},
-    'sp-pick':d=>{const li=$('.sp-list li[data-key="'+d.k+'"]');if(!li)return;li.scrollIntoView({block:'nearest'});li.setAttribute('data-flash','');setTimeout(()=>li.removeAttribute('data-flash'),1200);$('button',li)?.focus({preventScroll:true});},
+    'sp-pick':d=>{const li=$('.sp-list li[data-key="'+d.k+'"]');if(li){li.scrollIntoView({block:'nearest'});li.setAttribute('data-flash','');setTimeout(()=>li.removeAttribute('data-flash'),1200);}fiche(d.k);},
+    'sp-fiche':d=>fiche(d.k),
     'sp-open':async d=>{curMap=d.map;await O.go('cartes');actions['maps-tab']({t:'spawn'});},
 
     'sp-reset':()=>{if(confirm('Effacer les signalements et délais observés enregistrés sur cet appareil ?')){S={stats:{},live:{},ids:[]};save();repaint();}},
     'sp-about':()=>O.openSheet('<h2>Spawn ARC : ce qu’on sait, ce qu’on mesure</h2>'+
-      '<h3>Ce qui est connu</h3><ul class="plain"><li>Bastion, Artificier et Bombardier occupent des points fixes. Ceux du site viennent des cartes communautaires.</li><li>Le jeu ne publie aucun horaire d’apparition, et aucune source consultée ne décrit la première apparition du raid.</li><li>Délais de retour relevés par des joueurs : Bastion 6 min, Bombardier 6 min, Artificier 7 min.</li><li>Au terme du délai, l’apparition est bloquée si un Raider se trouve à environ 50 à 150 m.</li><li>Raid nocturne, Tempête électromagnétique, Bunker caché : 15 % plus rapide. Portail verrouillé, Vague de froid : 10 % plus lent.</li></ul>'+
+      '<h3>Ce qui est connu</h3><ul class="plain"><li>Les ARC occupent des points fixes, relevés sur les cartes communautaires. Le jeu ne publie aucun horaire, et aucune source consultée ne décrit la première apparition du raid.</li>'+
+      '<li>Délais de retour relevés par des joueurs : Guêpe et Frelon 3 min · Pop et Bolide 4 min · Déchiqueteuse et Mouchard 5 min · Bastion, Bombardier, Bondisseur et Tique 6 min · Artificier 7 min · Tourelle 8 min · Guetteur 12 min.</li>'+
+      '<li>La Sentinelle ne revient pas. L’Observateur revient en 6 min, ou chaque minute tant que son Bombardier vit.</li>'+
+      '<li>Comète, Luciole, Vaporisateur, Brute, Rôdeur, Coursier : aucun délai publié à ce jour. Le site affiche le point et accepte les signalements, mais n’invente pas de chrono.</li>'+
+      '<li>La Turbine ne « revient » pas : elle se pose entre 16 et 13 minutes restantes, et pas à chaque raid. Matriarche, Reine, Hydre et Évaluateur dépendent d’un événement de carte.</li>'+
+      '<li>Au terme du délai, l’apparition est bloquée si un Raider se trouve à environ 50 à 150 m.</li><li>Raid nocturne, Tempête électromagnétique, Bunker caché : 15 % plus rapide. Portail verrouillé, Vague de froid : 10 % plus lent.</li></ul>'+
       '<h3>Ce que le site calcule</h3><ul class="plain"><li><b>Fiabilité d’un point</b> : part des passages où l’ARC était bien là (« Vu » ou « Abattu ») sur l’ensemble des passages signalés.</li><li><b>Délais de référence</b> : Bastion, Bombardier et Bondisseur 6 min, Artificier 7 min, à partir de l’élimination. Le retour est bloqué tant qu’un Raider reste à moins de 50 à 150 m. Tant que le Bombardier vit, ses Observateurs reviennent chaque minute. Si tu entres en cours de raid, un point vide a pu être nettoyé avant toi : marque-le « Vide » pour obtenir son retour au plus tard.</li><li><b>Chrono du jeu</b> : un raid dure 30 min au compteur du jeu, mais on y entre souvent en cours de route. Tu tapes le temps restant affiché en jeu ; le site en déduit l’âge de la carte et donne chaque retour à l’heure du compteur du jeu. Le calage part vers ton escouade.</li><li><b>Bondisseur et Sentinelle</b> : le Bondisseur revient comme un Bastion (6 min de référence, certains joueurs relèvent plutôt 8). La Sentinelle ne revient pas : une fois abattue, son point reste vide jusqu’à la fin du raid.</li><li><b>Chrono après « Abattu »</b> : heure de l’élimination + délai de référence corrigé par l’événement en cours. Si le retour tombe après la fin du raid, c’est écrit.</li><li><b>Fenêtre après « Vide »</b> : l’ARC a été abattu avant ton passage, donc au plus tôt un délai entier avant. Son retour tombe au plus tard un délai après ton constat, sauf zone occupée.</li><li><b>Présence à ce stade du raid</b> : les avis sont rangés par tranche de 10 min de carte. À partir de 3 avis dans la tranche en cours, le site affiche la part de passages où l’ARC était là.</li><li><b>Délai observé</b> : quand un ARC abattu est revu, l’écart est enregistré. À partir de deux mesures, si le retour observé est plus court que la référence, c’est lui qui sert au chrono.</li><li><b>Escouade</b> : quand l’un de vous cale le chrono, les autres voient « Tu es dans la même partie ? ». Seuls ceux qui répondent « J’y suis » partagent les chronos de ce raid. Un coéquipier parti sur une autre partie ne change rien aux tiens.</li><li><b>Code de partie</b> : le jeu affiche un code en bas de l’écran. Si d’autres raiders de ta partie utilisent le site et tapent le même code, vous partagez vos chronos sans être dans la même escouade. Le site vérifie aussi la carte et l’heure de fin du raid. Embark ne documente pas ce code : s’il n’est pas commun aux joueurs d’une même partie, il ne reliera simplement personne.</li><li><b>Historique tous raids</b> : la ligne grise sous chaque point additionne les avis de toutes les parties, les tiennes et celles des autres. Elle dit si un point est souvent occupé, pas ce qui s’y passe maintenant.</li><li><b>Réseau d’entraide</b> : tous les raiders qui ouvrent le site partagent la même base, sans salon ni inscription. Seuls partent les avis qui comptent pour la fiabilité d’un point et les bornes de retour. Les chronos n’y passent pas : un ARC abattu dans un autre raid ne dit rien du tien. Ni pseudo, ni collection, ni position.</li></ul>'+
       '<p class="notice">Les délais de référence sont donnés comme vérifiés au 7 septembre 2026 et peuvent changer avec les patchs. Le chrono indique un « au plus tôt ».</p>'+
       '<h3>Sources</h3><ul class="plain">'+SRC.map(([l,u])=>'<li><a href="'+u+'" target="_blank" rel="noopener noreferrer">'+esc(l)+'</a></li>').join('')+'</ul>',{label:'Spawn ARC'})

@@ -197,3 +197,33 @@ li[data-state=window] .hv-wait b{color:var(--c3)}
 .sp-list>li.lie{background:#1d2b42;outline:2px solid var(--c1);outline-offset:-2px}
 .sp-pin.lie{outline:3px solid var(--c1);outline-offset:2px;z-index:5}
 .hv-wait.open b{color:var(--c3)}
+
+/* ─ Tous les ARC sur le plan ─
+   Les petits ARC sont nombreux : leur pastille est plus discrète pour que les gros restent lisibles. */
+.sp-pin.mini{width:1.15rem;height:1.15rem;font-size:.52rem;opacity:.9}
+.sp-pin.mini .sp-num{display:none}
+.sp-pin.mini:hover,.sp-pin.mini:focus-visible{opacity:1}
+.sp-pin.boss{width:2.1rem;height:2.1rem;font-size:.8rem;box-shadow:0 0 0 2px var(--c),0 0 0 5px #0b111a,0 2px 10px #000}
+.sp-pin[data-state=down]{background:#1b2533;color:#8ea0b5;box-shadow:0 0 0 2px #56657a;opacity:.85;font-size:.95rem}
+.sp-pin i.hot{background:#2a1512f2;color:var(--c4);font-family:var(--sans);font-weight:700;font-size:.62rem}
+.hv-list li[data-state=down]{border-color:var(--edge2);background:#141c28;opacity:.9}
+
+/* Deuxième rangée de filtres : le type, à l'intérieur de la famille choisie. */
+.seg.thin button{min-height:2rem;padding:0 .45rem;font-size:.78rem}
+.sp-head .seg{flex:1 1 100%}
+
+/* Fenêtre d'arrivée annoncée par le chrono du raid (Turbine). */
+.sp-window{display:flex;align-items:center;gap:.5rem;flex-wrap:wrap;margin:.3rem 0;padding:.4rem .5rem;border:1px solid var(--edge);border-radius:.4rem;background:#0f1826;font-size:.84rem;line-height:1.35}
+.sp-window span{flex:1;min-width:0}
+.sp-window[data-state=ouverte]{border-color:var(--c3);background:#2a241055}
+.sp-window[data-state=passee]{opacity:.65}
+.sp-window .mono{color:var(--c3);font-weight:700}
+
+/* Fiche d'un point, ouverte au clic sur le plan. */
+.sp-fiche-etat{margin:.4rem 0 .6rem;padding:.5rem .6rem;border:1px solid var(--edge);border-radius:.4rem;background:#0f1826;font-size:.92rem}
+.sp-fiche-etat .mono{font-size:1.2rem;color:var(--c3)}
+.sp-fiche-etat small{color:var(--soft)}
+.sp-fiche-etat[data-state=wait],.sp-fiche-etat[data-state=window]{border-color:var(--c3)}
+.sp-fiche-etat[data-state=due]{border-color:var(--c4);background:#2a151255}
+.sp-fiche-btns{gap:.4rem}
+.sp-fiche-btns .btn{flex:1}

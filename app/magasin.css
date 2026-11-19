@@ -1,0 +1,40 @@
+/* Magasin d'échange — les annonces entre raiders.
+   La hiérarchie tient en une règle : ce qui te concerne se voit d'abord, le reste attend. */
+.mg-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,22rem),1fr));gap:.7rem;align-items:start}
+.mg-card{display:flex;flex-direction:column;gap:.5rem;padding:.7rem .8rem;border:1px solid var(--edge);border-radius:.5rem;background:var(--hull)}
+.mg-card[data-match]{border-color:var(--c2);background:linear-gradient(var(--hull),var(--hull)) padding-box,linear-gradient(140deg,#71e58e55,transparent 60%) border-box}
+.mg-card[data-match="3"]{border-color:var(--c3);box-shadow:0 0 0 1px #ffd45633}
+
+.mg-match{display:flex;align-items:center;gap:.4rem;margin:0;font-size:.84rem;line-height:1.35;color:var(--c2);font-weight:600}
+.mg-match.parfait{color:var(--c3)}
+.mg-match .i{flex:none}
+
+.mg-card header{display:flex;align-items:baseline;gap:.5rem;flex-wrap:wrap}
+.mg-card header small{margin-left:auto;color:var(--soft);font-size:.76rem}
+.mg-pseudo{font:600 1.02rem/1.2 var(--sans);word-break:break-word}
+.mg-genre{padding:.1rem .45rem;border-radius:.3rem;font:700 .7rem/1.6 var(--sans);text-transform:uppercase;letter-spacing:.04em;color:var(--ink)}
+.mg-genre[data-g=don]{background:var(--c2)}
+.mg-genre[data-g=echange]{background:var(--c1)}
+.mg-genre[data-g=recherche]{background:var(--c3)}
+
+.mg-mot{margin:0;font-size:.9rem;line-height:1.45;color:var(--paper)}
+.mg-cols{display:grid;gap:.5rem}
+.mg-cols h4{margin:0 0 .25rem;font:600 .8rem/1.3 var(--sans);color:var(--soft)}
+.mg-cols h4 b{color:var(--paper)}
+.mg-cols .chip-btn.manque{border-color:var(--c2);color:var(--c2)}
+
+.mg-erreur{margin:.4rem 0;padding:.5rem .7rem;border:1px solid var(--c4);border-radius:.4rem;background:#2a151255;font-size:.9rem}
+
+/* Formulaire de publication */
+.mg-bloc{margin:0 0 1rem}
+.mg-bloc h3{margin:0 0 .2rem}
+.mg-bloc .fine{margin:0 0 .5rem}
+.mg-bloc input[type=text]{width:100%;height:2.6rem;padding:0 .7rem;border:1px solid var(--edge2);border-radius:.4rem;background:#0f1826;color:var(--paper)}
+.mg-panier{display:flex;flex-wrap:wrap;gap:.3rem;min-height:2.4rem;margin-bottom:.5rem;padding:.4rem;border:1px dashed var(--edge2);border-radius:.4rem;align-items:center}
+.mg-panier .chip-btn.on{border-color:var(--c1);color:var(--c1)}
+.mg-sug{margin-top:.5rem}
+.mg-sug summary{cursor:pointer;font-size:.86rem;color:var(--c1)}
+.mg-sug .chips{margin-top:.4rem}
+.chip-btn small{margin-left:.35rem;opacity:.7;font-size:.72rem}
+
+@media(max-width:560px){.mg-card header small{margin-left:0;flex:1 1 100%}}

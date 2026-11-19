@@ -44,6 +44,9 @@
   // Pseudo tel qu'il s'affiche dans ARC Raiders : c'est lui qui permet de se retrouver en jeu
   // pour un échange. Les noms d'Embark acceptent espaces, accents et chiffres.
   const gameName=(id=index.active)=>index.list.find(p=>p.id===id)?.game||'';
+  /* Dans ARC Raiders, un joueur s'appelle Pseudo#1234 : le numéro à quatre chiffres distingue
+     les homonymes. Sans lui, celui qui veut te rendre un schéma ne te trouve pas dans sa liste. */
+  const gameOk=v=>/^[^#]{1,24}#\d{4}$/.test(cleanGame(v));
   function setGameName(raw){
     const p=index.list.find(p=>p.id===index.active);if(!p)return false;
     const g=cleanGame(raw);if(raw&&!g&&String(raw).trim())return false;
@@ -100,7 +103,18 @@
   /* ── Fenêtre de choix / création ── */
   const esc=t=>String(t).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   const dialog=document.createElement('dialog');dialog.id='profileDialog';dialog.setAttribute('aria-labelledby','profileDialogTitle');document.body.append(dialog);
+  let etape='profil';
+  function dessineJeu(error=''){
+    dialog.innerHTML='<form method="dialog" class="pd">'+
+      '<h2 id="profileDialogTitle">Ton pseudo dans ARC Raiders</h2>'+
+      '<p>C’est celui qu’on lit au-dessus de ta tête en jeu, avec son numéro à quatre chiffres. Les autres raiders s’en servent pour t’ajouter et te remettre un schéma en main propre.</p>'+
+      '<label class="pd-new">Pseudo complet<span><input type="text" id="profileGame" maxlength="32" autocomplete="off" spellcheck="false" placeholder="Raider#1234" value="'+esc(gameName())+'" aria-describedby="profileError"><button type="button" data-game class="btn primary">Enregistrer</button></span></label>'+
+      '<p class="pd-hint">Il s’affiche dans le jeu en haut à droite de l’écran d’accueil, et dans ta liste d’amis.</p>'+
+      '<button type="button" class="btn" data-later>Plus tard</button>'+
+      '<p id="profileError" class="pd-error" role="alert">'+esc(error)+'</p></form>';
+  }
   function draw(error=''){
+    if(etape==='jeu')return dessineJeu(error);
     const first=!index.list.length;
     dialog.innerHTML='<form method="dialog" class="pd">'+(first?'':'<button class="pd-x" value="close" aria-label="Fermer">×</button>')+
       '<h2 id="profileDialogTitle">'+(first?'Bienvenue à Speranza':'Qui joue ?')+'</h2>'+
@@ -113,20 +127,30 @@
     const v=dialog.querySelector('#profileName').value;
     if(!cleanName(v)){draw('Écris un pseudo (24 caractères au plus).');dialog.querySelector('input').focus();return;}
     if(!create(v)){draw('Ce pseudo existe déjà sur cet appareil.');dialog.querySelector('input').focus();return;}
-    dialog.close();
+    etape='jeu';draw();dialog.querySelector('#profileGame')?.focus();      // on enchaîne sur le pseudo en jeu
+  };
+  const submitGame=()=>{
+    const v=dialog.querySelector('#profileGame').value.trim();
+    if(!v){draw('Écris ton pseudo, ou touche « Plus tard ».');return;}
+    if(!gameOk(v)){draw('Il manque le numéro : écris-le comme en jeu, par exemple Raider#1234.');dialog.querySelector('#profileGame').focus();return;}
+    setGameName(v);etape='profil';dialog.close();
   };
   dialog.addEventListener('click',e=>{
     const pick=e.target.closest('[data-pick]');
     if(pick){select(pick.dataset.pick);dialog.close();}
     else if(e.target.closest('[data-create]'))submit();
+    else if(e.target.closest('[data-game]'))submitGame();
+    else if(e.target.closest('[data-later]')){etape='profil';dialog.close();}
     else if(e.target.closest('[data-restore]')){dialog.close();window.OPSBackup?.importFile();}
     else if(e.target===dialog&&index.list.length)dialog.close();
   });
-  dialog.addEventListener('keydown',e=>{if(e.key==='Enter'&&e.target.id==='profileName'){e.preventDefault();submit();}});
+  dialog.addEventListener('keydown',e=>{if(e.key==='Enter'&&e.target.id==='profileName'){e.preventDefault();submit();}
+    if(e.key==='Enter'&&e.target.id==='profileGame'){e.preventDefault();submitGame();}});
   dialog.addEventListener('cancel',e=>{if(!index.active)e.preventDefault();});
+  dialog.addEventListener('close',()=>{etape='profil';});
   window.addEventListener('storage',e=>{if(e.key&&e.key.startsWith('speranza.ops.col.v1.')){cache.delete(e.key.slice(20));emit(e.key.slice(20),'storage');}});
 
-  window.AtlasProfiles={active,name,gameName,setGameName,list:()=>index.list.map(p=>({...p})),owned,has,snapshot,setOwned,spare,setSpare,replaceOwned,savePrivate,create,select,rename,remove,choose,
+  window.AtlasProfiles={active,name,gameName,setGameName,gameOk,askGame:()=>{etape='jeu';draw();if(!dialog.open)dialog.showModal();dialog.querySelector('#profileGame')?.focus();},list:()=>index.list.map(p=>({...p})),owned,has,snapshot,setOwned,spare,setSpare,replaceOwned,savePrivate,create,select,rename,remove,choose,
     compare:()=>window.OPS?.actions.compare?.(),lastReceived:()=>null};
   if(!index.active)window.addEventListener('DOMContentLoaded',choose,{once:true});
   if(!index.active&&document.readyState!=='loading')choose();

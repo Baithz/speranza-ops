@@ -297,6 +297,7 @@ button.mat:hover{border-color:var(--amber)}.mat span:nth-child(2){flex:1}.mat .s
 .pd-new{display:grid;gap:.35rem;font-weight:600}.pd-new span{display:flex;gap:.5rem}
 .pd-new input{flex:1;min-width:0;height:2.6rem;padding:0 .7rem;border:1px solid var(--edge2);border-radius:.4rem;background:#0f1826;color:var(--paper)}
 .pd-error{min-height:1.2rem;margin:.4rem 0 0;font-size:.86rem;color:#ffb3a3}
+.pd-hint{margin:.1rem 0 .6rem;font-size:.82rem;line-height:1.4;color:var(--soft)}
 .squad{list-style:none;margin:.8rem 0;padding:0;display:grid;gap:.35rem}
 .squad li{display:flex;align-items:center;gap:.7rem;padding:.5rem .7rem;border:1px solid var(--edge);border-radius:.4rem;background:#0f1826}
 .squad li .dot{background:#44597a}.squad li[data-live=true] .dot{background:var(--c2)}.squad small{display:block;font-size:.78rem;color:var(--soft)}

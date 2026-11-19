@@ -36,9 +36,9 @@
   async function avis(key,etatAvis,age,ecart,partie){
     const c=await connecter();if(!c)return false;
     const [carte,type,idx]=String(key).split('|');
-    const genre=({'arc-bastion':'bastion','arc-rocketeer':'artificier','arc-bombardier':'bombardier','arc-leaper':'bondisseur','arc-sentinel':'sentinelle'})[type];
-    if(!genre||!carte||idx===undefined)return false;
-    const ligne={carte:carte.slice(0,40),point:(type+'|'+idx).slice(0,60),genre,etat:etatAvis,
+    // Le genre est l'identifiant du type d'ARC, tel qu'il figure sur les cartes : tous sont acceptés.
+    if(!carte||idx===undefined||!/^[a-z][a-z0-9-]{1,23}$/.test(type||''))return false;
+    const ligne={carte:carte.slice(0,40),point:(type+'|'+idx).slice(0,60),genre:type,etat:etatAvis,
       age_carte:Math.max(0,Math.min(2400,Math.round(age||0)))};
     if(ecart>0&&ecart<=3600)ligne.ecart=Math.round(ecart);
     if(partie)ligne.partie=String(partie).slice(0,24);
@@ -58,6 +58,51 @@
     const par={};for(const l of data)par[carte+'|'+l.point]={basse:l.basse,haute:l.haute,n:(l.n_basse||0)+(l.n_haute||0)};
     cacheBornes.set(carte,{at:Date.now(),data:par});
     return par;
+  }
+
+  /* ── Magasin d'échange ──────────────────────────────────────────────────
+     Les annonces que les raiders se laissent : je donne, j'échange ceci contre cela, je cherche.
+     Le pseudo ARC Raiders en fait partie — c'est tout l'intérêt : sans lui on ne se retrouve pas
+     en jeu. Rien d'autre du profil ne part, ni collection ni position. */
+  const propre=o=>o&&['bp','loot'].includes(o.t)&&/^[a-z0-9][a-z0-9_-]{0,47}$/.test(String(o.id||''))?{t:o.t,id:o.id}:null;
+  const liste=l=>(Array.isArray(l)?l:[]).map(propre).filter(Boolean).slice(0,12);
+
+  async function annonces(){
+    const c=await connecter();if(!c)return null;
+    const {data,error}=await c.from('annonces')
+      .select('id,cree_le,auteur,pseudo,genre,donne,cherche,mot')
+      .is('ferme_le',null).order('cree_le',{ascending:false}).limit(200);
+    if(error)return null;
+    return data.map(a=>({...a,donne:liste(a.donne),cherche:liste(a.cherche),mienne:a.auteur===session?.user?.id}));
+  }
+
+  async function publier({pseudo,genre,donne,cherche,mot}){
+    const c=await connecter();if(!c)return {ok:false,mot:'La base n’est pas joignable.'};
+    if(!/^[^#]{1,24}#\d{4}$/.test(String(pseudo||'')))return {ok:false,mot:'Il faut ton pseudo ARC Raiders complet, numéro compris.'};
+    const d=liste(donne),ch=liste(cherche);
+    if(genre==='don'&&!d.length)return {ok:false,mot:'Choisis au moins un objet à donner.'};
+    if(genre==='recherche'&&!ch.length)return {ok:false,mot:'Choisis au moins un objet à chercher.'};
+    if(genre==='echange'&&(!d.length||!ch.length))return {ok:false,mot:'Un échange a deux côtés : ce que tu donnes et ce que tu veux.'};
+    const {error}=await c.from('annonces').insert({pseudo:String(pseudo).slice(0,32),genre,donne:d,cherche:ch,mot:String(mot||'').slice(0,160)||null});
+    if(error)return {ok:false,mot:/maximum/.test(error.message)?'Dix annonces ouvertes au maximum. Ferme-en une avant.':'Publication refusée par la base.'};
+    return {ok:true};
+  }
+
+  async function fermer(id){
+    const c=await connecter();if(!c)return false;
+    const {error}=await c.from('annonces').update({ferme_le:new Date().toISOString()}).eq('id',id);
+    return !error;
+  }
+
+  // Le magasin se remplit sous les yeux de ceux qui l'ont ouvert.
+  let canalMagasin=null;
+  async function suivreMagasin(quand){
+    const c=await connecter();if(!c)return ()=>{};
+    if(canalMagasin)c.removeChannel(canalMagasin);
+    canalMagasin=c.channel('magasin')
+      .on('postgres_changes',{event:'*',schema:'public',table:'annonces'},()=>{try{quand();}catch{}})
+      .subscribe();
+    return ()=>{if(canalMagasin){c.removeChannel(canalMagasin);canalMagasin=null;}};
   }
 
   async function compter(){
@@ -100,7 +145,8 @@
     game:partie,gameCode:()=>codePartie,gameCount:()=>actifs,
     gameSend:()=>true,                       // l'insertion suffit : la base diffuse elle-même
     obs:(key,kind,d,age,partieEnCours)=>{avis(key,kind==='seen'?'vu':kind==='absent'?'vide':'abattu',age,d,partieEnCours);},
-    bornes,ecoute:f=>{ecoute.add(f);return ()=>ecoute.delete(f);},connecter
+    bornes,ecoute:f=>{ecoute.add(f);return ()=>ecoute.delete(f);},connecter,
+    annonces,publier,fermer,suivreMagasin
   };
   O.base={pret:PRET,client:()=>client,identite:()=>session?.user?.id||null};
   if(PRET)addEventListener('DOMContentLoaded',()=>setTimeout(connecter,1200));
