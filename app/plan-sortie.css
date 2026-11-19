@@ -1,0 +1,38 @@
+/* « Qu'est-ce qu'on fait ce soir ? » — trois questions, un plan.
+   Le bloc est replié par défaut : il propose, il n'encombre pas. */
+.ps{margin:0 0 1.2rem;padding:.9rem 1rem 1rem;border:1px solid var(--edge);border-radius:.6rem;background:var(--hull)}
+.ps-haut{display:flex;align-items:baseline;gap:.8rem}
+.ps h2{margin:0 0 .4rem;font-size:1.25rem}
+.ps-haut .link{margin-left:auto}
+.ps>p{margin:0 0 .7rem;color:var(--soft);line-height:1.5;max-width:52ch}
+
+.ps-champs{display:flex;flex-wrap:wrap;gap:.8rem 1.4rem;margin:.2rem 0 .5rem}
+.ps-champ{display:grid;gap:.25rem}
+.ps-champ>span{font:600 .78rem/1 var(--sans);color:var(--soft);text-transform:uppercase;letter-spacing:.04em}
+.ps-sous{margin:0 0 .8rem}
+
+/* Le plan : une carte en bandeau, puis l'itinéraire, puis les conseils. */
+.ps-plan{margin-top:1rem;border:1px solid var(--edge2);border-radius:.5rem;overflow:hidden;background:#0f1826}
+.ps-tete{position:relative;display:flex;flex-wrap:wrap;gap:.8rem;align-items:flex-end;justify-content:space-between;padding:1rem;background:linear-gradient(100deg,#0b111aee 42%,#0b111a88),var(--shot) center/cover no-repeat,#0b111a}
+.ps-tete>div:first-child{min-width:min(100%,18rem)}
+.ps-k{margin:0;font:600 .72rem/1 var(--sans);color:var(--c1);text-transform:uppercase;letter-spacing:.08em}
+.ps-tete h3{margin:.25rem 0 .3rem;font-size:1.6rem;line-height:1.1}
+.ps-why{margin:0;font-size:.92rem;color:var(--soft)}
+.ps-why b{color:var(--c3)}
+
+.ps-etapes{list-style:none;counter-reset:ps;margin:0;padding:.6rem .9rem}
+.ps-etapes li{counter-increment:ps;display:flex;flex-wrap:wrap;align-items:baseline;gap:.5rem;padding:.45rem 0 .45rem 2rem;position:relative;border-bottom:1px solid var(--edge)}
+.ps-etapes li:last-child{border-bottom:0}
+.ps-etapes li:before{content:counter(ps);position:absolute;left:0;top:.4rem;display:grid;place-items:center;width:1.5rem;height:1.5rem;border-radius:50%;background:#1b2838;color:var(--c1);font:700 .78rem/1 var(--mono)}
+.ps-etapes b{font-weight:600}
+.ps-etapes span{flex:1;min-width:10rem;color:var(--soft);font-size:.9rem}
+.ps-vide{margin:0;padding:.8rem .9rem}
+
+.ps-conseils{list-style:none;margin:0;padding:.3rem .9rem .9rem;display:grid;gap:.4rem}
+.ps-conseils li{position:relative;padding-left:1rem;font-size:.9rem;line-height:1.5;color:var(--soft)}
+.ps-conseils li:before{content:"";position:absolute;left:0;top:.6rem;width:.35rem;height:.35rem;border-radius:50%;background:var(--c3)}
+.ps-plan>.fine{margin:0;padding:0 .9rem .9rem}
+.ps-rien{padding:.9rem}
+.ps-rien p{margin:0 0 .4rem}
+
+@media(max-width:560px){.ps-haut{flex-wrap:wrap}.ps-haut h2{flex:1 1 100%}.ps-haut .link{margin-left:0;margin-bottom:.4rem}.ps-champs{gap:.7rem}.ps-champ{width:100%}.ps-tete h3{font-size:1.3rem}}

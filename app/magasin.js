@@ -1,5 +1,8 @@
-/* Speranza Ops — Magasin d'échange.
-   Les raiders se laissent des annonces : je donne, j'échange ceci contre cela, je cherche.
+/* Speranza Ops — Raiders : avec qui jouer, et quoi échanger.
+   Deux onglets sous un même toit, parce que c'est la même question posée deux fois :
+   « qui peut m'aider ? ».
+     • Escouades — « je cherche deux francophones pour farmer ce soir », avec une heure de fin.
+     • Échanges  — je donne, j'échange ceci contre cela, je cherche.
    Trois choses le rendent utile plutôt que bavard :
      • le pseudo ARC Raiders complet est obligatoire, sinon personne ne se retrouve en jeu ;
      • le site compare chaque annonce à ta collection et remonte celles qui te concernent ;
@@ -7,7 +10,7 @@
    Sans base configurée, l'écran l'explique au lieu de tourner à vide. */
 (() => {
   'use strict';
-  const O=window.OPS,{$,$$,esc,norm,ico,BP,bpById,owned,actions,P}=O;
+  const O=window.OPS,{$,$$,esc,norm,ico,BP,bpById,owned,actions,P,MAPS,mapById}=O;
   const LOOT=window.LOOT_DATA||{};
   const lootIds=Object.keys(LOOT).sort((a,b)=>LOOT[a].name.localeCompare(LOOT[b].name,'fr'));
   const nomDe=o=>o.t==='bp'?(bpById.get(o.id)?.name||o.id):(LOOT[o.id]?.name||o.id);
@@ -23,10 +26,11 @@
   const GENRES={don:'Don',echange:'Échange',recherche:'Recherche'};
 
   let liste=null,chargement=false,erreur='',filtre='pour-moi',q='',arret=null;
+  let onglet=O.read('speranza.ops.raiders.onglet')||'escouades';
   // Brouillon de l'annonce en cours d'écriture, conservé tant que la feuille est ouverte.
   let projet={genre:'echange',donne:[],cherche:[],mot:''};
 
-  const vueMagasin=()=>O.views.magasin;
+  const vue=()=>O.views.raiders;
   const clef=o=>o.t+':'+o.id;
   const dansListe=(l,o)=>l.some(x=>clef(x)===clef(o));
 
@@ -36,7 +40,7 @@
     chargement=false;
     if(r===null||r===undefined){erreur=O.net?.usable?'La base n’a pas répondu. Réessaie dans un instant.':'';liste=liste||[];}
     else liste=r;
-    vueMagasin()?.refresh?.();
+    vue()?.refresh?.();
   }
 
   /* Ce qui rend une annonce intéressante pour toi, et rien d'autre : on ne compare que les
@@ -108,25 +112,37 @@
     return '<div class="mg-grid">'+r.map(carte).join('')+'</div>';
   }
 
-  O.register('magasin',{title:'Magasin d’échange',short:'Magasin',icon:'swap',pos:6.6,
-    mount(el){
-      el.innerHTML='<header class="view-head"><h1>Magasin d’échange</h1><p>Ce que les raiders donnent, cherchent ou échangent. Les annonces qui te concernent remontent d’elles-mêmes.</p></header>'+
-        '<div class="tools"><div class="seg" role="radiogroup" aria-label="Filtre">'+FILTRES.map(([k,n])=>'<button role="radio" aria-checked="'+(filtre===k)+'" data-act="mg-filtre" data-v="'+k+'">'+n+'</button>').join('')+'</div>'+
-        '<label class="search">'+ico('search')+'<input type="search" data-mg-q placeholder="Un schéma, un objet, un pseudo…" aria-label="Chercher dans les annonces" value="'+esc(q)+'"></label>'+
+  // Barre d'outils : elle change avec l'onglet, le reste de l'écran ne bouge pas.
+  function outils(){
+    return onglet==='echanges'
+      ? '<div class="seg" role="radiogroup" aria-label="Filtre des annonces">'+FILTRES.map(([k,n])=>'<button role="radio" aria-checked="'+(filtre===k)+'" data-act="mg-filtre" data-v="'+k+'">'+n+'</button>').join('')+'</div>'+
+        '<label class="search">'+ico('search')+'<input type="search" data-rd-q placeholder="Un schéma, un objet, un pseudo…" aria-label="Chercher dans les annonces" value="'+esc(q)+'"></label>'+
         '<button class="btn primary" data-act="mg-publier">'+ico('swap')+'Publier une annonce</button>'+
-        '<button class="btn" data-act="mg-aide">Comment ça marche</button></div>'+
-        '<p class="mg-erreur" role="status" hidden></p><div data-corps></div>';
-      el.querySelector('[data-mg-q]').addEventListener('input',e=>{q=e.target.value;this.refresh();});
-      charger();
+        '<button class="btn" data-act="mg-aide">Comment ça marche</button>'
+      : outilsEscouades();
+  }
+  function entete(){
+    const nE=(appels||[]).length,nA=(liste||[]).length;
+    const tab=(k,nom,n)=>'<button role="tab" aria-selected="'+(onglet===k)+'" data-act="rd-onglet" data-v="'+k+'">'+nom+(n?' <b>'+n+'</b>':'')+'</button>';
+    return '<header class="view-head"><h1>Raiders</h1><p>Avec qui jouer ce soir, et quoi échanger. Tout ce qui vient des autres joueurs est ici.</p></header>'+
+      '<div class="rd-tabs" role="tablist" aria-label="Communauté">'+tab('escouades','Escouades',nE)+tab('echanges','Échanges',nA)+'</div>';
+  }
+  O.register('raiders',{title:'Raiders',short:'Raiders',icon:'people',pos:6.6,
+    mount(el){el.classList.add('rd');this.refresh();
+      charger();chargerAppels();
       if(!arret&&O.net?.suivreMagasin)O.net.suivreMagasin(()=>charger()).then(f=>arret=f);
+      if(!arretAppels&&O.net?.suivreAppels)O.net.suivreAppels(()=>chargerAppels()).then(f=>arretAppels=f);
     },
     refresh(){
       const el=this.el;if(!el)return;
-      for(const b of $$('[data-act="mg-filtre"]',el))b.setAttribute('aria-checked',String(b.dataset.v===filtre));
-      const e=$('.mg-erreur',el);if(e){const doublon=erreur&&!(liste||[]).length;e.hidden=!erreur||doublon;e.textContent=erreur;}
-      const c=$('[data-corps]',el);if(c)c.innerHTML=corps();
+      el.innerHTML=entete()+'<div class="tools">'+outils()+'</div>'+
+        '<p class="mg-erreur" role="status"'+(onglet==='echanges'&&erreur&&(liste||[]).length?'':' hidden')+'>'+esc(erreur)+'</p>'+
+        '<div data-corps>'+(onglet==='echanges'?corps():corpsEscouades())+'</div>';
+      const champ=$('[data-rd-q]',el);
+      if(champ)champ.addEventListener('input',e=>{q=e.target.value;const c=$('[data-corps]',el);if(c)c.innerHTML=corps();});
     },
-    show(){charger();}});
+    show(){charger();chargerAppels();},
+    minute(){if(onglet==='escouades'&&this.el&&!this.el.contains(document.activeElement))this.refresh();}});
 
   /* ── Écrire une annonce ─────────────────────────────────────────────────── */
   function choixRapides(cible){
@@ -177,9 +193,154 @@
     const m=$('[data-mot]');if(m)m.addEventListener('input',e=>{projet.mot=e.target.value;});
   }
 
+
+  /* ══ Escouades ══════════════════════════════════════════════════════════
+     Le besoin que le site ne couvrait pas : trouver deux joueurs pour ce soir sans
+     faire le tour de dix serveurs Discord. Un appel dit ce qu'on va faire, avec qui,
+     dans quelle langue, et pour combien de temps il tient. Passé son heure, il disparaît
+     tout seul : rien n'est plus décourageant qu'une annonce morte. */
+  const STYLES=[['quetes','Quêtes','Avancer les contrats des marchands'],
+    ['schemas','Schémas','Chercher des schémas précis'],
+    ['butin','Butin','Remplir le sac et ressortir'],
+    ['arc','Chasse aux ARC','Abattre du gros : Bastion, Bombardier, Turbine'],
+    ['pvp','PvP','Chercher le combat entre raiders'],
+    ['decouverte','Découverte','Apprendre la carte, sans pression']];
+  const PLATEFORMES=[['peu-importe','Peu importe'],['pc','PC'],['playstation','PlayStation'],['xbox','Xbox']];
+  const LANGUES=[['fr','Français'],['en','Anglais'],['peu-importe','Peu importe']];
+  const NIVEAUX=[['tous','Tous niveaux'],['debutants','Débutants bienvenus'],['experimentes','Expérimentés']];
+  const nomStyle=k=>STYLES.find(x=>x[0]===k)?.[1]||k;
+  const nomDans=(l,k)=>l.find(x=>x[0]===k)?.[1]||k;
+
+  let appels=null,chargeA=false,erreurA='',styleFiltre='',frSeul=false,arretAppels=null;
+  const CLE_APPEL='speranza.ops.appel.v1';
+  let brouillon={style:'quetes',places:2,plateforme:'peu-importe',langue:'fr',niveau:'tous',carte:'',minutes:120,mot:'',partageCode:true};
+  try{Object.assign(brouillon,JSON.parse(O.read(CLE_APPEL))||{});}catch{}
+
+  async function chargerAppels(){
+    if(chargeA)return;chargeA=true;erreurA='';
+    const r=await O.net?.appels?.();
+    chargeA=false;
+    if(r===null||r===undefined){erreurA=O.net?.usable?'La base n’a pas répondu.':'';appels=appels||[];}
+    else appels=r;
+    if(onglet==='escouades')vue()?.refresh?.();
+  }
+
+  const reste=a=>{const m=Math.round((Date.parse(a.expire_le)-Date.now())/60000);
+    return m<1?'se termine':m<60?'encore '+m+' min':'encore '+Math.floor(m/60)+' h'+(m%60?' '+String(m%60).padStart(2,'0'):'');};
+
+  function outilsEscouades(){
+    const n=k=>(appels||[]).filter(a=>!k||a.style===k).length;
+    return '<div class="seg" role="radiogroup" aria-label="Ce que l’escouade va faire"><button role="radio" aria-checked="'+(!styleFiltre)+'" data-act="es-style" data-v="">Tout <b>'+n()+'</b></button>'+
+      STYLES.map(([k,nom])=>{const c=n(k);return c?'<button role="radio" aria-checked="'+(styleFiltre===k)+'" data-act="es-style" data-v="'+k+'">'+esc(nom)+' <b>'+c+'</b></button>':'';}).join('')+'</div>'+
+      '<button class="chip-btn'+(frSeul?' on':'')+'" data-act="es-fr" aria-pressed="'+frSeul+'">Francophones</button>'+
+      '<button class="btn primary" data-act="es-lancer">'+ico('people')+'Lancer un appel</button>'+
+      '<button class="btn" data-act="es-aide">Comment ça marche</button>';
+  }
+
+  function carteAppel(a){
+    const m=a.carte?mapById(a.carte):null;
+    const mien=a.mien;
+    const manque=m&&!mien?O.missingOn(m).length:0;
+    const ligne=[nomDans(LANGUES,a.langue),nomDans(PLATEFORMES,a.plateforme),nomDans(NIVEAUX,a.niveau)].filter(Boolean);
+    return '<article class="rd-appel" data-style="'+a.style+'"'+(mien?' data-mien':'')+'>'+
+      (manque?'<p class="mg-match">'+ico('check')+'Il te manque '+manque+' schéma'+(manque>1?'s':'')+' sur '+esc(m.short||m.name)+'.</p>':'')+
+      '<header><span class="rd-style">'+esc(nomStyle(a.style))+'</span><b class="mg-pseudo">'+esc(a.pseudo)+(mien?' <em class="rd-mien">ton appel</em>':'')+'</b>'+
+        '<small class="rd-reste">'+esc(reste(a))+'</small></header>'+
+      '<p class="rd-meta">'+ligne.map(esc).join(' · ')+(m?' · <b>'+esc(m.name)+'</b>':'')+'</p>'+
+      (a.mot?'<p class="mg-mot">'+esc(a.mot)+'</p>':'')+
+      '<p class="rd-places"><b>'+a.places+'</b> place'+(a.places>1?'s':'')+' libre'+(a.places>1?'s':'')+
+        (a.code?' · <span class="rd-code">code d’escouade partagé</span>':'')+'</p>'+
+      '<div class="row tight">'+
+        (mien?'<button class="btn small danger" data-act="es-fermer" data-id="'+a.id+'">Clore mon appel</button>'
+             :'<button class="btn small primary" data-act="es-rejoindre" data-id="'+a.id+'">Rejoindre</button>'+
+              '<button class="btn small" data-act="mg-copier" data-g="'+esc(a.pseudo)+'">Copier le pseudo</button>')+
+      '</div></article>';
+  }
+
+  function corpsEscouades(){
+    if(!O.net?.usable)return '<div class="empty"><h2>Les escouades ne sont pas encore branchées</h2><p>Cette copie du site tourne sans base partagée : les appels ne peuvent ni partir ni arriver.</p></div>';
+    if(erreurA&&!(appels||[]).length)return '<div class="empty"><h2>La base n’a pas répondu</h2><p>Les appels des autres raiders n’ont pas pu être chargés.</p><button class="btn primary" data-act="es-recharger">Réessayer</button></div>';
+    if(appels===null)return '<div class="empty"><h2>On regarde qui cherche du monde…</h2></div>';
+    let l=appels.filter(a=>(!styleFiltre||a.style===styleFiltre)&&(!frSeul||a.langue==='fr'));
+    l=l.sort((x,y)=>(y.mien-x.mien)||Date.parse(y.cree_le)-Date.parse(x.cree_le));
+    if(!l.length)return '<div class="empty"><h2>'+(styleFiltre||frSeul?'Personne sur ce filtre':'Aucun appel en cours')+'</h2>'+
+      '<p>'+(styleFiltre||frSeul?'Enlève un filtre, ou lance le tien : il sera en tête.':'Lance le premier. Un appel tient une à six heures, puis disparaît tout seul — pas d’escouade fantôme.')+'</p>'+
+      '<button class="btn primary" data-act="es-lancer">Lancer un appel</button></div>';
+    return '<div class="mg-grid">'+l.map(carteAppel).join('')+'</div>';
+  }
+
+  /* ── Lancer un appel ── */
+  function choix(nom,cle,options,aide){
+    return '<section class="mg-bloc"><h3>'+nom+'</h3>'+(aide?'<p class="fine">'+aide+'</p>':'')+
+      '<div class="seg" role="radiogroup" aria-label="'+esc(nom)+'">'+options.map(([k,label,sous])=>
+        '<button role="radio" aria-checked="'+(String(brouillon[cle])===String(k))+'" data-act="es-champ" data-c="'+cle+'" data-v="'+k+'"'+(sous?' title="'+esc(sous)+'"':'')+'>'+esc(label)+'</button>').join('')+'</div></section>';
+  }
+  function formAppel(message=''){
+    const pseudo=P.gameName?.()||'',code=window.AtlasDuo?.code?.()||'';
+    const sous=STYLES.find(x=>x[0]===brouillon.style)?.[2]||'';
+    O.openSheet('<h2>Lancer un appel</h2><p class="fine">Les autres raiders le verront tout de suite. Il disparaît de lui-même à l’heure que tu fixes.</p>'+
+      choix('Ce que vous allez faire','style',STYLES.map(([k,n])=>[k,n]),sous)+
+      choix('Places libres','places',[[2,'2 places'],[1,'1 place']],'Une escouade compte trois raiders, toi compris.')+
+      choix('Langue','langue',LANGUES)+
+      choix('Plateforme','plateforme',PLATEFORMES)+
+      choix('Niveau','niveau',NIVEAUX)+
+      choix('Durée de l’appel','minutes',[[60,'1 h'],[120,'2 h'],[240,'4 h'],[360,'6 h']],'Passé ce délai, l’appel s’efface. Personne ne répond à une annonce morte.')+
+      '<section class="mg-bloc"><h3>Carte visée <small>facultatif</small></h3><p class="fine">Si tu la précises, le site dira aux autres combien de schémas il leur manque là-bas.</p>'+
+        '<select data-act="es-carte" aria-label="Carte visée"><option value="">Peu importe</option>'+MAPS.map(m=>'<option value="'+m.id+'"'+(brouillon.carte===m.id?' selected':'')+'>'+esc(m.name)+'</option>').join('')+'</select></section>'+
+      '<section class="mg-bloc"><h3>Un mot (facultatif)</h3><input type="text" data-mot-appel maxlength="160" placeholder="Micro bienvenu, on part dans 10 min…" value="'+esc(brouillon.mot)+'" aria-label="Un mot pour accompagner l’appel"></section>'+
+      '<section class="mg-bloc"><h3>Ton pseudo en jeu</h3>'+
+        (pseudo?'<p>Publié sous <b>'+esc(pseudo)+'</b>. <button class="link" data-act="mg-pseudo">Le changer</button></p>'
+               :'<p class="notice">Il faut ton pseudo ARC Raiders complet pour qu’on puisse t’ajouter. <button class="link" data-act="mg-pseudo">L’indiquer</button></p>')+
+        (code?'<label class="own"><input type="checkbox" data-act="es-partage"'+(brouillon.partageCode?' checked':'')+'><span>Partager aussi mon code d’escouade <b class="mono">'+esc(code.slice(0,4)+'-'+code.slice(4))+'</b> : ceux qui rejoignent verront vos positions et vos schémas sur le site.</span></label>'
+              :'<p class="fine">Tu n’as pas d’escouade sur le site. Tu peux en créer une depuis le bouton Escouade en haut, pour partager aussi positions et schémas.</p>')+'</section>'+
+      (message?'<p class="mg-erreur" role="alert">'+esc(message)+'</p>':'')+
+      '<div class="row"><button class="btn primary" data-act="es-envoyer">Lancer l’appel</button><button class="btn" data-act="close-sheet">Annuler</button></div>',
+      {wide:true,label:'Lancer un appel'});
+    const m=$('[data-mot-appel]');if(m)m.addEventListener('input',e=>{brouillon.mot=e.target.value;});
+  }
+
   Object.assign(actions,{
-    'mg-filtre':d=>{filtre=d.v;vueMagasin()?.refresh();},
-    'mg-recharger':()=>{liste=null;vueMagasin()?.refresh();charger();},
+    'rd-onglet':d=>{onglet=d.v==='echanges'?'echanges':'escouades';O.write('speranza.ops.raiders.onglet',onglet);vue()?.refresh();},
+    'es-style':d=>{styleFiltre=d.v;vue()?.refresh();},
+    'es-fr':()=>{frSeul=!frSeul;vue()?.refresh();},
+    'es-recharger':()=>{appels=null;vue()?.refresh();chargerAppels();},
+    'es-lancer':()=>formAppel(),
+    'es-champ':d=>{brouillon[d.c]=/^\d+$/.test(d.v)?Number(d.v):d.v;O.write(CLE_APPEL,JSON.stringify(brouillon));formAppel();},
+    'es-carte':(d,el)=>{brouillon.carte=el.value;O.write(CLE_APPEL,JSON.stringify(brouillon));},
+    'es-partage':(d,el)=>{brouillon.partageCode=el.checked;O.write(CLE_APPEL,JSON.stringify(brouillon));},
+    'es-aide':()=>O.openSheet('<h2>Les escouades, en clair</h2>'+
+      '<h3>Un appel, pas un salon</h3><p>Tu dis ce que tu vas faire, dans quelle langue, sur quelle plateforme et pour combien de temps. Les autres te trouvent en quelques secondes, sans rejoindre dix serveurs Discord.</p>'+
+      '<h3>Pourquoi une heure de fin</h3><p>Un appel tient d’une à six heures, puis s’efface. Une annonce de la semaine dernière ne rend service à personne : mieux vaut une liste courte et vivante.</p>'+
+      '<h3>Rejoindre</h3><p>« Rejoindre » copie le pseudo du raider pour que tu l’ajoutes en jeu. S’il a partagé son code d’escouade, le site te propose aussi de le rejoindre ici : vous verrez alors vos positions, vos chronos d’ARC et vos schémas en commun.</p>'+
+      '<h3>Ce qui part de chez toi</h3><p>Ce que tu écris dans l’appel, et rien d’autre : ton pseudo en jeu, tes choix, ton mot, et ton code d’escouade si tu coches la case. Ni collection, ni position, ni adresse.</p>'+
+      '<p class="notice">Deux appels ouverts au maximum, pour que la liste reste lisible par tous.</p>',{label:'Aide des escouades'}),
+    async 'es-envoyer'(){
+      const pseudo=P.gameName?.()||'';
+      if(!P.gameOk?.(pseudo)){formAppel('Indique d’abord ton pseudo ARC Raiders complet, numéro compris.');P.askGame?.();return;}
+      const code=brouillon.partageCode?(window.AtlasDuo?.code?.()||''):'';
+      const r=await O.net.lancerAppel({...brouillon,pseudo,code});
+      if(!r.ok){formAppel(r.mot);return;}
+      O.closeSheet?.();O.toast('Appel lancé. Il s’effacera tout seul dans '+(brouillon.minutes<120?'1 h':Math.round(brouillon.minutes/60)+' h')+'.');
+      O.write(CLE_APPEL,JSON.stringify(brouillon));chargerAppels();
+    },
+    async 'es-fermer'(d){
+      if(!confirm('Clore cet appel ? Il disparaîtra de la liste.'))return;
+      if(await O.net.majAppel(Number(d.id),{expire_le:new Date(Date.now()-1000).toISOString()})){O.toast('Appel clos.');chargerAppels();}
+      else O.toast('La fermeture n’a pas abouti. Réessaie dans un instant.');
+    },
+    async 'es-rejoindre'(d){
+      const a=(appels||[]).find(x=>String(x.id)===String(d.id));if(!a)return;
+      const moi=P.gameName?.()||P.name?.()||'un raider';
+      try{await navigator.clipboard.writeText(a.pseudo);O.toast('Pseudo copié : ajoute '+a.pseudo+' dans ARC Raiders.');}
+      catch{O.toast('Ajoute '+a.pseudo+' dans ARC Raiders.');}
+      if(a.code&&window.AtlasDuo?.join){
+        if(confirm('Rejoindre aussi son escouade sur le site ? Vous verrez vos positions, vos chronos d’ARC et vos schémas en commun.\n\nTu quitteras ton escouade actuelle si tu en as une.')){
+          if(window.AtlasDuo.join(a.code))O.toast('Escouade rejointe. Dis-lui que tu es '+moi+'.');
+        }
+      }
+    },
+    'mg-filtre':d=>{filtre=d.v;vue()?.refresh();},
+    'mg-recharger':()=>{liste=null;vue()?.refresh();charger();},
     'mg-aide':()=>O.openSheet('<h2>Le magasin, en clair</h2>'+
       '<h3>Trois annonces possibles</h3><ul class="plain">'+
       '<li><b>Don</b> — tu as un doublon, tu le donnes. Rien à rendre.</li>'+
@@ -222,5 +383,5 @@
     }
   });
 
-  window.addEventListener('atlas:profiles',()=>vueMagasin()?.refresh?.());
+  window.addEventListener('atlas:profiles',()=>vue()?.refresh?.());
 })();

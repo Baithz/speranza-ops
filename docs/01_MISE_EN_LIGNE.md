@@ -112,6 +112,7 @@ Cette étape prépare le partage des spawns entre tous les joueurs. **Le site ne
    - `0001_avis_de_spawn.sql` — la table des avis, les règles d'accès, la limite anti-abus et la vue de présence.
    - `0002_bornes_et_activite.sql` — les bornes de retour calculées sur les relevés de tous, et le compteur de raiders actifs.
    - `0003_magasin_echange.sql` — le magasin d'échange, et l'ouverture des avis à tous les ARC et plus seulement aux cinq gros.
+   - `0004_appels_escouade.sql` — les appels d'escouade, avec leur expiration automatique.
 
    **Celle-ci n'est pas facultative** : depuis que le site affiche les vingt-cinq ARC des cartes, il envoie leur identifiant tel quel. Tant que `0003` n'est pas passée, la base refuse tous les avis de spawn. Si tu as déjà fait tourner `0001` et `0002`, passe simplement `0003`.
 3. Onglet **Authentication** → **Sign In / Providers** → active **Anonymous sign-ins**.

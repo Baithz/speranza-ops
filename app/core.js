@@ -29,7 +29,8 @@
     cube:'<path d="m12 2 9 5v10l-9 5-9-5V7l9-5Zm0 10 9-5M12 12v10M12 12 3 7"/>', refresh:'<path d="M20 11a8 8 0 1 0-2 6m2 3v-6h-6"/>',
     ops:'<path d="M2 14h20l-3 5H5l-3-5Zm4 0V9h12v5M9 9V5h6v4M12 5V2"/>',
     star:'<path d="m12 3 2.700 5.800 6.300.800-4.600 4.400 1.200 6.300L12 17.200 6.400 20.300l1.200-6.300L3 9.600l6.300-.8L12 3Z"/>',
-    swap:'<path d="M4 8h12l-3-3m3 3-3 3M20 16H8l3-3m-3 3 3 3"/>'
+    swap:'<path d="M4 8h12l-3-3m3 3-3 3M20 16H8l3-3m-3 3 3 3"/>',
+    people:'<circle cx="9" cy="8" r="3"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><path d="M16 5.2a3 3 0 0 1 0 5.6M17.5 14.3A5.5 5.5 0 0 1 21.5 20"/>'
   };
   const ico=(n,cls='')=>'<svg class="i '+cls+'" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+(paths[n]||'')+'</svg>';
 

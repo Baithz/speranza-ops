@@ -73,3 +73,39 @@
 .chip-btn small{margin-left:.35rem;opacity:.7;font-size:.72rem}
 
 @media(max-width:560px){.mg-card header small{margin-left:0;flex:1 1 100%}}
+
+/* ─ Les deux onglets de l'écran Raiders ─
+   Deux portes, pas un menu : on voit du premier coup d'œil combien il y a derrière chacune. */
+.rd-tabs{display:flex;gap:.4rem;width:fit-content;max-width:100%;margin:0 0 .8rem;padding:.25rem;border:1px solid var(--edge);border-radius:.5rem;background:#0f1826}
+.rd-tabs button{min-width:9rem;min-height:2.8rem;padding:0 1.2rem;border:0;border-radius:.35rem;background:transparent;color:var(--soft);font:600 1rem/1 var(--sans);cursor:pointer}
+.rd-tabs button b{margin-left:.35rem;padding:.08rem .35rem;border-radius:.25rem;background:#1b2838;color:var(--soft);font-size:.78rem}
+.rd-tabs button:hover{color:var(--paper)}
+.rd-tabs button[aria-selected=true]{background:var(--hull2);color:var(--paper);box-shadow:inset 0 0 0 1px var(--edge2)}
+.rd-tabs button[aria-selected=true] b{background:var(--c1);color:var(--ink)}
+
+/* ─ Un appel d'escouade ─
+   Le style de sortie donne la couleur, le temps restant est toujours lisible en haut à droite. */
+.rd-appel{display:flex;flex-direction:column;gap:.45rem;padding:.7rem .8rem;border:1px solid var(--edge);border-left:3px solid var(--sty,var(--edge2));border-radius:.5rem;background:var(--hull)}
+.rd-appel[data-style=quetes]{--sty:#ffd456}
+.rd-appel[data-style=schemas]{--sty:#50dae4}
+.rd-appel[data-style=butin]{--sty:#71e58e}
+.rd-appel[data-style=arc]{--sty:#fa684d}
+.rd-appel[data-style=pvp]{--sty:#ff5c8a}
+.rd-appel[data-style=decouverte]{--sty:#a78bfa}
+.rd-appel[data-mien]{border-color:var(--edge2);background:linear-gradient(var(--hull),var(--hull)) padding-box,linear-gradient(140deg,#50dae455,transparent 60%) border-box}
+
+.rd-appel header{display:flex;align-items:baseline;gap:.5rem;flex-wrap:wrap}
+.rd-style{padding:.1rem .45rem;border-radius:.3rem;background:var(--sty);color:var(--ink);font:700 .7rem/1.6 var(--sans);text-transform:uppercase;letter-spacing:.04em}
+.rd-reste{margin-left:auto;color:var(--c3);font-size:.78rem;font-weight:600;white-space:nowrap}
+.rd-meta{margin:0;font-size:.84rem;color:var(--soft)}
+.rd-meta b{color:var(--paper)}
+.rd-places{margin:0;font-size:.86rem}
+.rd-places b{color:var(--sty)}
+.rd-code{color:var(--c1)}
+.rd-mien{margin-left:.35rem;padding:.05rem .35rem;border-radius:.25rem;background:#1b2838;color:var(--c1);font:600 .68rem/1.5 var(--sans);font-style:normal;text-transform:uppercase;letter-spacing:.03em}
+
+.rd .tools .chip-btn.on{border-color:var(--c1);color:var(--c1)}
+.rd .mg-bloc select{width:100%;min-height:2.6rem;padding:0 .6rem;border:1px solid var(--edge2);border-radius:.4rem;background:#0f1826;color:var(--paper)}
+.rd .mg-bloc h3 small{font-weight:400;color:var(--soft)}
+
+@media(max-width:560px){.rd-tabs{width:auto}.rd-tabs button{flex:1;min-width:0;padding:0 .5rem;font-size:.92rem}.rd-reste{margin-left:0;flex:1 1 100%}}

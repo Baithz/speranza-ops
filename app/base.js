@@ -105,6 +105,56 @@
     return ()=>{if(canalMagasin){c.removeChannel(canalMagasin);canalMagasin=null;}};
   }
 
+  /* ── Appels d'escouade ──────────────────────────────────────────────────
+     « Je cherche deux francophones pour farmer ce soir. » Une annonce porte toujours
+     une heure de fin : personne ne doit répondre à un appel lancé il y a quatre heures. */
+  const STYLES=['quetes','butin','schemas','arc','pvp','decouverte'];
+  async function appels(){
+    const c=await connecter();if(!c)return null;
+    const {data,error}=await c.from('appels')
+      .select('id,cree_le,expire_le,auteur,pseudo,code,plateforme,langue,style,niveau,places,carte,mot')
+      .gt('expire_le',new Date().toISOString()).order('cree_le',{ascending:false}).limit(120);
+    if(error)return null;
+    return data.map(a=>({...a,mien:a.auteur===session?.user?.id}));
+  }
+
+  async function lancerAppel(a){
+    const c=await connecter();if(!c)return {ok:false,mot:'La base n’est pas joignable.'};
+    if(!/^[^#]{1,24}#\d{4}$/.test(String(a.pseudo||'')))return {ok:false,mot:'Il faut ton pseudo ARC Raiders complet, numéro compris.'};
+    if(!STYLES.includes(a.style))return {ok:false,mot:'Choisis ce que tu comptes faire.'};
+    const minutes=Math.min(Math.max(Number(a.minutes)||120,15),360);
+    const ligne={pseudo:String(a.pseudo).slice(0,32),
+      code:/^[A-Z0-9]{8}$/.test(String(a.code||''))?a.code:null,
+      plateforme:['pc','playstation','xbox','peu-importe'].includes(a.plateforme)?a.plateforme:'peu-importe',
+      langue:['fr','en','peu-importe'].includes(a.langue)?a.langue:'peu-importe',
+      style:a.style,
+      niveau:['debutants','tous','experimentes'].includes(a.niveau)?a.niveau:'tous',
+      places:a.places===1?1:2,
+      carte:/^[a-z][a-z0-9-]{1,39}$/.test(String(a.carte||''))?a.carte:null,
+      mot:String(a.mot||'').slice(0,160)||null,
+      expire_le:new Date(Date.now()+minutes*60000).toISOString()};
+    const {error}=await c.from('appels').insert(ligne);
+    if(error)return {ok:false,mot:/maximum/.test(error.message)?'Deux appels ouverts au maximum. Ferme le précédent avant d’en lancer un autre.':'Appel refusé par la base.'};
+    return {ok:true};
+  }
+
+  // Fermer un appel, c'est avancer sa fin ; retirer une place, c'est décrémenter.
+  async function majAppel(id,champs){
+    const c=await connecter();if(!c)return false;
+    const {error}=await c.from('appels').update(champs).eq('id',id);
+    return !error;
+  }
+
+  let canalAppels=null;
+  async function suivreAppels(quand){
+    const c=await connecter();if(!c)return ()=>{};
+    if(canalAppels)c.removeChannel(canalAppels);
+    canalAppels=c.channel('appels')
+      .on('postgres_changes',{event:'*',schema:'public',table:'appels'},()=>{try{quand();}catch{}})
+      .subscribe();
+    return ()=>{if(canalAppels){c.removeChannel(canalAppels);canalAppels=null;}};
+  }
+
   async function compter(){
     const c=await connecter();if(!c)return;
     const {data,error}=await c.rpc('actifs');
@@ -154,7 +204,8 @@
     gameSend:()=>true,                       // l'insertion suffit : la base diffuse elle-même
     obs:(key,kind,d,age,partieEnCours)=>{avis(key,kind==='seen'?'vu':kind==='absent'?'vide':'abattu',age,d,partieEnCours);},
     bornes,ecoute:f=>{ecoute.add(f);return ()=>ecoute.delete(f);},connecter,
-    annonces,publier,fermer,suivreMagasin
+    annonces,publier,fermer,suivreMagasin,
+    appels,lancerAppel,majAppel,suivreAppels
   };
   O.base={pret:PRET,client:()=>client,identite:()=>session?.user?.id||null};
   if(PRET)addEventListener('DOMContentLoaded',()=>setTimeout(connecter,1200));
