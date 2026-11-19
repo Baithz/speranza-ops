@@ -166,11 +166,12 @@
   }
   // Avis reçu du réseau d'entraide : il nourrit la fiabilité et les délais, pas les chronos (autre raid).
   function fromNet(m){
-    if(!m||typeof m.key!=='string'||!['seen','absent'].includes(m.kind))return false;
+    if(!m||typeof m.key!=='string'||!['seen','absent','kill'].includes(m.kind))return false;
     const [mapId,type,idx]=m.key.split('|');if(!mapById(mapId)||!typeOf(type)||!points(mapId,type)[Number(idx)])return false;
-    const st=stat(m.key),ref=typeOf(type).sec||1e9,d=Number(m.d);
-    const b=[0,1,2].includes(m.a)?(st.b??=[[0,0],[0,0],[0,0]])[m.a]:null;if(b)b[m.kind==='seen'?0:1]++;
-    if(m.kind==='seen'){st.seen++;if(d>=ref*.5&&d<=ref*3){st.delays.push(Math.round(d));st.delays=st.delays.slice(-12);}}else st.absent++;
+    const st=stat(m.key),t=typeOf(type),d=Number(m.d);
+    const b=[0,1,2].includes(m.a)?(st.b??=[[0,0],[0,0],[0,0]])[m.a]:null;if(b)b[m.kind==='absent'?1:0]++;
+    if(m.kind==='absent')st.absent++;
+    else{st.seen++;if(t.sec&&d>=t.sec*.4&&d<=t.sec*2.5){(st.hi??=[]).push(Math.round(d));st.hi=st.hi.slice(-24);}}
     st.net=(st.net||0)+1;save();return true;
   }
   const netLine=()=>{const N=O.net;if(!N||!N.usable)return '';

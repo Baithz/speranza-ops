@@ -112,7 +112,8 @@
   }
 
   /* ── Canal de partie : les raiders qui tapent le même code se voient en direct ── */
-  async function partie(code){
+  const RAID=1800;                                      // un raid dure 30 min au compteur du jeu
+  async function partie(code,rappels={}){
     const c=await connecter();
     codePartie=String(code||'').slice(0,24);
     if(canal){c?.removeChannel(canal);canal=null;}
@@ -122,8 +123,15 @@
         if(!l||l.auteur===session?.user?.id)return;       // pas ses propres avis
         recus++;
         const [type,idx]=String(l.point).split('|');
-        O.spawns?.net?.({id:'b'+l.id,key:l.carte+'|'+type+'|'+idx,kind:l.etat==='vu'?'seen':l.etat==='vide'?'absent':'kill',
-          end:null,at:Date.parse(l.cree_le)||Date.now()});
+        const at=Date.parse(l.cree_le)||Date.now();
+        /* L'avis ne porte pas l'heure de fin du raid, mais l'âge de la carte au moment où il est
+           parti : les deux donnent la même chose. Le site s'en sert pour vérifier que l'autre
+           raider est bien dans la même partie que toi, à trois quarts de minute près. */
+        const m={id:'b'+l.id,key:l.carte+'|'+type+'|'+idx,
+          kind:l.etat==='vu'?'seen':l.etat==='vide'?'absent':'kill',
+          at,end:at+(RAID-(l.age_carte||0))*1000};
+        if(rappels.msg)rappels.msg(m,at); else O.spawns?.net?.(m);
+        rappels.count?.(actifs);
         prevenir();
       }).subscribe();
   }
