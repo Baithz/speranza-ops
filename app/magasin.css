@@ -65,11 +65,29 @@
 .mg-bloc h3{margin:0 0 .2rem}
 .mg-bloc .fine{margin:0 0 .5rem}
 .mg-bloc input[type=text]{width:100%;height:2.6rem;padding:0 .7rem;border:1px solid var(--edge2);border-radius:.4rem;background:#0f1826;color:var(--paper)}
-.mg-panier{display:flex;flex-wrap:wrap;gap:.3rem;min-height:2.4rem;margin-bottom:.5rem;padding:.4rem;border:1px dashed var(--edge2);border-radius:.4rem;align-items:center}
-.mg-panier .chip-btn.on{border-color:var(--c1);color:var(--c1)}
-.mg-sug{margin-top:.5rem}
-.mg-sug summary{cursor:pointer;font-size:.86rem;color:var(--c1)}
-.mg-sug .chips{margin-top:.4rem}
+.mg-panier{min-height:2.6rem;margin-bottom:.6rem;padding:.4rem;border:1px dashed var(--edge2);border-radius:.4rem;display:flex;align-items:center}
+.mg-panier[data-plein]{border-style:solid;border-color:var(--c1);background:#0d1a26}
+.mg-n{margin-left:.3rem;padding:.05rem .4rem;border-radius:.25rem;background:#1b2838;color:var(--c1);font:700 .78rem/1.6 var(--sans)}
+
+/* Le rayon : deux portes, des familles, une grille qu'on parcourt à l'œil. */
+.mg-rayon{border:1px solid var(--edge);border-radius:.45rem;background:#0b121c;overflow:hidden}
+.mg-rayon-haut{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;padding:.5rem;border-bottom:1px solid var(--edge)}
+.mg-rayon-haut .seg{flex:none}
+.mg-rayon-haut .search{flex:1;min-width:9rem;margin:0}
+.mg-fams{display:flex;flex-wrap:wrap;gap:.3rem;padding:.5rem .5rem .1rem}
+.mg-fams .chip-btn{font-size:.78rem;padding:.2rem .5rem;min-height:1.9rem}
+.mg-fams .chip-btn b{margin-left:.3rem;opacity:.6;font-weight:600}
+.mg-fams .chip-btn.on{border-color:var(--c1);color:var(--c1);background:#0d1a26}
+.mg-catalogue{max-height:17rem;overflow-y:auto;padding:.5rem;align-content:start}
+.mg-trop{margin:0;padding:.5rem .7rem}
+.mg-obj.pris{border-color:var(--c1);box-shadow:0 0 0 1px #50dae440}
+.mg-obj.pris .mg-plus{opacity:1;background:var(--c1)}
+.mg-obj.pris b{color:var(--c1)}
+
+/* La feuille est longue : l'action reste sous la main. */
+.mg-actions{position:sticky;bottom:0;z-index:2;display:flex;gap:.5rem;flex-wrap:wrap;margin:.8rem -1rem 0;padding:.7rem 1rem;border-top:1px solid var(--edge);background:linear-gradient(#131c2aee,var(--hull));backdrop-filter:blur(6px)}
+.mg-actions .btn{min-height:2.8rem}
+.mg-actions .btn b{margin-left:.4rem;padding:.05rem .4rem;border-radius:.25rem;background:#0b111a33;font-size:.82rem}
 .chip-btn small{margin-left:.35rem;opacity:.7;font-size:.72rem}
 
 @media(max-width:560px){.mg-card header small{margin-left:0;flex:1 1 100%}}

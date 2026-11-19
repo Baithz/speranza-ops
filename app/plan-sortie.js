@@ -169,7 +169,9 @@
   function dessiner(){
     const v=O.views.accueil;if(!v?.el||v.el.hidden)return;
     const place=$('.ps',v.el);
-    if(place)place.outerHTML=blocHTML();
+    if(place){place.outerHTML=blocHTML();return;}
+    const main=$('[data-main]',v.el);
+    if(main)main.insertAdjacentHTML('afterbegin',blocHTML());
     else{const hero=$('.brief',v.el);if(hero)hero.insertAdjacentHTML('afterend',blocHTML());else v.el.insertAdjacentHTML('afterbegin',blocHTML());}
   }
 

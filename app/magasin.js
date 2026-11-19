@@ -144,32 +144,59 @@
     show(){charger();chargerAppels();},
     minute(){if(onglet==='escouades'&&this.el&&!this.el.contains(document.activeElement))this.refresh();}});
 
-  /* ── Écrire une annonce ─────────────────────────────────────────────────── */
-  function choixRapides(cible){
-    const trop=(P.spare?.()||[]).map(id=>({t:'bp',id})),manque=BP.filter(b=>!owned(b.id)).slice(0,40).map(b=>({t:'bp',id:b.id}));
-    const l=cible==='donne'?trop:manque;
-    if(!l.length)return cible==='donne'
-      ? '<p class="fine">Tu n’as marqué aucun schéma en trop. Dans Schémas, touche « En trop » sur tes doublons : ils apparaîtront ici en un clic.</p>'
-      : '<p class="fine">Ta collection est complète : rien à demander côté schémas.</p>';
-    return '<div class="mg-objets">'+l.map(o=>proposable(o,cible)).join('')+'</div>';
+  /* ── Choisir des objets ─────────────────────────────────────────────────
+     Taper un nom suppose qu'on le connaisse, et la moitié du butin d'ARC Raiders porte
+     un nom qu'on n'a jamais lu. On parcourt donc à l'œil : deux rayons, des familles,
+     et des vignettes. La recherche ne fait que filtrer le rayon ouvert. */
+  const FAMILLES_BP=[...new Set(BP.map(b=>b.category))].filter(Boolean).sort((a,b)=>a.localeCompare(b,'fr'));
+  const FAMILLES_LOOT=[...new Set(lootIds.map(id=>LOOT[id].type))].filter(Boolean).sort((a,b)=>a.localeCompare(b,'fr'));
+  // Rayon courant et filtres, par côté (donne / cherche).
+  const rayon={donne:{t:'bp',fam:'',q:''},cherche:{t:'bp',fam:'',q:''}};
+
+  function catalogue(cible){
+    const r=rayon[cible],t=norm(r.q),mesTrop=P.spare?.()||[];
+    let l=[];
+    if(r.t==='bp'){
+      let src=BP;
+      if(r.fam==='__trop')src=BP.filter(b=>mesTrop.includes(b.id));
+      else if(r.fam==='__manque')src=BP.filter(b=>!owned(b.id));
+      else if(r.fam)src=BP.filter(b=>b.category===r.fam);
+      l=src.filter(b=>!t||norm(b.name).includes(t)).map(b=>({t:'bp',id:b.id}));
+    }else{
+      let src=lootIds;
+      if(r.fam)src=src.filter(id=>LOOT[id].type===r.fam);
+      l=src.filter(id=>!t||norm(LOOT[id].name).includes(t)).map(id=>({t:'loot',id}));
+    }
+    return l;
   }
-  function resultats(cible,texte){
-    const t=norm(texte);if(t.length<2)return '';
-    const bps=BP.filter(b=>norm(b.name).includes(t)).slice(0,8).map(b=>({t:'bp',id:b.id}));
-    const lts=lootIds.filter(id=>norm(LOOT[id].name).includes(t)).slice(0,8).map(id=>({t:'loot',id}));
-    const l=[...bps,...lts];
-    return l.length?'<div class="mg-objets">'+l.map(o=>proposable(o,cible)).join('')+'</div>':'<p class="fine">Rien à ce nom.</p>';
+
+  function rayonHTML(cible){
+    const r=rayon[cible],l=catalogue(cible);
+    const fams=r.t==='bp'
+      ? [['','Tous'],['__trop','Mes doublons'],['__manque','Ce qui me manque'],...FAMILLES_BP.map(f=>[f,f])]
+      : [['','Tout'],...FAMILLES_LOOT.map(f=>[f,f])];
+    const compte=k=>{const avant=r.fam;r.fam=k;const n=catalogue(cible).length;r.fam=avant;return n;};
+    return '<div class="mg-rayon">'+
+      '<div class="mg-rayon-haut">'+
+        '<div class="seg" role="radiogroup" aria-label="Rayon">'+
+          [['bp','Schémas'],['loot','Butin']].map(([k,nom])=>'<button role="radio" aria-checked="'+(r.t===k)+'" data-act="mg-rayon" data-c="'+cible+'" data-v="'+k+'">'+nom+'</button>').join('')+'</div>'+
+        '<label class="search">'+ico('search')+'<input type="search" data-cherche="'+cible+'" placeholder="Filtrer par nom" aria-label="Filtrer les objets" value="'+esc(r.q)+'"></label>'+
+      '</div>'+
+      '<div class="mg-fams">'+fams.map(([k,nom])=>{const n=compte(k);
+        return n||k===r.fam?'<button class="chip-btn'+(r.fam===k?' on':'')+'" data-act="mg-fam" data-c="'+cible+'" data-v="'+esc(k)+'" aria-pressed="'+(r.fam===k)+'">'+esc(nom)+' <b>'+n+'</b></button>':'';}).join('')+'</div>'+
+      (l.length?'<div class="mg-objets mg-catalogue">'+l.slice(0,120).map(o=>proposable(o,cible)).join('')+'</div>'+
+         (l.length>120?'<p class="fine mg-trop">'+(l.length-120)+' autres : affine avec le filtre ou une famille.</p>':'')
+        :'<p class="fine mg-trop">Rien ici. Enlève le filtre, ou change de rayon.</p>')+
+      '</div>';
   }
-  const proposable=(o,cible)=>{const b=o.t==='bp'?bpById.get(o.id):null;
-    return '<button class="mg-obj'+(b?' '+O.rarityClass(b.rarity):' est-butin')+'" data-act="mg-ajout" data-c="'+cible+'" data-t="'+o.t+'" data-id="'+esc(o.id)+'" title="'+esc(nomDe(o))+'" aria-label="Ajouter '+esc(nomDe(o))+'">'+
-      '<span class="mg-art">'+visuel(o)+'<span class="mg-plus" aria-hidden="true">+</span></span><b>'+esc(nomDe(o))+'</b></button>';};
+  const proposable=(o,cible)=>{const b=o.t==='bp'?bpById.get(o.id):null,pris=dansListe(projet[cible]||[],o);
+    return '<button class="mg-obj'+(b?' '+O.rarityClass(b.rarity):' est-butin')+(pris?' pris':'')+'" data-act="mg-ajout" data-c="'+cible+'" data-t="'+o.t+'" data-id="'+esc(o.id)+'" title="'+esc(nomDe(o))+(pris?' — déjà choisi, touche pour retirer':'')+'" aria-pressed="'+pris+'" aria-label="'+(pris?'Retirer ':'Ajouter ')+esc(nomDe(o))+'">'+
+      '<span class="mg-art">'+visuel(o)+'<span class="mg-plus" aria-hidden="true">'+(pris?'✓':'+')+'</span></span><b>'+esc(nomDe(o))+'</b></button>';};
   function bloc(cible,titre,aide){
     const l=projet[cible];
-    return '<section class="mg-bloc"><h3>'+titre+'</h3><p class="fine">'+aide+'</p>'+
-      '<div class="mg-panier">'+(l.length?'<div class="mg-objets">'+l.map(o=>vignette(o,{retirer:cible})).join('')+'</div>':'<span class="fine">Rien pour l’instant. Cherche un objet ci-dessous, ou ouvre la liste.</span>')+'</div>'+
-      '<label class="search"><input type="search" data-cherche="'+cible+'" placeholder="Chercher un schéma ou un objet" aria-label="Chercher un objet à ajouter"></label>'+
-      '<div data-res="'+cible+'"></div>'+
-      '<details class="mg-sug"><summary>'+(cible==='donne'?'Mes schémas en trop':'Ce qui me manque')+'</summary>'+choixRapides(cible)+'</details></section>';
+    return '<section class="mg-bloc"><h3>'+titre+' <b class="mg-n">'+l.length+'</b></h3><p class="fine">'+aide+'</p>'+
+      '<div class="mg-panier"'+(l.length?' data-plein':'')+'>'+(l.length?'<div class="mg-objets">'+l.map(o=>vignette(o,{retirer:cible})).join('')+'</div>':'<span class="fine">Rien pour l’instant. Touche un objet ci-dessous pour l’ajouter.</span>')+'</div>'+
+      rayonHTML(cible)+'</section>';
   }
   function formulaire(message=''){
     const g=projet.genre,pseudo=P.gameName?.()||'';
@@ -185,11 +212,18 @@
         (pseudo?'<p>Publié sous <b>'+esc(pseudo)+'</b>. <button class="link" data-act="mg-pseudo">Le changer</button></p>'
                :'<p class="notice">Il faut ton pseudo ARC Raiders complet, numéro à quatre chiffres compris — sinon personne ne peut te retrouver en jeu. <button class="link" data-act="mg-pseudo">L’indiquer</button></p>')+'</section>'+
       (message?'<p class="mg-erreur" role="alert">'+esc(message)+'</p>':'')+
-      '<div class="row"><button class="btn primary" data-act="mg-envoyer">Publier</button><button class="btn" data-act="close-sheet">Annuler</button></div>'+
+      '<div class="mg-actions"><button class="btn primary" data-act="mg-envoyer">Publier'+
+        ((projet.donne.length+projet.cherche.length)?' <b>'+(projet.donne.length+projet.cherche.length)+' objet'+((projet.donne.length+projet.cherche.length)>1?'s':'')+'</b>':'')+
+        '</button><button class="btn" data-act="close-sheet">Annuler</button></div>'+
       '<p class="fine">Le troc se fait en jeu, de la main à la main. Jamais d’argent réel : le site n’en demande ni n’en permet.</p>',
       {wide:true,label:'Publier une annonce'});
     for(const inp of $$('[data-cherche]'))inp.addEventListener('input',e=>{
-      const c=e.target.dataset.cherche,z=$('[data-res="'+c+'"]');if(z)z.innerHTML=resultats(c,e.target.value);});
+      const c=e.target.dataset.cherche;rayon[c].q=e.target.value;
+      const z=e.target.closest('.mg-rayon');if(!z)return;
+      const neuf=document.createElement('div');neuf.innerHTML=rayonHTML(c);
+      z.querySelector('.mg-fams').replaceWith(neuf.querySelector('.mg-fams'));
+      const anc=z.querySelector('.mg-catalogue,.mg-trop'),nou=neuf.querySelector('.mg-catalogue,.mg-trop');
+      if(anc&&nou)anc.replaceWith(nou);});
     const m=$('[data-mot]');if(m)m.addEventListener('input',e=>{projet.mot=e.target.value;});
   }
 
@@ -294,7 +328,7 @@
         (code?'<label class="own"><input type="checkbox" data-act="es-partage"'+(brouillon.partageCode?' checked':'')+'><span>Partager aussi mon code d’escouade <b class="mono">'+esc(code.slice(0,4)+'-'+code.slice(4))+'</b> : ceux qui rejoignent verront vos positions et vos schémas sur le site.</span></label>'
               :'<p class="fine">Tu n’as pas d’escouade sur le site. Tu peux en créer une depuis le bouton Escouade en haut, pour partager aussi positions et schémas.</p>')+'</section>'+
       (message?'<p class="mg-erreur" role="alert">'+esc(message)+'</p>':'')+
-      '<div class="row"><button class="btn primary" data-act="es-envoyer">Lancer l’appel</button><button class="btn" data-act="close-sheet">Annuler</button></div>',
+      '<div class="mg-actions"><button class="btn primary" data-act="es-envoyer">Lancer l’appel</button><button class="btn" data-act="close-sheet">Annuler</button></div>',
       {wide:true,label:'Lancer un appel'});
     const m=$('[data-mot-appel]');if(m)m.addEventListener('input',e=>{brouillon.mot=e.target.value;});
   }
@@ -354,8 +388,11 @@
     'mg-publier':()=>{projet={genre:'echange',donne:[],cherche:[],mot:''};formulaire();},
     'mg-genre':d=>{projet.genre=d.v;formulaire();},
     'mg-ajout':d=>{const c=d.c==='cherche'?'cherche':'donne',o={t:d.t,id:d.id};
+      if(dansListe(projet[c],o)){projet[c]=projet[c].filter(x=>clef(x)!==clef(o));formulaire();return;}
       if(projet[c].length>=12){O.toast('Douze objets au maximum par côté.');return;}
-      if(!dansListe(projet[c],o))projet[c].push(o);formulaire();},
+      projet[c].push(o);formulaire();},
+    'mg-rayon':d=>{const c=d.c==='cherche'?'cherche':'donne';rayon[c].t=d.v;rayon[c].fam='';rayon[c].q='';formulaire();},
+    'mg-fam':d=>{const c=d.c==='cherche'?'cherche':'donne';rayon[c].fam=rayon[c].fam===d.v?'':d.v;formulaire();},
     'mg-retirer':d=>{const c=d.c==='cherche'?'cherche':'donne';projet[c]=projet[c].filter(o=>clef(o)!==d.k);formulaire();},
     'mg-pseudo':()=>{P.askGame?.();},
     async 'mg-envoyer'(){

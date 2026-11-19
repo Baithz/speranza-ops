@@ -26,7 +26,10 @@
       }else{
         const b=best(),m=b.m,act=sched.active(m,now);
         const why=!O.P.active()?'Choisis ton profil pour obtenir une recommandation.'
-          :b.miss.length?(plural(b.miss.length,'schéma à trouver','schémas à trouver')+' sur cette carte.'+(b.hot.size?' '+esc(act.filter(e=>[...b.hot.values()].includes(e)).map(e=>e.title).join(', '))+' en cours : '+plural(b.hot.size,'schéma n’apparaît','schémas n’apparaissent')+' que pendant cet événement.':''))
+          :b.miss.length?(()=>{
+            const titres=[...new Set([...b.hot.values()].map(e=>e?.title).filter(Boolean))];
+            return plural(b.miss.length,'schéma à trouver','schémas à trouver')+' sur cette carte.'+
+              (b.hot.size?(titres.length?' '+esc(titres.join(', '))+' en cours : ':' ')+plural(b.hot.size,'schéma n’apparaît','schémas n’apparaissent')+' que pendant l’événement en cours.':'');})()
           :'Ta collection est complète pour les cartes documentées. Sortie libre : butin et XP.';
         hero='<section class="brief" style="--shot:url(\''+m.shot+'\')"><p class="brief-k">Meilleure sortie maintenant</p><h1>'+esc(m.name)+'</h1><p class="brief-t">'+why+'</p>'+(act.length?'<p class="brief-ev">'+act.map(e=>evChip(e,now)).join('')+'</p>':'')+
           '<div class="row"><button class="btn primary big" data-act="prep" data-map="'+m.id+'">Préparer cette sortie</button><button class="btn big" data-act="openmap" data-map="'+m.id+'">'+ico('map')+'Ouvrir la carte</button></div></section>';
@@ -35,7 +38,9 @@
       const feed=st==='live'?'Planning en direct':st==='loading'?'Chargement du planning…':stale?'Planning périmé':'Planning en mémoire';
       const rows=MAPS.map(m=>{
         const act=sched.active(m,now),nx=sched.next(m,now),miss=O.missingOn(m).length,hot=eventTargets(m,now).size;
-        return '<button class="surf" data-act="prep" data-map="'+m.id+'"><img src="'+m.img+'" alt="" loading="lazy"><span class="surf-n"><b>'+esc(m.name)+'</b><small>'+(act.map(e=>evChip(e,now)).join('')||(nx?evChip(nx,now):'<span class="ev" data-kind="none">Conditions normales</span>'))+'</small></span><span class="surf-c'+(miss?'':' done')+'"><b>'+(miss||ico('check'))+'</b><small>'+(miss?'à trouver'+(hot?' · '+hot+' en événement':''):'complet')+'</small></span>'+ico('chevron')+'</button>';
+        return '<button class="surf" data-act="prep" data-map="'+m.id+'" title="'+esc(m.name)+'"><img src="'+m.img+'" alt="" loading="lazy">'+
+          '<span class="surf-n"><b>'+esc(m.name)+'</b><small>'+(act.map(e=>evChip(e,now)).join('')||(nx?evChip(nx,now):'<span class="ev" data-kind="none">Conditions normales</span>'))+'</small></span>'+
+          '<span class="surf-c'+(miss?'':' done')+(hot?' chaud" title="'+hot+' de ces schémas n’apparaissent que pendant l’événement en cours':'')+'"><b>'+(miss||ico('check'))+'</b><small>'+(miss?'à trouver':'complet')+'</small></span>'+ico('chevron')+'</button>';
       }).join('');
       const pinsHTML=O.pins().map(id=>bpById.get(id)).filter(b=>b&&!owned(b.id)).slice(0,5).map(b=>'<li><button data-act="bp" data-id="'+b.id+'"><img src="'+b.image+'" alt="" loading="lazy"><span>'+esc(b.name)+'</span>'+ico('chevron')+'</button></li>').join('');
       const j=O.ops().raids,last=j.at(-1),premier=have===0;
@@ -45,11 +50,17 @@
         '<div class="row"><button class="btn primary big" data-act="capture">Importer une capture</button><button class="btn" data-act="go" data-view="collection">Cocher à la main</button></div>'+
         '<p class="fine">Tout reste sur cet appareil tant que tu ne rejoins pas une escouade.</p></section>';
       el.innerHTML=hero+
-        '<section class="panel surface"><header><h2>En surface</h2><p class="feed" data-state="'+(st==='live'?'live':stale?'stale':'mem')+'">'+feed+'<button class="icon-btn" data-act="sched-refresh" aria-label="Actualiser le planning" title="Actualiser le planning">'+ico('refresh')+'</button></p></header>'+
-        (stale&&!premier?'<p class="notice">Le planning officiel n’a pas pu être récupéré. Les recommandations se basent en attendant sur ta collection.</p>':'')+'<div class="surf-list">'+rows+'</div></section>'+
-        '<aside class="qg-side">'+(premier?debut:'')+'<section class="panel prog"'+(premier?' hidden':'')+'><div class="ring" style="--p:'+have/total+'"><b>'+pct+'<small>%</small></b></div><div><h2>Collection</h2><p>'+have+' schémas sur '+total+'. '+(total-have?'Il en reste '+(total-have)+'.':'Complète.')+'</p><button class="link" data-act="go" data-view="collection">Voir les schémas à trouver</button><button class="link" data-act="capture">Mettre à jour depuis une capture du jeu</button></div></section>'+
-        (premier?'':'<section class="panel"><h2>Objectifs</h2>'+(pinsHTML?'<ul class="mini">'+pinsHTML+'</ul>':'<p class="fine">Marque un schéma comme objectif '+ico('star')+' pour qu’il soit présélectionné à chaque sortie.</p>')+'</section>'+
-        '<section class="panel"><h2>Dernière sortie</h2>'+(last?'<p><b>'+esc(mapById(last.map)?.name||'')+'</b> · '+(last.result==='extract'?'extraction réussie':'abattu')+' · +'+last.xp+' XP</p>':'<p class="fine">Aucune sortie enregistrée pour ce profil.</p>')+'<button class="link" data-act="journal">Ouvrir le journal ('+j.length+')</button></section>')+'</aside>';
+        '<div class="qg-main" data-main>'+(premier?debut:'')+
+          '<section class="panel prog"'+(premier?' hidden':'')+'><div class="ring" style="--p:'+have/total+'"><b>'+pct+'<small>%</small></b></div>'+
+            '<div><h2>Collection</h2><p>'+have+' schémas sur '+total+'. '+(total-have?'Il en reste '+(total-have)+'.':'Complète.')+'</p>'+
+            '<div class="row tight"><button class="link" data-act="go" data-view="collection">Voir les schémas à trouver</button><button class="link" data-act="capture">Mettre à jour depuis une capture</button></div></div></section>'+
+          (premier?'':'<div class="qg-duo">'+
+            '<section class="panel"><h2>Objectifs</h2>'+(pinsHTML?'<ul class="mini">'+pinsHTML+'</ul>':'<p class="fine">Marque un schéma comme objectif '+ico('star')+' pour qu’il soit présélectionné à chaque sortie.</p>')+'</section>'+
+            '<section class="panel"><h2>Dernière sortie</h2>'+(last?'<p><b>'+esc(mapById(last.map)?.name||'')+'</b> · '+(last.result==='extract'?'extraction réussie':'abattu')+' · +'+last.xp+' XP</p>':'<p class="fine">Aucune sortie enregistrée pour ce profil.</p>')+'<button class="link" data-act="journal">Ouvrir le journal ('+j.length+')</button></section>'+
+          '</div>')+'</div>'+
+        '<aside class="qg-side"><section class="panel surface"><header><h2>En surface</h2><p class="feed" data-state="'+(st==='live'?'live':stale?'stale':'mem')+'">'+feed+'<button class="icon-btn" data-act="sched-refresh" aria-label="Actualiser le planning" title="Actualiser le planning">'+ico('refresh')+'</button></p></header>'+
+          (stale&&!premier?'<p class="notice">Le planning officiel n’a pas pu être récupéré. Les recommandations se basent en attendant sur ta collection.</p>':'')+
+          '<div class="surf-list">'+rows+'</div></section></aside>';
     }});
 
   /* ───────── Sortie ───────── */
